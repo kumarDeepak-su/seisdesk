@@ -1,0 +1,24 @@
+[
+  {
+    "path": "dist/result-data/v0.11.0/interfaces.npz",
+    "bytes": 6473,
+    "sha256": "14e43dd195ae8d1113f19ad04eb431c05ebb688d1faebb0d187099bfdc9d3f6c",
+    "source": "Athena Slurm 3492660, numerical application a3f3693",
+    "array_members": 21,
+    "zip_crc_verified": true
+  },
+  {
+    "path": "dist/result-data/v0.11.0/project-results.npz",
+    "bytes": 13241,
+    "sha256": "c22c55b17e7710c89f95699436d14722f2653aa9968d0279ec59c63fba9cafd6",
+    "source": "Athena Slurm 3492660, numerical application a3f3693",
+    "array_members": 47,
+    "zip_crc_verified": true
+  },
+  {
+    "path": "dist/result-data/v0.11.0/report.json",
+    "bytes": 1697,
+    "sha256": "ef601c6566c8c0d9f744691508bd9574799c0c65966cbb28ce4c8d3571d8be41",
+    "source": "Athena Slurm 3492660, numerical application a3f3693"
+  }
+]

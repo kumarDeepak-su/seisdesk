@@ -1,0 +1,38 @@
+name: workspace-review
+on:
+  workflow_dispatch:
+  push:
+    paths: ["seisdesk/gui/**", "tests/test_v12_workspace.py", "tools/v12_screenshots.py", ".github/workflows/workspace-review.yml"]
+concurrency:
+  group: workspace-${{ github.ref_name }}
+  cancel-in-progress: true
+jobs:
+  review:
+    runs-on: windows-latest
+    timeout-minutes: 25
+    env:
+      QT_QPA_PLATFORM: offscreen
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: packaging/requirements-windows.txt
+      - name: Install
+        run: |
+          python -m pip install -r packaging/requirements-windows.txt
+          python -m pip install --no-deps -e .
+      - name: Workspace interactions
+        timeout-minutes: 6
+        run: python -m pytest -v -o faulthandler_timeout=45 tests/test_v12_workspace.py tests/test_gui.py --junitxml=workspace-tests.xml
+      - name: Render workspace
+        if: always()
+        run: python tools/v12_screenshots.py previews
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: SeisDesk-workspace-review
+          path: |
+            previews/
+            workspace-tests.xml

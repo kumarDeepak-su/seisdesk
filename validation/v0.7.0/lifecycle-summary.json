@@ -1,0 +1,133 @@
+{
+  "cases": {
+    "cpu": {
+      "job_id": "3489878",
+      "state": "COMPLETED",
+      "exit_code": "0:0",
+      "elapsed": "00:00:02",
+      "nodes": "t0005",
+      "application": {
+        "state": "completed",
+        "started": 1793694575.7708158,
+        "host": "t0005",
+        "job_id": "3489878",
+        "python": "3.10.4 (main, Dec 14 2022, 11:01:42) [GCC 11.3.0]",
+        "packages": {
+          "numpy": "2.2.6",
+          "scipy": "1.15.3",
+          "segyio": "1.9.14",
+          "cupy-cuda12x": "13.6.0",
+          "distributed": "2026.8.0"
+        },
+        "source": {
+          "version": "0.7.0"
+        },
+        "exit_code": 0,
+        "finished": 1793694577.1307344
+      },
+      "results": {
+        "size": 514431,
+        "sha256": "17aec6370e6f3cc724eb733ce1d21cd041ace5dad809b1a40895b0fa07bdf443"
+      },
+      "input_bundle_sha256": "6a3f38f50f1080d8e39cdbd6cff97a2e176e13307e7b291a1e04ceefc6a91143",
+      "environment_modules": [
+        "Python/3.10.4"
+      ],
+      "gpus": 0,
+      "download_verified": true
+    },
+    "failure": {
+      "job_id": "3489881",
+      "state": "FAILED",
+      "exit_code": "1:0",
+      "elapsed": "00:00:02",
+      "nodes": "t0005",
+      "application": {
+        "state": "failed",
+        "started": 1793694614.7570615,
+        "host": "t0005",
+        "job_id": "3489881",
+        "python": "3.10.4 (main, Dec 14 2022, 11:01:42) [GCC 11.3.0]",
+        "packages": {
+          "numpy": "2.2.6",
+          "scipy": "1.15.3",
+          "segyio": "1.9.14",
+          "cupy-cuda12x": "13.6.0",
+          "distributed": "2026.8.0"
+        },
+        "source": {
+          "version": "0.7.0"
+        },
+        "exit_code": 1,
+        "finished": 1793694615.9688537
+      },
+      "results": {
+        "size": 504232,
+        "sha256": "1d6237220ed8802dbe0d40ac17f29edfe8fd3b66e0db84aa634e509c02a000ef"
+      },
+      "input_bundle_sha256": "1f8492a5056a8ebfd6e9ea4fb7a01bb98327dcce87e02136040e3f2280a892a5",
+      "environment_modules": [
+        "Python/3.10.4"
+      ],
+      "gpus": 0,
+      "download_verified": true
+    },
+    "cancel": {
+      "job_id": "3489886",
+      "state": "CANCELLED by 117539",
+      "exit_code": "0:0",
+      "elapsed": "00:00:00",
+      "nodes": "None assigned",
+      "application": null,
+      "results": null,
+      "input_bundle_sha256": "9a992f1ab4a9210f22bcaf7b302dd45e62d6d03c302d037b1f32ee31d2374745",
+      "environment_modules": [
+        "Python/3.10.4"
+      ],
+      "gpus": 0,
+      "download_verified": false
+    },
+    "cuda": {
+      "job_id": "3489905",
+      "state": "COMPLETED",
+      "exit_code": "0:0",
+      "elapsed": "00:00:03",
+      "nodes": "t0020",
+      "application": {
+        "state": "completed",
+        "started": 1793695169.1668565,
+        "host": "t0020",
+        "job_id": "3489905",
+        "python": "3.10.4 (main, Dec 14 2022, 11:01:42) [GCC 11.3.0]",
+        "packages": {
+          "numpy": "2.2.6",
+          "scipy": "1.15.3",
+          "segyio": "1.9.14",
+          "cupy-cuda12x": "13.6.0",
+          "distributed": "2026.8.0"
+        },
+        "source": {
+          "version": "0.7.0"
+        },
+        "exit_code": 0,
+        "finished": 1793695171.7528791
+      },
+      "results": {
+        "size": 514476,
+        "sha256": "ada845a21d3d9858a6c53bb89113ac21c1d8fc04faf1a93288e7567659e84c5d"
+      },
+      "input_bundle_sha256": "8cc6addf2e98e753317221576d2e931644939336ccbf49334999716a60793480",
+      "environment_modules": [
+        "Python/3.10.4",
+        "CUDA/12.4.0"
+      ],
+      "gpus": 1,
+      "download_verified": true
+    }
+  },
+  "initial_cuda_profile_failure": {
+    "job_id": "3489888",
+    "error": "CuPy failed to load libnvrtc.so.12",
+    "correction": "Load CUDA/12.4.0 alongside Python/3.10.4; corrected job 3489905 passed."
+  }
+}

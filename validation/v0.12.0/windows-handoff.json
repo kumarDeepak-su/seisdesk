@@ -1,0 +1,66 @@
+{
+  "version": "0.12.0",
+  "prepared_utc": "2026-11-04T06:13:14.992112+00:00",
+  "folder": "~/Desktop/SeisDesk-0.12.0-Windows",
+  "application_commit": "651eb1d264abb41e163e320fdd3ecdaf92274b83",
+  "source_documentation_commit": "cddc82dac10857aaf336f52cce5a41e1412f463d",
+  "windows_run": 41780615893,
+  "workspace_review_run": 41780609401,
+  "installers": [
+    {
+      "edition": "CPU",
+      "file": "01_Installers/SeisDesk-0.12.0-setup.exe",
+      "bytes": 125762578,
+      "sha256": "fa25a43c829aa71896c26f1ed76a3672b33d536950084bf6bf6982ddbd8f3df1",
+      "artifact_id": 13298998588,
+      "artifact_digest_verified": true,
+      "archive_crc_verified": true
+    },
+    {
+      "edition": "CUDA",
+      "file": "01_Installers/SeisDesk-0.12.0-CUDA-setup.exe",
+      "bytes": 1211253010,
+      "sha256": "4cacfc1116ad9588f9f6fe61ecb7069ed2765448bb4b9c8f5319806ae235aa58",
+      "artifact_id": 13300515081,
+      "artifact_digest_verified": true,
+      "archive_crc_verified": true
+    }
+  ],
+  "source_archive": {
+    "file": "07_Source/SeisDesk-0.12.0-source.zip",
+    "bytes": 14760300,
+    "sha256": "cbdb904638ea82151f2e95415bd435ff20b56678f3176957cd365fc4c4e138e2",
+    "crc_verified": true,
+    "tracked_snapshot_commit": "cddc82dac10857aaf336f52cce5a41e1412f463d",
+    "generated_ci_images": 47,
+    "verified_application_python_files": 142,
+    "referenced_manual_images_missing": 0
+  },
+  "manual": {
+    "file": "02_Manuals/SeisDesk_User_Manual.pdf",
+    "pages": 235,
+    "sha256": "a1f9b3779795e27c537b0d19e3b3788e54fcda51c33660b3888e9788a69ef566",
+    "visually_reviewed_pages": [
+      1,
+      8,
+      9,
+      10,
+      11
+    ]
+  },
+  "checks": {
+    "full_windows_passed_per_edition": 399,
+    "full_windows_skipped_per_edition": 8,
+    "focused_workspace_passed": 23,
+    "focused_workspace_skipped": 0,
+    "focused_suite_overlaps_full_suite": true,
+    "gui_previews": 9,
+    "earlier_result_images": 126,
+    "retained_files_hash_verified": 183,
+    "application_python_files_hash_verified": 142,
+    "source_zip_crc_verified": true,
+    "referenced_manual_images_missing": 0
+  },
+  "physical_windows_gpu_execution": "Deferred to the target workstation user",
+  "scientific_scope": "Unchanged from v0.11; see DEVELOPMENT_STATUS.md for remaining capabilities."
+}

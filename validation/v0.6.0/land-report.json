@@ -1,0 +1,324 @@
+{
+  "scope": "public land waveform/operator checks and held-out refraction-pick prediction",
+  "full_land_processing_accuracy_validated": false,
+  "reflection": {
+    "source": "https://doi.org/10.17632/9rrjbnvmkm.1",
+    "licence": "CC BY 4.0",
+    "credit": "Torrese, Rossi, Ori, Rainone and Ormo (2019)",
+    "files": [
+      {
+        "name": "1000.DAT",
+        "sha256": "fd0a743c4a8539c9824b22c1b69c16a5648cdb048d6e5b33a9f20ffdc02f9b7d",
+        "ntr": 12,
+        "nt": 2048,
+        "dt": 0.0005
+      },
+      {
+        "name": "1001.DAT",
+        "sha256": "7ccf8f01f63567c405c85e8e889af719a8a33018f60233339396cd1d49f5703a",
+        "ntr": 12,
+        "nt": 2048,
+        "dt": 0.0005
+      },
+      {
+        "name": "1002.DAT",
+        "sha256": "3d7d42ab0234063c702c9a8e971ff4c7feb7bfc49811bf3acaa46e69a440aef9",
+        "ntr": 12,
+        "nt": 2048,
+        "dt": 0.0005
+      },
+      {
+        "name": "1003.DAT",
+        "sha256": "d78f08c65c8d2697cbe415fa71d8e5d765778507005eec738d62d4db183e24f4",
+        "ntr": 12,
+        "nt": 2048,
+        "dt": 0.0005
+      },
+      {
+        "name": "1004.DAT",
+        "sha256": "d0f4990e034a90d957fb39364ee5cf9a864d3de22568ed030cfc7f96eb29741e",
+        "ntr": 12,
+        "nt": 2048,
+        "dt": 0.0005
+      },
+      {
+        "name": "1005.DAT",
+        "sha256": "e353af3a9f1c1b3e5ab6f10bc2f37c7bc3f6bad30d973cf042e36f876bca2e7e",
+        "ntr": 12,
+        "nt": 2048,
+        "dt": 0.0005
+      },
+      {
+        "name": "1006.DAT",
+        "sha256": "5ee7bc3ad0df7bdde78bae418691a5cd0426fe83252f6e22f9437e82d4d48b9c",
+        "ntr": 12,
+        "nt": 2048,
+        "dt": 0.0005
+      },
+      {
+        "name": "1007.DAT",
+        "sha256": "0b9b38ddd2c748606288d4c49eea539d45404325bc77674e54f26f118a57dc4b",
+        "ntr": 12,
+        "nt": 2048,
+        "dt": 0.0005
+      },
+      {
+        "name": "1008.DAT",
+        "sha256": "5f39214a01bd5cadc191da3456172ccc96b39517417d7e7eb34fb83b6ba4d122",
+        "ntr": 12,
+        "nt": 2048,
+        "dt": 0.0005
+      },
+      {
+        "name": "1009.DAT",
+        "sha256": "e17edfb1f04ab0028eeafbc9886a62af4ad2a6174df1494659e463c5591bdc14",
+        "ntr": 12,
+        "nt": 2048,
+        "dt": 0.0005
+      },
+      {
+        "name": "1010.DAT",
+        "sha256": "d2f68cdad83a5416d54b4c1816f139c489b8e1723fbce4696191b117cf1a7ac1",
+        "ntr": 12,
+        "nt": 2048,
+        "dt": 0.0005
+      },
+      {
+        "name": "1011.DAT",
+        "sha256": "06450af3432d8e03172e546bcc871160c6c3113c3636a195734a4e6397d1110a",
+        "ntr": 12,
+        "nt": 2048,
+        "dt": 0.0005
+      },
+      {
+        "name": "1012.DAT",
+        "sha256": "e4b10af7613167d55b0d6bb5b5a1528be217222b93a65fe68d83a3d70a35bf0a",
+        "ntr": 12,
+        "nt": 2048,
+        "dt": 0.0005
+      },
+      {
+        "name": "1013.DAT",
+        "sha256": "3345f614b1993d0d4c8fa657e730b2bf7dd9901b0482e9b6de1cd91a2e945285",
+        "ntr": 12,
+        "nt": 2048,
+        "dt": 0.0005
+      },
+      {
+        "name": "1014.DAT",
+        "sha256": "d2162e3f4402628978566ec92869f7786dc26ce12c0bb7a48491dec95234f59a",
+        "ntr": 12,
+        "nt": 2048,
+        "dt": 0.0005
+      },
+      {
+        "name": "1015.DAT",
+        "sha256": "c5a9c441668c1c876babfa3c968c513901a281e4cb6549bfeeefe56792fc42de",
+        "ntr": 12,
+        "nt": 2048,
+        "dt": 0.0005
+      },
+      {
+        "name": "1016.DAT",
+        "sha256": "62e686379e0a0742b2aa6cb11fbdcca1e7022e56dce1338d153a1c336123bb67",
+        "ntr": 12,
+        "nt": 2048,
+        "dt": 0.0005
+      },
+      {
+        "name": "1017.DAT",
+        "sha256": "2800f412a7be5a7ef7e9f2a6e106376dddfeaf49a80cd11082b947d7b5461db9",
+        "ntr": 12,
+        "nt": 2048,
+        "dt": 0.0005
+      },
+      {
+        "name": "1018.DAT",
+        "sha256": "8b8d10c49528a0516270f5019e9d81d9bbd5d34867353b3ab9591e10d5e0e7b7",
+        "ntr": 12,
+        "nt": 2048,
+        "dt": 0.0005
+      },
+      {
+        "name": "1019.DAT",
+        "sha256": "9688718b2411d0012594c742e5f90e95978d1aed4a9829fd00da7beb0827f7dc",
+        "ntr": 12,
+        "nt": 2048,
+        "dt": 0.0005
+      },
+      {
+        "name": "1020.DAT",
+        "sha256": "4e2859da171c639d39a8b371fc57939e54b1dad11ce88218d27f94ea1a1e0e51",
+        "ntr": 12,
+        "nt": 2048,
+        "dt": 0.0005
+      },
+      {
+        "name": "1021.DAT",
+        "sha256": "bb47102443dbbc5838e6a8bd43192eaece70f321d7052a73fb49bd4eecef0989",
+        "ntr": 12,
+        "nt": 2048,
+        "dt": 0.0005
+      },
+      {
+        "name": "1022.DAT",
+        "sha256": "39881a223d341495cd517e321a9aff9f9aa2d3aa837404d8c8bff7877b7ec0c8",
+        "ntr": 12,
+        "nt": 2048,
+        "dt": 0.0005
+      },
+      {
+        "name": "1023.DAT",
+        "sha256": "ac891d7d973125b86918044d238dc31a66d236a19145c4f2e86d1d65b5c6bf99",
+        "ntr": 12,
+        "nt": 2048,
+        "dt": 0.0005
+      },
+      {
+        "name": "1024.DAT",
+        "sha256": "5e6549409a244ec7ebb1bc36aabda6dd56b18ec460e73445fe67270085753466",
+        "ntr": 12,
+        "nt": 2048,
+        "dt": 0.0005
+      },
+      {
+        "name": "1025.DAT",
+        "sha256": "0e45a5ff4f91fe188ac418490bfe900e51057f3cd3b5fea219060d780f461ed0",
+        "ntr": 12,
+        "nt": 2048,
+        "dt": 0.0005
+      }
+    ],
+    "interpretation_accuracy_validated": false,
+    "original_header_geometry": {
+      "source_increment_m": [
+        5.0
+      ],
+      "receiver_increment_m": [
+        3.0
+      ],
+      "absolute_offset_m": [
+        3.0,
+        72.0
+      ]
+    },
+    "geometry_note": "The repository description gives 2 m source/receiver spacing and 6 m near offset. The original SEG-2 coordinates differ. They are retained for this software operator comparison, not treated as surveyed truth or silently overwritten.",
+    "obspy_scaled_samples_exact": true,
+    "ntr": 312,
+    "shots": 26,
+    "cdp_assignment": "Equal original-header midpoints grouped for operator comparison only",
+    "su_comparison": {
+      "input": "$HOME/seisdesk-validation-20261102/land-benchmark/sirente-original-headers.sgy",
+      "sha256": "a1aa41d65df2e8a93295d08a7535bdf9e1444c7d4733801671d68841c5d7b926",
+      "ntr": 312,
+      "nt": 2048,
+      "dt": 0.0005,
+      "scope": "field-sample software/operator comparison",
+      "full_survey_validated": false,
+      "geological_model_validated": false,
+      "headers": {
+        "fldr": {
+          "min": 1000.0,
+          "max": 1025.0,
+          "unique": 26
+        },
+        "tracf": {
+          "min": 1.0,
+          "max": 24.0,
+          "unique": 24
+        },
+        "cdp": {
+          "min": 1.0,
+          "max": 276.0,
+          "unique": 276
+        },
+        "offset": {
+          "min": 3.0,
+          "max": 72.0,
+          "unique": 24
+        },
+        "sx": {
+          "min": 1797.0,
+          "max": 1922.0,
+          "unique": 26
+        },
+        "sy": {
+          "min": 0.0,
+          "max": 0.0,
+          "unique": 1
+        },
+        "gx": {
+          "min": 1800.0,
+          "max": 1994.0,
+          "unique": 181
+        },
+        "gy": {
+          "min": 0.0,
+          "max": 0.0,
+          "unique": 1
+        }
+      },
+      "streamed_read_exact": true,
+      "real_su_scaling_exact": true,
+      "nmo_stack": {
+        "velocity_m_s": 2000,
+        "stretch_muting": "disabled",
+        "nmo": {
+          "correlation": 0.999999596384814,
+          "relative_l2": 0.0009667734702564339
+        },
+        "stack": {
+          "correlation": 0.9999995986928143,
+          "relative_l2": 0.0009667965830917044
+        },
+        "note": "SU sinc and native linear interpolation need not be sample-identical",
+        "correlation_acceptance": 0.95
+      },
+      "elapsed_seconds": 0.507336680078879,
+      "status": "passed"
+    },
+    "status": "passed"
+  },
+  "refraction": {
+    "source": "https://github.com/gimli-org/example-data/blob/master/traveltime/koenigsee.sgt",
+    "documentation": "https://www.pygimli.org/_examples_auto/2_seismics/plot_04_koenigsee/",
+    "credit": "pyGIMLi development team, Koenigsee field example",
+    "sensor_count": 63,
+    "sha256": "cf8f6c8c79fd0f60984eefc61aff67b567b0c875f8f5c663fe904cdbf0d0414a",
+    "observations": 714,
+    "training_picks": 571,
+    "held_out_picks": 143,
+    "training_rms_seconds": [
+      0.003599161567313259,
+      0.0015616881363721467,
+      0.0012716689586845526,
+      0.0009177642005149391,
+      0.0007823584364800374,
+      0.0007222551308929019,
+      0.0007100827907793316,
+      0.0006979478707663428,
+      0.000683494017101338,
+      0.0006826342814467064,
+      0.0006823213541025891,
+      0.0006617873469763664,
+      0.0006575302863101601,
+      0.0006469147388513314,
+      0.0006435675414480917,
+      0.00063547860620918,
+      0.0006324307204362714,
+      0.0006312419074093031,
+      0.0006303956238178604,
+      0.0006288513242442795
+    ],
+    "initial_holdout_rms_seconds": 0.003607917910112011,
+    "final_holdout_rms_seconds": 0.000691836013550884,
+    "all_predictions_finite": true,
+    "thresholds": {
+      "max_holdout_rms_seconds": 0.0015,
+      "max_holdout_fraction_of_initial": 0.7
+    },
+    "physical_velocity_ground_truth_available": false,
+    "raw_waveform_picking_validated": false,
+    "status": "passed"
+  }
+}

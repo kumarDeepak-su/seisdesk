@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SeisDesk · Test image collection</title>
+<style>
+:root { color-scheme: light dark; --surface: Canvas; --ink: CanvasText; --quiet: color-mix(in srgb, CanvasText 66%, Canvas); --line: color-mix(in srgb, CanvasText 18%, Canvas); --panel: color-mix(in srgb, Canvas 96%, CanvasText); }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--surface); color: var(--ink); font: 16px/1.5 system-ui, sans-serif; }
+main { max-width: 1480px; margin: auto; padding: 32px clamp(16px, 4vw, 56px) 64px; }
+h1 { font-size: clamp(28px, 4vw, 42px); font-weight: 500; margin: 0 0 10px; }
+h2 { font-size: 24px; font-weight: 500; margin: 0 0 20px; }
+h2 span { color: var(--quiet); font-size: 16px; }
+h3 { margin: 2px 0 8px; font-size: 18px; font-weight: 500; }
+p { margin: 8px 0; }
+.intro { max-width: 900px; }
+.eyebrow, .kind { color: var(--quiet); font-size: 13px; }
+.eyebrow { letter-spacing: .09em; text-transform: uppercase; }
+nav { display: flex; flex-wrap: wrap; gap: 12px 24px; margin: 28px 0 12px; padding: 18px 0; border-block: 1px solid var(--line); }
+a { color: LinkText; text-underline-offset: 3px; }
+section { padding-top: 30px; scroll-margin-top: 20px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr)); gap: 32px 24px; }
+figure { margin: 0; min-width: 0; }
+.preview { display: flex; align-items: center; justify-content: center; height: 250px; background: var(--panel); border: 1px solid var(--line); }
+.preview img { display: block; max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
+figcaption { padding-top: 10px; }
+figcaption p { font-size: 14px; }
+details { margin-top: 10px; color: var(--quiet); font-size: 13px; overflow-wrap: anywhere; }
+summary { cursor: pointer; }
+details ul { padding-left: 20px; }
+.digest { overflow-wrap: anywhere; }
+button { font: inherit; color: ButtonText; background: ButtonFace; border: 1px solid var(--line); border-radius: 5px; padding: 8px 14px; cursor: pointer; }
+button:disabled { cursor: default; opacity: .5; }
+dialog { color: var(--ink); background: var(--surface); border: 1px solid var(--line); padding: 20px; width: min(1400px, 96vw); max-height: 96vh; }
+dialog::backdrop { background: color-mix(in srgb, CanvasText 65%, transparent); }
+.dialog-head { display: flex; align-items: start; justify-content: space-between; gap: 16px; }
+.dialog-head h2 { margin-bottom: 4px; }
+.dialog-nav { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin: 12px 0; }
+#large-image { display: block; width: 100%; height: auto; max-height: 70vh; object-fit: contain; margin: 16px auto; }
+#large-caption { max-width: 1100px; }
+#large-position { color: var(--quiet); }
+footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 14px; color: var(--quiet); }
+@media (max-width: 600px) { .preview { height: auto; min-height: 150px; } .preview img { width: 100%; } .dialog-head { flex-wrap: wrap; } }
+</style>
+</head>
+<body>
+<main>
+<header>
+<p class="eyebrow">SeisDesk · Saved test images</p>
+<h1>Processing results and software previews</h1>
+<p class="intro">__IMAGE_COUNT__ distinct images covering __VIEW_COUNT__ views, collected from __FILE_COUNT__ saved files. Exact duplicate copies are combined; earlier variants remain below.</p>
+<p class="intro">Click an image to enlarge it. Each caption identifies field validation, a synthetic demonstration or an interface example. The original pixels are preserved.</p>
+<nav aria-label="Image sections">__NAV__</nav>
+</header>
+__CARDS__
+<footer>Source paths, dimensions and image hashes: <a href="manifest.json">collection manifest</a>. These images document selected workflows; they do not establish completion or field validation of every method.</footer>
+</main>
+<dialog id="viewer" aria-labelledby="large-title">
+<div class="dialog-head"><div><p class="kind" id="large-kind"></p><h2 id="large-title"></h2></div><button id="close-viewer" type="button">Close</button></div>
+<div class="dialog-nav"><button id="previous-image" type="button">Previous</button><button id="next-image" type="button">Next</button><span id="large-position" aria-live="polite"></span><a id="original-link" href="#" target="_blank" rel="noopener">Open original</a></div>
+<img id="large-image" alt="">
+<p id="large-caption"></p>
+<details><summary>Source files</summary><ul id="large-sources"></ul></details>
+</dialog>
+<script id="gallery-data" type="application/json">__IMAGE_DATA__</script>
+<script>
+(() => {
+  const images = JSON.parse(document.getElementById('gallery-data').textContent);
+  const viewer = document.getElementById('viewer');
+  let selected = 0;
+  function show(index) {
+    selected = Math.max(0, Math.min(images.length - 1, index));
+    const item = images[selected];
+    document.getElementById('large-title').textContent = item.title;
+    document.getElementById('large-kind').textContent = item.kind;
+    document.getElementById('large-caption').textContent = item.caption;
+    document.getElementById('large-position').textContent = `${selected + 1} / ${images.length} · ${item.width} × ${item.height} pixels`;
+    const image = document.getElementById('large-image');
+    image.src = item.image; image.alt = item.title;
+    document.getElementById('original-link').href = item.image;
+    document.getElementById('large-sources').replaceChildren(...item.sources.map(source => {
+      const li = document.createElement('li'); li.textContent = source; return li;
+    }));
+    document.getElementById('previous-image').disabled = selected === 0;
+    document.getElementById('next-image').disabled = selected === images.length - 1;
+    if (!viewer.open) viewer.showModal();
+  }
+  document.querySelectorAll('[data-image-id]').forEach(link => link.addEventListener('click', event => {
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault(); show(images.findIndex(item => item.id === link.dataset.imageId));
+  }));
+  document.getElementById('close-viewer').addEventListener('click', () => viewer.close());
+  document.getElementById('previous-image').addEventListener('click', () => show(selected - 1));
+  document.getElementById('next-image').addEventListener('click', () => show(selected + 1));
+  viewer.addEventListener('keydown', event => {
+    if (event.key === 'ArrowLeft') { event.preventDefault(); show(selected - 1); }
+    if (event.key === 'ArrowRight') { event.preventDefault(); show(selected + 1); }
+  });
+})();
+</script>
+</body>
+</html>

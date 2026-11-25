@@ -1,0 +1,74 @@
+[
+  {
+    "path": "dist/result-images/v0.9.0/v09_arrival_controls.png",
+    "sha256": "c2e414f74cf3f3f065c4cbd11c4d3ba6e0e9bb2c4a2226e6421aa60bc77596a1",
+    "bytes": 27788,
+    "width": 1200,
+    "height": 560,
+    "source": "Windows CI 41662508196, d61930a"
+  },
+  {
+    "path": "dist/result-images/v0.9.0/v09_arrival_qc.png",
+    "sha256": "13e51d18049abdd4617f76c8482a2bcada8d4d6b35773a6b2babfec0aec667d0",
+    "bytes": 87666,
+    "width": 1150,
+    "height": 800,
+    "source": "Windows CI 41662508196, d61930a"
+  },
+  {
+    "path": "dist/result-images/v0.9.0/v09_curved_3d.png",
+    "sha256": "72052f648ec7962e736e3ce052aa1edc5aaf2c0dd43ef9f48b52a3a08b4407db",
+    "bytes": 477592,
+    "width": 2250,
+    "height": 900,
+    "source": "Athena 3491045, implementation 3fad78e"
+  },
+  {
+    "path": "dist/result-images/v0.9.0/v09_curved_5d.png",
+    "sha256": "480d790e75ceab2eba9f77b40a2bd86f34287141c30dae903e4e574bd2676606",
+    "bytes": 369873,
+    "width": 2250,
+    "height": 900,
+    "source": "Athena 3491045, implementation 3fad78e"
+  },
+  {
+    "path": "dist/result-images/v0.9.0/v09_reconstruction_coverage.png",
+    "sha256": "37fdd2a2c95c3b03936063a487a897405c88ca9d88b17e84b6930e5cda78c2a1",
+    "bytes": 34982,
+    "width": 1050,
+    "height": 620,
+    "source": "Windows CI 41662508196, d61930a"
+  },
+  {
+    "path": "dist/result-images/v0.9.0/v09_synthetic_reconstruction.png",
+    "sha256": "8630235f62bfac73367c73bb15c8a4fde9f0b8219f09cb3c497f0be61e2872e4",
+    "bytes": 89813,
+    "width": 2250,
+    "height": 750,
+    "source": "Athena 3491028, 3fad78e"
+  },
+  {
+    "path": "dist/result-images/v0.9.0/v09_synthetic_tomography.png",
+    "sha256": "e2ade22557f3d8a09454c4f08104fd754422d209cfdc00834b07028794f45746",
+    "bytes": 164769,
+    "width": 2100,
+    "height": 1200,
+    "source": "Athena 3491028, 3fad78e"
+  },
+  {
+    "path": "dist/result-images/v0.9.0/v09_uncertainty_slices.png",
+    "sha256": "087c12e45c8145c738a4da9b1950fe5ea62c8f0f515a4ea7c653cfc97c80ba6d",
+    "bytes": 32306,
+    "width": 1150,
+    "height": 740,
+    "source": "Windows CI 41662508196, d61930a"
+  },
+  {
+    "path": "dist/result-images/v0.9.0/v09_velocity_slices.png",
+    "sha256": "df848806639f92785efd79fa84e37b9fa60805424dcb1cdd5740f8a2f0e751ea",
+    "bytes": 45378,
+    "width": 1150,
+    "height": 740,
+    "source": "Windows CI 41662508196, d61930a"
+  }
+]

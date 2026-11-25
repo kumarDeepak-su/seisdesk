@@ -1,0 +1,12 @@
+{
+  "reference": "SEGDreader/SEGD_reader",
+  "reference_commit": "0dc57b6a1eecb266a05bc265031490bc5d9cbe68",
+  "source": "https://github.com/SEGDreader/SEGD_reader/blob/0dc57b6a1eecb266a05bc265031490bc5d9cbe68/examples/data/453005563.0001.2024.06.30.19.35.34.000.Z.segd",
+  "sha256": "df50c6951bbb1da5a7fa186aa37d195294b47ca8d468e74967d42dded61ee807",
+  "traces": 9,
+  "samples": 450001,
+  "dt_s": 0.004,
+  "max_absolute_sample_difference": 0.0,
+  "sample_units": "mV",
+  "timing_note": "Header sample intervals and first-sample timing checked; geographic coordinates and proprietary continuous timestamps are not inferred."
+}

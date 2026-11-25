@@ -1,0 +1,73 @@
+..................                                                       [100%]
+- generated xml file: $HOME/seisdesk-validation-20261102/v11-scientific-results.xml -
+18 passed in 21.54s
+{
+  "arrivals": 18,
+  "initial_rms_ms": 4.114821230282191,
+  "final_rms_ms": 0.9474717772289672,
+  "bootstrap": 20,
+  "uncertainty": "Independent Gaussian timing errors; fixed phase assignments, topology, control grid, bounds and velocity regularisation; interfaces and selected velocity updates refitted. Zero spread may reflect ray-grid quantisation",
+  "interfaces": {
+    "dipping": {
+      "controls": [
+        [
+          -15.0,
+          5.0
+        ],
+        [
+          5.0,
+          5.0
+        ]
+      ],
+      "contact_nodes": 9,
+      "nodes": 81,
+      "mean_absolute_depth_error_m": 2.0987654320987654,
+      "conditional_std_max_m": 2.564945880212885
+    },
+    "deep": {
+      "controls": [
+        [
+          -5.0
+        ]
+      ],
+      "contact_nodes": 9,
+      "nodes": 81,
+      "mean_absolute_depth_error_m": 0.0,
+      "conditional_std_max_m": 0.0
+    }
+  },
+  "independent_dipping_plane_refinement": [
+    {
+      "spacing_m": 10,
+      "predicted_s": [
+        0.06136382480519192,
+        0.06257384946343855,
+        0.06257384946343855,
+        0.06136382480519192
+      ],
+      "reference_s": [
+        0.06331188720713035,
+        0.0634521302991962,
+        0.0634521302991962,
+        0.06331188720713035
+      ],
+      "maximum_relative_error": 0.03076929922441229
+    },
+    {
+      "spacing_m": 5,
+      "predicted_s": [
+        0.06228484631977287,
+        0.06228484631977287,
+        0.06228484631977287,
+        0.06228484631977287
+      ],
+      "reference_s": [
+        0.06331188720713035,
+        0.0634521302991962,
+        0.0634521302991962,
+        0.06331188720713035
+      ],
+      "maximum_relative_error": 0.018396292983690717
+    }
+  ]
+}

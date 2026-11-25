@@ -1,0 +1,11 @@
+{
+  "artifact_id": 13298998588,
+  "run": 41780615893,
+  "artifact_sha256": "c858d330d84ede2da536b7c9e262db346112b397cbc1f0e3dfd5aba55221c141",
+  "artifact_bytes": 125288426,
+  "installer": "SeisDesk-0.12.0-setup.exe",
+  "installer_bytes": 125762578,
+  "installer_sha256": "fa25a43c829aa71896c26f1ed76a3672b33d536950084bf6bf6982ddbd8f3df1",
+  "artifact_digest_verified": true,
+  "zip_crc_verified": true
+}

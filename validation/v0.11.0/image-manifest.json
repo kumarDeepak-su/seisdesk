@@ -1,0 +1,601 @@
+{
+  "pixels_changed": false,
+  "images": [
+    {
+      "file": "dist/result-images/v0.11.0/v11_interface_recovery.png",
+      "sha256": "702c6707e41be1f709f7b83d6df57fcb1b2b933ba0f9ec389e5d7311b378af1c",
+      "bytes": 157404,
+      "width": 2060,
+      "height": 1150,
+      "source": "Athena numerical Slurm job 3492660; final plot-only render 3492711",
+      "kind": "Independent noisy analytical plane reflections, 20 conditional timing refits",
+      "visual_inspection": "Inspected: title, shared depth scales, contact markers and nonnegative masked uncertainty"
+    },
+    {
+      "file": "dist/result-images/v0.11.0/earlier/v11_interface_recovery.png",
+      "sha256": "aeed6f996a3fcb2a3f743c6fa288430d8b946d0044a3f07cd7e2d7e40af531aa",
+      "bytes": 147924,
+      "width": 2100,
+      "height": 1120,
+      "source": "Athena Slurm job 3492660, original render",
+      "kind": "Superseded scientific rendering; numerical results unchanged",
+      "visual_inspection": "Superseded: separate depth scales and zero-spread colour scale"
+    },
+    {
+      "file": "dist/result-images/v0.11.0/earlier/title-clipped/v11_interface_recovery.png",
+      "sha256": "413dadf303edf42459d9189398dfa4d11afd5d7932c0e4dc75f7778bb31e8c16",
+      "bytes": 157325,
+      "width": 2100,
+      "height": 1120,
+      "source": "Athena plot-only Slurm job 3492694",
+      "kind": "Superseded scientific rendering; numerical results unchanged",
+      "visual_inspection": "Superseded: clipped title; corrected by plot-only job 3492711"
+    },
+    {
+      "file": "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v04-window-previews-CPU/v04_avo_crossplot.png",
+      "sha256": "5d82f7fe681ccee1343d7c15dcc338cbf3181e9dbf9693ff94706c590a77fbad",
+      "bytes": 69895,
+      "width": 900,
+      "height": 680,
+      "source": "Windows CPU/CUDA run 41742119084, application 5ba6dd4",
+      "kind": "Windows GUI preview; illustrative or synthetic inputs",
+      "visual_inspection": "Existing diagnostic preview regenerated successfully; not separately visually reviewed in this milestone",
+      "artifact_paths": [
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v04-window-previews-CPU/v04_avo_crossplot.png",
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v04-window-previews-CUDA/v04_avo_crossplot.png"
+      ]
+    },
+    {
+      "file": "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v04-window-previews-CPU/v04_deviation.png",
+      "sha256": "5fa1a7e1413b72fa8b1b84464dcad738b9937be7998e8989630f1b14e850b226",
+      "bytes": 79304,
+      "width": 1300,
+      "height": 780,
+      "source": "Windows CPU/CUDA run 41742119084, application 5ba6dd4",
+      "kind": "Windows GUI preview; illustrative or synthetic inputs",
+      "visual_inspection": "Existing diagnostic preview regenerated successfully; not separately visually reviewed in this milestone",
+      "artifact_paths": [
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v04-window-previews-CPU/v04_deviation.png",
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v04-window-previews-CUDA/v04_deviation.png"
+      ]
+    },
+    {
+      "file": "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v04-window-previews-CPU/v04_fowler.png",
+      "sha256": "164679225fe24e2fd3a6d23844ba9ade6bcacbf15e6a3a8763e4e74207aa4ad0",
+      "bytes": 33822,
+      "width": 1100,
+      "height": 730,
+      "source": "Windows CPU/CUDA run 41742119084, application 5ba6dd4",
+      "kind": "Windows GUI preview; illustrative or synthetic inputs",
+      "visual_inspection": "Existing diagnostic preview regenerated successfully; not separately visually reviewed in this milestone",
+      "artifact_paths": [
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v04-window-previews-CPU/v04_fowler.png",
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v04-window-previews-CUDA/v04_fowler.png"
+      ]
+    },
+    {
+      "file": "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v04-window-previews-CPU/v04_fwi.png",
+      "sha256": "2a9d5edcf28e27ff856557cbe62dcd1bd215d564a87c6a505b1f959cecc79686",
+      "bytes": 40575,
+      "width": 1000,
+      "height": 740,
+      "source": "Windows CPU/CUDA run 41742119084, application 5ba6dd4",
+      "kind": "Windows GUI preview; illustrative or synthetic inputs",
+      "visual_inspection": "Existing diagnostic preview regenerated successfully; not separately visually reviewed in this milestone",
+      "artifact_paths": [
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v04-window-previews-CPU/v04_fwi.png",
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v04-window-previews-CUDA/v04_fwi.png"
+      ]
+    },
+    {
+      "file": "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v04-window-previews-CPU/v04_grm.png",
+      "sha256": "3a63f82bc09e9486fda924d52ad7d6ed9a871df3dc89c51aebbe2773c99cb932",
+      "bytes": 44231,
+      "width": 1000,
+      "height": 650,
+      "source": "Windows CPU/CUDA run 41742119084, application 5ba6dd4",
+      "kind": "Windows GUI preview; illustrative or synthetic inputs",
+      "visual_inspection": "Existing diagnostic preview regenerated successfully; not separately visually reviewed in this milestone",
+      "artifact_paths": [
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v04-window-previews-CPU/v04_grm.png",
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v04-window-previews-CUDA/v04_grm.png"
+      ]
+    },
+    {
+      "file": "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v04-window-previews-CPU/v04_multitrace.png",
+      "sha256": "0a4633e77fc246e2716c0e8dd59bd178b1361063a9221a44bdb1edc71395d09e",
+      "bytes": 50957,
+      "width": 1300,
+      "height": 780,
+      "source": "Windows CPU/CUDA run 41742119084, application 5ba6dd4",
+      "kind": "Windows GUI preview; illustrative or synthetic inputs",
+      "visual_inspection": "Existing diagnostic preview regenerated successfully; not separately visually reviewed in this milestone",
+      "artifact_paths": [
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v04-window-previews-CPU/v04_multitrace.png",
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v04-window-previews-CUDA/v04_multitrace.png"
+      ]
+    },
+    {
+      "file": "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v04-window-previews-CPU/v04_mva.png",
+      "sha256": "b2cb06500ceb786f05f1aea211a4fb2bd5f004b1cff1948c4cfee526d93149c9",
+      "bytes": 33684,
+      "width": 1050,
+      "height": 700,
+      "source": "Windows CPU/CUDA run 41742119084, application 5ba6dd4",
+      "kind": "Windows GUI preview; illustrative or synthetic inputs",
+      "visual_inspection": "Existing diagnostic preview regenerated successfully; not separately visually reviewed in this milestone",
+      "artifact_paths": [
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v04-window-previews-CPU/v04_mva.png",
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v04-window-previews-CUDA/v04_mva.png"
+      ]
+    },
+    {
+      "file": "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v04-window-previews-CPU/v04_panel_spectrum.png",
+      "sha256": "12f3724e711c7a73c105ccefeebbed323cc34c7f0d94c859d10bc9455705614b",
+      "bytes": 31606,
+      "width": 900,
+      "height": 650,
+      "source": "Windows CPU/CUDA run 41742119084, application 5ba6dd4",
+      "kind": "Windows GUI preview; illustrative or synthetic inputs",
+      "visual_inspection": "Existing diagnostic preview regenerated successfully; not separately visually reviewed in this milestone",
+      "artifact_paths": [
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v04-window-previews-CPU/v04_panel_spectrum.png",
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v04-window-previews-CUDA/v04_panel_spectrum.png"
+      ]
+    },
+    {
+      "file": "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v04-window-previews-CPU/v04_shear_rotation.png",
+      "sha256": "1bef4afdb8948e42559e1c264fa3b55bb720f0f4b2a819a8bc9d3b8fee7bdabd",
+      "bytes": 19213,
+      "width": 900,
+      "height": 650,
+      "source": "Windows CPU/CUDA run 41742119084, application 5ba6dd4",
+      "kind": "Windows GUI preview; illustrative or synthetic inputs",
+      "visual_inspection": "Existing diagnostic preview regenerated successfully; not separately visually reviewed in this milestone",
+      "artifact_paths": [
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v04-window-previews-CPU/v04_shear_rotation.png",
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v04-window-previews-CUDA/v04_shear_rotation.png"
+      ]
+    },
+    {
+      "file": "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v04-window-previews-CPU/v04_statistics.png",
+      "sha256": "26143499c80a09dbad50f7be8766c41e50b599f6a75569e3da57a4b60d72383e",
+      "bytes": 105062,
+      "width": 1000,
+      "height": 700,
+      "source": "Windows CPU run 41742119084, application 5ba6dd4",
+      "kind": "Windows GUI preview; illustrative or synthetic inputs",
+      "visual_inspection": "Existing diagnostic preview regenerated successfully; not separately visually reviewed in this milestone",
+      "artifact_paths": [
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v04-window-previews-CPU/v04_statistics.png"
+      ]
+    },
+    {
+      "file": "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v04-window-previews-CPU/v04_tomography.png",
+      "sha256": "a66417db702e4649d7a8c9c6296ded18ab4d1ccc817843da83f7d163011c24df",
+      "bytes": 45769,
+      "width": 1000,
+      "height": 720,
+      "source": "Windows CPU/CUDA run 41742119084, application 5ba6dd4",
+      "kind": "Windows GUI preview; illustrative or synthetic inputs",
+      "visual_inspection": "Existing diagnostic preview regenerated successfully; not separately visually reviewed in this milestone",
+      "artifact_paths": [
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v04-window-previews-CPU/v04_tomography.png",
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v04-window-previews-CUDA/v04_tomography.png"
+      ]
+    },
+    {
+      "file": "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v04-window-previews-CPU/v04_velocity_slice.png",
+      "sha256": "c52b41f4c3c89e3a642cee39b259ac48f09e3da021ad025b6efdde1bcfbf3f36",
+      "bytes": 25028,
+      "width": 900,
+      "height": 650,
+      "source": "Windows CPU/CUDA run 41742119084, application 5ba6dd4",
+      "kind": "Windows GUI preview; illustrative or synthetic inputs",
+      "visual_inspection": "Existing diagnostic preview regenerated successfully; not separately visually reviewed in this milestone",
+      "artifact_paths": [
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v04-window-previews-CPU/v04_velocity_slice.png",
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v04-window-previews-CUDA/v04_velocity_slice.png"
+      ]
+    },
+    {
+      "file": "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v04-window-previews-CPU/v04_wellavo.png",
+      "sha256": "0ce4f4518374dd9d3576ed6da8e43bd55da636eea724e29667f476dd006a5641",
+      "bytes": 63731,
+      "width": 1300,
+      "height": 780,
+      "source": "Windows CPU/CUDA run 41742119084, application 5ba6dd4",
+      "kind": "Windows GUI preview; illustrative or synthetic inputs",
+      "visual_inspection": "Existing diagnostic preview regenerated successfully; not separately visually reviewed in this milestone",
+      "artifact_paths": [
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v04-window-previews-CPU/v04_wellavo.png",
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v04-window-previews-CUDA/v04_wellavo.png"
+      ]
+    },
+    {
+      "file": "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v04-window-previews-CPU/v04_welltie.png",
+      "sha256": "b5422fed68fbd923ca0d0e955bc3ec0c316d8b35a0319a6b16ab9a5812d733cd",
+      "bytes": 92966,
+      "width": 1300,
+      "height": 780,
+      "source": "Windows CPU/CUDA run 41742119084, application 5ba6dd4",
+      "kind": "Windows GUI preview; illustrative or synthetic inputs",
+      "visual_inspection": "Existing diagnostic preview regenerated successfully; not separately visually reviewed in this milestone",
+      "artifact_paths": [
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v04-window-previews-CPU/v04_welltie.png",
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v04-window-previews-CUDA/v04_welltie.png"
+      ]
+    },
+    {
+      "file": "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v04-window-previews-CUDA/v04_statistics.png",
+      "sha256": "860396b0f72854e5c6a94ecef86ffa5f3569a9f890423a0163c4941847aac604",
+      "bytes": 105068,
+      "width": 1000,
+      "height": 700,
+      "source": "Windows CUDA run 41742119084, application 5ba6dd4",
+      "kind": "Windows GUI preview; illustrative or synthetic inputs",
+      "visual_inspection": "Existing diagnostic preview regenerated successfully; not separately visually reviewed in this milestone",
+      "artifact_paths": [
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v04-window-previews-CUDA/v04_statistics.png"
+      ]
+    },
+    {
+      "file": "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v05-window-previews-CPU/v05_joint_tomography.png",
+      "sha256": "482cc4274950de1bfdcf20a7eae8313e17f16c0288ea303a6536c94f7a82330f",
+      "bytes": 53300,
+      "width": 1000,
+      "height": 720,
+      "source": "Windows CPU/CUDA run 41742119084, application 5ba6dd4",
+      "kind": "Windows GUI preview; illustrative or synthetic inputs",
+      "visual_inspection": "Existing diagnostic preview regenerated successfully; not separately visually reviewed in this milestone",
+      "artifact_paths": [
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v05-window-previews-CPU/v05_joint_tomography.png",
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v05-window-previews-CUDA/v05_joint_tomography.png"
+      ]
+    },
+    {
+      "file": "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v05-window-previews-CPU/v05_model_builder.png",
+      "sha256": "5a6708796797d35603c0feea61bc7fec4f66edd9ee80fbe2be7d2ba9aa528ea9",
+      "bytes": 29413,
+      "width": 650,
+      "height": 650,
+      "source": "Windows CPU/CUDA run 41742119084, application 5ba6dd4",
+      "kind": "Windows GUI preview; illustrative or synthetic inputs",
+      "visual_inspection": "Existing diagnostic preview regenerated successfully; not separately visually reviewed in this milestone",
+      "artifact_paths": [
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v05-window-previews-CPU/v05_model_builder.png",
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v05-window-previews-CUDA/v05_model_builder.png"
+      ]
+    },
+    {
+      "file": "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v05-window-previews-CPU/v05_su_workbench.png",
+      "sha256": "999424b1dfcf26ea769c9aaaf0fe0965af5b9ed6788d3278d7cee4602d746ec3",
+      "bytes": 32338,
+      "width": 980,
+      "height": 740,
+      "source": "Windows CPU/CUDA run 41742119084, application 5ba6dd4",
+      "kind": "Windows GUI preview; illustrative or synthetic inputs",
+      "visual_inspection": "Existing diagnostic preview regenerated successfully; not separately visually reviewed in this milestone",
+      "artifact_paths": [
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v05-window-previews-CPU/v05_su_workbench.png",
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v05-window-previews-CUDA/v05_su_workbench.png"
+      ]
+    },
+    {
+      "file": "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v05-window-previews-CPU/v05_volume_job.png",
+      "sha256": "5df8f2248a741b1dc7b11ddcc539bfb5dc2eb9c2d24d8ab916b3d89e27095f72",
+      "bytes": 68221,
+      "width": 900,
+      "height": 850,
+      "source": "Windows CPU/CUDA run 41742119084, application 5ba6dd4",
+      "kind": "Windows GUI preview; illustrative or synthetic inputs",
+      "visual_inspection": "Existing diagnostic preview regenerated successfully; not separately visually reviewed in this milestone",
+      "artifact_paths": [
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v05-window-previews-CPU/v05_volume_job.png",
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v05-window-previews-CUDA/v05_volume_job.png"
+      ]
+    },
+    {
+      "file": "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v05-window-previews-CPU/v05_volume_slices.png",
+      "sha256": "7a9f8337cc18da93bd94342db3c17ee317d180da2b27c51e709fdee673e37299",
+      "bytes": 35483,
+      "width": 1150,
+      "height": 740,
+      "source": "Windows CPU/CUDA run 41742119084, application 5ba6dd4",
+      "kind": "Windows GUI preview; illustrative or synthetic inputs",
+      "visual_inspection": "Existing diagnostic preview regenerated successfully; not separately visually reviewed in this milestone",
+      "artifact_paths": [
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v05-window-previews-CPU/v05_volume_slices.png",
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v05-window-previews-CUDA/v05_volume_slices.png"
+      ]
+    },
+    {
+      "file": "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v06-window-previews-CPU/v06_branch_editor.png",
+      "sha256": "5f1e4576d5cf53fb532645330e1ba587895be3cf9692b4a400c10d0493900ca9",
+      "bytes": 65896,
+      "width": 1160,
+      "height": 760,
+      "source": "Windows CPU/CUDA run 41742119084, application 5ba6dd4",
+      "kind": "Windows GUI preview; illustrative or synthetic inputs",
+      "visual_inspection": "Existing diagnostic preview regenerated successfully; not separately visually reviewed in this milestone",
+      "artifact_paths": [
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v06-window-previews-CPU/v06_branch_editor.png",
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v06-window-previews-CUDA/v06_branch_editor.png"
+      ]
+    },
+    {
+      "file": "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v06-window-previews-CPU/v06_interface_inversion.png",
+      "sha256": "bcf0847a7d86c79982f5e2ecbf6f98c2444dd3f91e79bc67f0a44ec74c995f83",
+      "bytes": 60932,
+      "width": 1000,
+      "height": 720,
+      "source": "Windows CPU/CUDA run 41742119084, application 5ba6dd4",
+      "kind": "Windows GUI preview; illustrative or synthetic inputs",
+      "visual_inspection": "Existing diagnostic preview regenerated successfully; not separately visually reviewed in this milestone",
+      "artifact_paths": [
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v06-window-previews-CPU/v06_interface_inversion.png",
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v06-window-previews-CUDA/v06_interface_inversion.png"
+      ]
+    },
+    {
+      "file": "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v06-window-previews-CPU/v06_seg2_import.png",
+      "sha256": "f4026bccc7098b71f93923a2071255b8be313abbe50de1673a67a94df82ed516",
+      "bytes": 23377,
+      "width": 510,
+      "height": 280,
+      "source": "Windows CPU/CUDA run 41742119084, application 5ba6dd4",
+      "kind": "Windows GUI preview; illustrative or synthetic inputs",
+      "visual_inspection": "Existing diagnostic preview regenerated successfully; not separately visually reviewed in this milestone",
+      "artifact_paths": [
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v06-window-previews-CPU/v06_seg2_import.png",
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v06-window-previews-CUDA/v06_seg2_import.png"
+      ]
+    },
+    {
+      "file": "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v07-window-previews-CPU/v07_remote_host.png",
+      "sha256": "57c43d598100c8e09855494f2cc6ccb0fd7b362952253c4b321f2d106753ad30",
+      "bytes": 67661,
+      "width": 1050,
+      "height": 850,
+      "source": "Windows CPU/CUDA run 41742119084, application 5ba6dd4",
+      "kind": "Windows GUI preview; illustrative or synthetic inputs",
+      "visual_inspection": "Existing diagnostic preview regenerated successfully; not separately visually reviewed in this milestone",
+      "artifact_paths": [
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v07-window-previews-CPU/v07_remote_host.png",
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v07-window-previews-CUDA/v07_remote_host.png"
+      ]
+    },
+    {
+      "file": "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v07-window-previews-CPU/v07_remote_jobs.png",
+      "sha256": "6b0f2e821c7dfb29d00e6a2233f18e2b261d7213ebdc4527ac799492333f7002",
+      "bytes": 45757,
+      "width": 1050,
+      "height": 850,
+      "source": "Windows CPU run 41742119084, application 5ba6dd4",
+      "kind": "Windows GUI preview; illustrative or synthetic inputs",
+      "visual_inspection": "Existing diagnostic preview regenerated successfully; not separately visually reviewed in this milestone",
+      "artifact_paths": [
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v07-window-previews-CPU/v07_remote_jobs.png"
+      ]
+    },
+    {
+      "file": "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v07-window-previews-CUDA/v07_remote_jobs.png",
+      "sha256": "2aa3acac2266d29c822266f4393d4bb0b46a9b51b36066662cdfa05a916dc203",
+      "bytes": 45629,
+      "width": 1050,
+      "height": 850,
+      "source": "Windows CUDA run 41742119084, application 5ba6dd4",
+      "kind": "Windows GUI preview; illustrative or synthetic inputs",
+      "visual_inspection": "Existing diagnostic preview regenerated successfully; not separately visually reviewed in this milestone",
+      "artifact_paths": [
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v07-window-previews-CUDA/v07_remote_jobs.png"
+      ]
+    },
+    {
+      "file": "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v08-devices-CPU/v08_workstation_devices.png",
+      "sha256": "783563f87d24537577e0f9e2095571366fa7ae38f2d295009e8a9befe9bb206c",
+      "bytes": 55533,
+      "width": 850,
+      "height": 640,
+      "source": "Windows CPU/CUDA run 41742119084, application 5ba6dd4",
+      "kind": "Windows GUI preview; illustrative or synthetic inputs",
+      "visual_inspection": "Existing diagnostic preview regenerated successfully; not separately visually reviewed in this milestone",
+      "artifact_paths": [
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v08-devices-CPU/v08_workstation_devices.png",
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v08-devices-CUDA/v08_workstation_devices.png"
+      ]
+    },
+    {
+      "file": "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v09-tomography-reconstruction-CPU/v09_arrival_controls.png",
+      "sha256": "3ddaf3c4a15cdbd67cced50968e886e90ed73dad5f73462e488123e6598f6421",
+      "bytes": 41319,
+      "width": 1200,
+      "height": 560,
+      "source": "Windows CPU/CUDA run 41742119084, application 5ba6dd4",
+      "kind": "Windows GUI preview; illustrative or synthetic inputs",
+      "visual_inspection": "Existing diagnostic preview regenerated successfully; not separately visually reviewed in this milestone",
+      "artifact_paths": [
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v09-tomography-reconstruction-CPU/v09_arrival_controls.png",
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v09-tomography-reconstruction-CUDA/v09_arrival_controls.png"
+      ]
+    },
+    {
+      "file": "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v09-tomography-reconstruction-CPU/v09_arrival_qc.png",
+      "sha256": "13e51d18049abdd4617f76c8482a2bcada8d4d6b35773a6b2babfec0aec667d0",
+      "bytes": 87666,
+      "width": 1150,
+      "height": 800,
+      "source": "Windows CPU/CUDA run 41742119084, application 5ba6dd4",
+      "kind": "Windows GUI preview; illustrative or synthetic inputs",
+      "visual_inspection": "Existing diagnostic preview regenerated successfully; not separately visually reviewed in this milestone",
+      "artifact_paths": [
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v09-tomography-reconstruction-CPU/v09_arrival_qc.png",
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v09-tomography-reconstruction-CUDA/v09_arrival_qc.png"
+      ]
+    },
+    {
+      "file": "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v09-tomography-reconstruction-CPU/v09_reconstruction_coverage.png",
+      "sha256": "37fdd2a2c95c3b03936063a487a897405c88ca9d88b17e84b6930e5cda78c2a1",
+      "bytes": 34982,
+      "width": 1050,
+      "height": 620,
+      "source": "Windows CPU/CUDA run 41742119084, application 5ba6dd4",
+      "kind": "Windows GUI preview; illustrative or synthetic inputs",
+      "visual_inspection": "Existing diagnostic preview regenerated successfully; not separately visually reviewed in this milestone",
+      "artifact_paths": [
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v09-tomography-reconstruction-CPU/v09_reconstruction_coverage.png",
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v09-tomography-reconstruction-CUDA/v09_reconstruction_coverage.png"
+      ]
+    },
+    {
+      "file": "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v09-tomography-reconstruction-CPU/v09_uncertainty_slices.png",
+      "sha256": "087c12e45c8145c738a4da9b1950fe5ea62c8f0f515a4ea7c653cfc97c80ba6d",
+      "bytes": 32306,
+      "width": 1150,
+      "height": 740,
+      "source": "Windows CPU/CUDA run 41742119084, application 5ba6dd4",
+      "kind": "Windows GUI preview; illustrative or synthetic inputs",
+      "visual_inspection": "Existing diagnostic preview regenerated successfully; not separately visually reviewed in this milestone",
+      "artifact_paths": [
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v09-tomography-reconstruction-CPU/v09_uncertainty_slices.png",
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v09-tomography-reconstruction-CUDA/v09_uncertainty_slices.png"
+      ]
+    },
+    {
+      "file": "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v09-tomography-reconstruction-CPU/v09_velocity_slices.png",
+      "sha256": "df848806639f92785efd79fa84e37b9fa60805424dcb1cdd5740f8a2f0e751ea",
+      "bytes": 45378,
+      "width": 1150,
+      "height": 740,
+      "source": "Windows CPU/CUDA run 41742119084, application 5ba6dd4",
+      "kind": "Windows GUI preview; illustrative or synthetic inputs",
+      "visual_inspection": "Existing diagnostic preview regenerated successfully; not separately visually reviewed in this milestone",
+      "artifact_paths": [
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v09-tomography-reconstruction-CPU/v09_velocity_slices.png",
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v09-tomography-reconstruction-CUDA/v09_velocity_slices.png"
+      ]
+    },
+    {
+      "file": "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v10-field-surface-CPU/v10_resample_import.png",
+      "sha256": "b5a0fed7eb593deec13fff8c5d051901a74eb4946dcef54ea2f4cd170efb6f9d",
+      "bytes": 16606,
+      "width": 355,
+      "height": 231,
+      "source": "Windows CPU/CUDA run 41742119084, application 5ba6dd4",
+      "kind": "Windows GUI preview; illustrative or synthetic inputs",
+      "visual_inspection": "Existing diagnostic preview regenerated successfully; not separately visually reviewed in this milestone",
+      "artifact_paths": [
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v10-field-surface-CPU/v10_resample_import.png",
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v10-field-surface-CUDA/v10_resample_import.png"
+      ]
+    },
+    {
+      "file": "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v10-field-surface-CPU/v10_segd_import.png",
+      "sha256": "a5a772613ca12ab8c0ddc42abdfd352bffa260f26c26da54ef6e3a12894e7b45",
+      "bytes": 30673,
+      "width": 620,
+      "height": 440,
+      "source": "Windows CPU/CUDA run 41742119084, application 5ba6dd4",
+      "kind": "Windows GUI preview; illustrative or synthetic inputs",
+      "visual_inspection": "Existing diagnostic preview regenerated successfully; not separately visually reviewed in this milestone",
+      "artifact_paths": [
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v10-field-surface-CPU/v10_segd_import.png",
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v10-field-surface-CUDA/v10_segd_import.png"
+      ]
+    },
+    {
+      "file": "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v10-field-surface-CPU/v10_sps_geometry.png",
+      "sha256": "81026c8965e74f3c6ffff3777f625af5edc9f6a67360f1ddb494e430aaa21a06",
+      "bytes": 27108,
+      "width": 900,
+      "height": 480,
+      "source": "Windows CPU/CUDA run 41742119084, application 5ba6dd4",
+      "kind": "Windows GUI preview; illustrative or synthetic inputs",
+      "visual_inspection": "Existing diagnostic preview regenerated successfully; not separately visually reviewed in this milestone",
+      "artifact_paths": [
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v10-field-surface-CPU/v10_sps_geometry.png",
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v10-field-surface-CUDA/v10_sps_geometry.png"
+      ]
+    },
+    {
+      "file": "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v10-field-surface-CPU/v10_surface_inversion.png",
+      "sha256": "d251f6269365a3a7e5c57082cb7f28403db4dc8312abab8ec45b7ea51b8921bc",
+      "bytes": 83916,
+      "width": 1180,
+      "height": 800,
+      "source": "Windows CPU/CUDA run 41742119084, application 5ba6dd4",
+      "kind": "Windows GUI preview; illustrative or synthetic inputs",
+      "visual_inspection": "Existing diagnostic preview regenerated successfully; not separately visually reviewed in this milestone",
+      "artifact_paths": [
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v10-field-surface-CPU/v10_surface_inversion.png",
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v10-field-surface-CUDA/v10_surface_inversion.png"
+      ]
+    },
+    {
+      "file": "dist/result-images/v0.11.0/v11_interface_controls.png",
+      "sha256": "089e9c7616fbf107d44959f199c7d85b30fdbf5180a5bb24706a5620b876da8b",
+      "bytes": 38075,
+      "width": 1200,
+      "height": 560,
+      "source": "Windows CPU/CUDA run 41742119084, application 5ba6dd4",
+      "kind": "Windows GUI preview; illustrative or synthetic inputs",
+      "visual_inspection": "Inspected final v0.11 controls, labels, maps, sections, masks and residual QC",
+      "artifact_paths": [
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v11-interfaces-CPU/v11_interface_controls.png",
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v11-interfaces-CUDA/v11_interface_controls.png"
+      ]
+    },
+    {
+      "file": "dist/result-images/v0.11.0/v11_interface_depths.png",
+      "sha256": "a149af5a203d54217ddc8058570991692af2125f9cd7e8984f961d7e52bbd735",
+      "bytes": 51955,
+      "width": 1200,
+      "height": 800,
+      "source": "Windows CPU/CUDA run 41742119084, application 5ba6dd4",
+      "kind": "Windows GUI preview; illustrative or synthetic inputs",
+      "visual_inspection": "Inspected final v0.11 controls, labels, maps, sections, masks and residual QC",
+      "artifact_paths": [
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v11-interfaces-CPU/v11_interface_depths.png",
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v11-interfaces-CUDA/v11_interface_depths.png"
+      ]
+    },
+    {
+      "file": "dist/result-images/v0.11.0/v11_interface_uncertainty.png",
+      "sha256": "9a7a3354f8faccd3c0ca371f7698c40552f921d853c1cd23019d8c937c67c076",
+      "bytes": 55213,
+      "width": 1200,
+      "height": 800,
+      "source": "Windows CPU/CUDA run 41742119084, application 5ba6dd4",
+      "kind": "Windows GUI preview; illustrative or synthetic inputs",
+      "visual_inspection": "Inspected final v0.11 controls, labels, maps, sections, masks and residual QC",
+      "artifact_paths": [
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v11-interfaces-CPU/v11_interface_uncertainty.png",
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v11-interfaces-CUDA/v11_interface_uncertainty.png"
+      ]
+    },
+    {
+      "file": "dist/result-images/v0.11.0/v11_joint_arrival_qc.png",
+      "sha256": "57b0be412eb5433e3971964bb3a3aa839ffeac77fbcfbc20bca12535e6aa7223",
+      "bytes": 84634,
+      "width": 1150,
+      "height": 800,
+      "source": "Windows CPU/CUDA run 41742119084, application 5ba6dd4",
+      "kind": "Windows GUI preview; illustrative or synthetic inputs",
+      "visual_inspection": "Inspected final v0.11 controls, labels, maps, sections, masks and residual QC",
+      "artifact_paths": [
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v11-interfaces-CPU/v11_joint_arrival_qc.png",
+        "dist/v0.11.0-5ba6dd4/previews/SeisDesk-v11-interfaces-CUDA/v11_joint_arrival_qc.png"
+      ]
+    },
+    {
+      "file": "dist/v0.11.0-89abd1d/previews/SeisDesk-v11-interfaces-CPU/v11_interface_uncertainty.png",
+      "sha256": "a887f2c01b105d8deb8d600183bfd2a8a6b2917be5588466bac231df4ae83102",
+      "bytes": 56344,
+      "width": 1200,
+      "height": 800,
+      "source": "Windows CPU run 41740092188, application 89abd1d",
+      "kind": "Superseded uncertainty preview",
+      "visual_inspection": "Stale depth label remained when switching fields; corrected and regression-checked in 5ba6dd4"
+    }
+  ]
+}

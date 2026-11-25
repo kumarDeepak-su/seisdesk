@@ -1,0 +1,13 @@
+# Exact versions used to build the Windows installer (all have Python 3.11 win_amd64 wheels).
+numpy==2.2.6
+disba==0.7.0
+numba==0.61.2
+llvmlite==0.44.0
+matplotlib==3.10.7
+scipy==1.15.3
+segyio==1.9.14
+PySide6==6.10.2            # 6.9.x does not paint pyqtgraph images or curves (tools/diag_render.py)
+pyqtgraph==0.14.0
+pyinstaller==6.14.2
+pytest==8.3.5
+pytest-qt==4.5.0

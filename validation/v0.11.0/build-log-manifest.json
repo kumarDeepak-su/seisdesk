@@ -1,0 +1,14 @@
+[
+  {
+    "path": "dist/v0.11.0-5ba6dd4/build-logs/windows-cpu-5ba6dd4.log",
+    "bytes": 379106,
+    "sha256": "0f52af973c27d9be73bae05001449910c221307c78526099ea26ececc4903652",
+    "source": "Windows run 41742119084, application source 5ba6dd4"
+  },
+  {
+    "path": "dist/v0.11.0-5ba6dd4/build-logs/windows-cuda-5ba6dd4.log",
+    "bytes": 895227,
+    "sha256": "313c1e724d2e247380ee0a4455907163d4002d0f7f76c81c93f6e62595e6c4dd",
+    "source": "Windows run 41742119084, application source 5ba6dd4"
+  }
+]

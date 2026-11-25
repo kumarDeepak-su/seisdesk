@@ -1,0 +1,14 @@
+[
+  {
+    "path": "dist/v0.10.0-a09b283/build-logs/windows-cpu-a09b283.log",
+    "bytes": 373216,
+    "sha256": "37ddbf3c0aa3a4094f8084e98ac87adaaef996e1c8ec395f3796b8c89dd55cde",
+    "source": "Windows CPU run 41689367571"
+  },
+  {
+    "path": "dist/v0.10.0-a09b283/build-logs/windows-cuda-a09b283.log",
+    "bytes": 889294,
+    "sha256": "0bd925c2eb1a0a473ca1817b09aa59e6591e2ad4d5c06868de23a0d7d84f4f9d",
+    "source": "Windows CUDA run 41689367571"
+  }
+]

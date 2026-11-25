@@ -1,0 +1,35 @@
+{
+  "implementation_revision": "3fad78e",
+  "slurm_job_id": "3491045",
+  "cases": [
+    {
+      "dimensions": 3,
+      "spatial_shape": [
+        16,
+        16
+      ],
+      "recorded": 171,
+      "withheld": 85,
+      "held_out_relative_l2": 0.21083910763263702,
+      "first_event_amplitude_relative_l2": 0.07093299778187429,
+      "zero_fill_relative_l2": 1.0,
+      "max_recorded_change": 0.0
+    },
+    {
+      "dimensions": 5,
+      "spatial_shape": [
+        9,
+        9,
+        5,
+        5
+      ],
+      "recorded": 1414,
+      "withheld": 611,
+      "held_out_relative_l2": 0.21889321506023407,
+      "first_event_amplitude_relative_l2": 0.1310725768221882,
+      "zero_fill_relative_l2": 1.0,
+      "max_recorded_change": 0.0
+    }
+  ],
+  "scope": "Analytic curved reflections, offset-dependent amplitudes and randomly withheld traces; not field validation"
+}

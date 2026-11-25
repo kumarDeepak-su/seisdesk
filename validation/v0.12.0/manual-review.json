@@ -1,0 +1,22 @@
+{
+  "pages": 235,
+  "version": "0.12.0",
+  "source_run": 41780615893,
+  "source_artifact": "SeisDesk-manual-CPU",
+  "reviewed_pages": [
+    1,
+    8,
+    9,
+    10,
+    11
+  ],
+  "checks": [
+    "Version 0.12.0 on cover",
+    "Correct CPU and CUDA installer names on page 8",
+    "Real light-theme viewer and flow screenshots",
+    "New command search, drops, undo/redo, progress, layout and appearance instructions",
+    "No clipped text, controls or overlapping captions on changed pages"
+  ],
+  "unchanged_scope": "Other scientific chapters retain their documented method limitations",
+  "sha256": "a1f9b3779795e27c537b0d19e3b3788e54fcda51c33660b3888e9788a69ef566"
+}

@@ -1,0 +1,38 @@
+{
+  "created_utc": "2026-11-04T04:44:43.306051+00:00",
+  "original_file_count": 284,
+  "unique_image_count": 126,
+  "distinct_views": 109,
+  "section_counts": {
+    "validation": 9,
+    "diagnostics": 25,
+    "examples": 62,
+    "controls": 13,
+    "earlier": 17
+  },
+  "pixels_changed": false,
+  "checks": {
+    "all_image_hashes_match": true,
+    "all_image_paths_in_html": true,
+    "archive_crc_check": "passed during assembly",
+    "browser_interaction": "not repeated; local browser access previously blocked",
+    "inline_script_syntax": "node --check passed for both generated scripts"
+  },
+  "artifacts": [
+    {
+      "path": "dist/test-image-gallery/index.html",
+      "bytes": 228884,
+      "sha256": "1228b07d3c76fb67629db24b2f4e1699077e2c332824fa77d106a18ad2abfdd6"
+    },
+    {
+      "path": "dist/test-image-gallery/manifest.json",
+      "bytes": 118681,
+      "sha256": "650dfbacd88ae39fb67be6be7dcb93ebf19b05603f8671d5394e364660491ac1"
+    },
+    {
+      "path": "dist/seisdesk-test-images.zip",
+      "bytes": 14603297,
+      "sha256": "62076aac0c3281243e8958a75d2b12c272f6bd0ae0948b9abe87a2d6ec29e7cc"
+    }
+  ]
+}

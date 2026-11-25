@@ -1,0 +1,42 @@
+{
+  "source_revision": "3fad78e",
+  "slurm_job_id": "3491028",
+  "host": "t0005",
+  "python": "3.11.9",
+  "tomography": {
+    "arrivals": 96,
+    "phases": [
+      "P",
+      "R1",
+      "R2"
+    ],
+    "rms_ms": [
+      5.350030518075446,
+      0.2640456739777169,
+      0.14043457978820872,
+      0.11133266335059622,
+      0.092695913158145,
+      0.0795752327881258
+    ],
+    "covered_nodes": 269,
+    "total_nodes": 729,
+    "uncertainty": {
+      "replicates": 3,
+      "seed": 17,
+      "assumption": "Independent Gaussian timing errors; fixed interfaces, grid, regularisation and starting solution"
+    }
+  },
+  "reconstruction": {
+    "shape": [
+      6,
+      6,
+      5,
+      5
+    ],
+    "recorded_traces": 585,
+    "withheld_traces": 315,
+    "held_out_relative_l2": 1.186850084877733e-07,
+    "max_recorded_sample_change": 0.0
+  },
+  "scope": "Controlled synthetic examples only; not independent heterogeneous field or survey-scale validation"
+}

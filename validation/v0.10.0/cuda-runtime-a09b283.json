@@ -1,0 +1,31 @@
+{
+  "cupy_version": "14.2.0",
+  "libraries": {
+    "cudart": "D:\\a\\seisdesk\\seisdesk\\dist\\SeisDesk\\_internal\\nvidia\\cuda_runtime\\bin\\cudart64_12.dll",
+    "nvrtc": "D:\\a\\seisdesk\\seisdesk\\dist\\SeisDesk\\_internal\\nvidia\\cuda_nvrtc\\bin\\nvrtc64_120_0.dll",
+    "cublas": "D:\\a\\seisdesk\\seisdesk\\dist\\SeisDesk\\_internal\\nvidia\\cublas\\bin\\cublas64_12.dll",
+    "cufft": "D:\\a\\seisdesk\\seisdesk\\dist\\SeisDesk\\_internal\\nvidia\\cufft\\bin\\cufft64_11.dll",
+    "curand": "D:\\a\\seisdesk\\seisdesk\\dist\\SeisDesk\\_internal\\nvidia\\curand\\bin\\curand64_10.dll",
+    "cusolver": "D:\\a\\seisdesk\\seisdesk\\dist\\SeisDesk\\_internal\\nvidia\\cusolver\\bin\\cusolver64_11.dll",
+    "cusparse": "D:\\a\\seisdesk\\seisdesk\\dist\\SeisDesk\\_internal\\nvidia\\cusparse\\bin\\cusparse64_12.dll"
+  },
+  "nvrtc_version": [
+    12,
+    8
+  ],
+  "headers": "D:\\a\\seisdesk\\seisdesk\\dist\\SeisDesk\\_internal\\nvidia\\cuda_runtime\\include",
+  "ptx_bytes": 709,
+  "device_detection": {
+    "cpu": true,
+    "platform": "Windows",
+    "package_available": true,
+    "available": false,
+    "devices": [],
+    "state": "cuda_error",
+    "message": "cudaErrorInsufficientDriver: CUDA driver version is insufficient for CUDA runtime version",
+    "cupy_version": "14.2.0",
+    "driver_version": "0.0",
+    "runtime_version": "12.9"
+  },
+  "state": "passed"
+}

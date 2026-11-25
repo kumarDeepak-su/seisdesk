@@ -1,0 +1,65 @@
+name: Upload validated v0.12 CUDA installer
+
+on:
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: write
+
+concurrency:
+  group: upload-validated-v012-cuda
+  cancel-in-progress: false
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Download the validated Windows build
+        uses: actions/download-artifact@v4
+        with:
+          name: SeisDesk-installer-CUDA
+          run-id: 41780615893
+          github-token: ${{ github.token }}
+          path: installer
+
+      - name: Verify and upload the original installer
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import hashlib, json, subprocess
+          from pathlib import Path
+
+          repo = 'kumarDeepak-su/seisdesk'
+          name = 'SeisDesk-0.12.0-CUDA-setup.exe'
+          expected = '4cacfc1116ad9588f9f6fe61ecb7069ed2765448bb4b9c8f5319806ae235aa58'
+          path = Path('installer') / name
+          with path.open('rb') as stream:
+              assert hashlib.file_digest(stream, 'sha256').hexdigest() == expected
+          release = json.loads(subprocess.check_output([
+              'gh', 'api', f'repos/{repo}/releases/433605247'], text=True))
+          assert release['tag_name'] == 'v0.12.0'
+          matches = [asset for asset in release['assets'] if asset['name'] == name]
+          assert len(matches) <= 1
+          if matches and matches[0]['state'] == 'uploaded':
+              assert matches[0]['digest'] == 'sha256:' + expected
+              assert matches[0]['size'] == path.stat().st_size
+              print('Existing CUDA asset already matches the validated installer.')
+              raise SystemExit(0)
+          for asset in matches:
+              assert asset['state'] == 'starter' and not asset.get('digest')
+              subprocess.run(['gh', 'api', '--method', 'DELETE',
+                  f'repos/{repo}/releases/assets/{asset["id"]}'], check=True, timeout=60)
+          subprocess.run(['gh', 'release', 'upload', 'v0.12.0', str(path),
+              '--repo', repo], check=True, timeout=900)
+          assets = json.loads(subprocess.check_output([
+              'gh', 'api', f'repos/{repo}/releases/433605247/assets'], text=True))
+          asset, = [asset for asset in assets if asset['name'] == name]
+          assert asset['state'] == 'uploaded'
+          assert asset['size'] == path.stat().st_size
+          assert asset['digest'] == 'sha256:' + expected
+          print('CUDA installer uploaded; GitHub SHA-256 matches the validated build.')
+          PY

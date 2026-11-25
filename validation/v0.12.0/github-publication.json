@@ -1,0 +1,262 @@
+{
+  "version": "0.12.0",
+  "repository": "kumarDeepak-su/seisdesk",
+  "visibility_at_verification": "private",
+  "release_url": "https://github.com/kumarDeepak-su/seisdesk/releases/tag/v0.12.0",
+  "release_id": 433605247,
+  "tag": "v0.12.0",
+  "published_at": "2026-11-04T08:09:08Z",
+  "tag_commit": "ab861217281492548b40d94ac3e81ded81762493",
+  "validated_application_commit": "651eb1d264abb41e163e320fdd3ecdaf92274b83",
+  "main_integration_commit": "6503160626b5263ce9e36e0e8f7847260b98822b",
+  "cuda_transfer_workflow_run": 41797020980,
+  "cuda_transfer_conclusion": "success",
+  "assets": [
+    {
+      "id": 708751207,
+      "name": "SeisDesk-0.12.0-CUDA-setup.exe",
+      "bytes": 1211253010,
+      "sha256": "4cacfc1116ad9588f9f6fe61ecb7069ed2765448bb4b9c8f5319806ae235aa58",
+      "url": "https://github.com/kumarDeepak-su/seisdesk/releases/download/v0.12.0/SeisDesk-0.12.0-CUDA-setup.exe",
+      "state": "uploaded"
+    },
+    {
+      "id": 708580410,
+      "name": "SeisDesk-0.12.0-Examples-Previews-Validation.zip",
+      "bytes": 18613034,
+      "sha256": "0a354489b36f6320c2d96e9ab96b6ddf3629e44ecb8fb1ea84a8f029e7f579b9",
+      "url": "https://github.com/kumarDeepak-su/seisdesk/releases/download/v0.12.0/SeisDesk-0.12.0-Examples-Previews-Validation.zip",
+      "state": "uploaded"
+    },
+    {
+      "id": 708580342,
+      "name": "SeisDesk-0.12.0-Package-Manifest.json",
+      "bytes": 2307,
+      "sha256": "e83f1f9ab8bc53757d9810f191156177ea1f8c009c52e6ac34f891fb9c1469f1",
+      "url": "https://github.com/kumarDeepak-su/seisdesk/releases/download/v0.12.0/SeisDesk-0.12.0-Package-Manifest.json",
+      "state": "uploaded"
+    },
+    {
+      "id": 708709048,
+      "name": "SeisDesk-0.12.0-setup.exe",
+      "bytes": 125762578,
+      "sha256": "fa25a43c829aa71896c26f1ed76a3672b33d536950084bf6bf6982ddbd8f3df1",
+      "url": "https://github.com/kumarDeepak-su/seisdesk/releases/download/v0.12.0/SeisDesk-0.12.0-setup.exe",
+      "state": "uploaded"
+    },
+    {
+      "id": 708586735,
+      "name": "SeisDesk-0.12.0-SHA256SUMS.txt",
+      "bytes": 705,
+      "sha256": "5d47d55bc9b5cb981b951ab59363a446d272be2d568aa2ba317c9025a76144e5",
+      "url": "https://github.com/kumarDeepak-su/seisdesk/releases/download/v0.12.0/SeisDesk-0.12.0-SHA256SUMS.txt",
+      "state": "uploaded"
+    },
+    {
+      "id": 708580277,
+      "name": "SeisDesk-0.12.0-source.zip",
+      "bytes": 14760300,
+      "sha256": "cbdb904638ea82151f2e95415bd435ff20b56678f3176957cd365fc4c4e138e2",
+      "url": "https://github.com/kumarDeepak-su/seisdesk/releases/download/v0.12.0/SeisDesk-0.12.0-source.zip",
+      "state": "uploaded"
+    },
+    {
+      "id": 708580271,
+      "name": "SeisDesk-0.12.0-User-Manual.pdf",
+      "bytes": 15897478,
+      "sha256": "a1f9b3779795e27c537b0d19e3b3788e54fcda51c33660b3888e9788a69ef566",
+      "url": "https://github.com/kumarDeepak-su/seisdesk/releases/download/v0.12.0/SeisDesk-0.12.0-User-Manual.pdf",
+      "state": "uploaded"
+    },
+    {
+      "id": 708580281,
+      "name": "SeisDesk-0.12.0-Windows-Quick-Start.txt",
+      "bytes": 3678,
+      "sha256": "e313a2f225b38214cc9e30d0155da5f1ce78a7fa735daf62ca2174ff0637aa89",
+      "url": "https://github.com/kumarDeepak-su/seisdesk/releases/download/v0.12.0/SeisDesk-0.12.0-Windows-Quick-Start.txt",
+      "state": "uploaded"
+    }
+  ],
+  "verification": "All eight published assets match the SHA-256 and byte length of the verified local release files.",
+  "obsolete_downloads_removed": [
+    {
+      "id": 13283042498,
+      "name": "SeisDesk-installer-CUDA",
+      "version": "0.11.0",
+      "source_run": 41742119084,
+      "bytes": 1209779367
+    },
+    {
+      "id": 13282932718,
+      "name": "SeisDesk-manual-CUDA",
+      "version": "0.11.0",
+      "source_run": 41742119084,
+      "bytes": 12230750
+    },
+    {
+      "id": 13282125099,
+      "name": "SeisDesk-manual-CPU",
+      "version": "0.11.0",
+      "source_run": 41740092188,
+      "bytes": 12231659
+    },
+    {
+      "id": 13282003136,
+      "name": "SeisDesk-manual-CPU",
+      "version": "0.11.0",
+      "source_run": 41742119084,
+      "bytes": 12230938
+    },
+    {
+      "id": 13281808284,
+      "name": "SeisDesk-installer-CPU",
+      "version": "0.11.0",
+      "source_run": 41742119084,
+      "bytes": 124374907
+    },
+    {
+      "id": 13281725678,
+      "name": "SeisDesk-installer-CPU",
+      "version": "0.11.0",
+      "source_run": 41740092188,
+      "bytes": 124379461
+    },
+    {
+      "id": 13257911526,
+      "name": "SeisDesk-manual-CUDA",
+      "version": "0.10.0",
+      "source_run": 41689367571,
+      "bytes": 12080227
+    },
+    {
+      "id": 13257881785,
+      "name": "SeisDesk-installer-CUDA",
+      "version": "0.10.0",
+      "source_run": 41689367571,
+      "bytes": 1209416425
+    },
+    {
+      "id": 13256673010,
+      "name": "SeisDesk-manual-CPU",
+      "version": "0.10.0",
+      "source_run": 41689367571,
+      "bytes": 12080611
+    },
+    {
+      "id": 13256274446,
+      "name": "SeisDesk-installer-CPU",
+      "version": "0.10.0",
+      "source_run": 41689367571,
+      "bytes": 124016227
+    },
+    {
+      "id": 13244932741,
+      "name": "SeisDesk-installer-CUDA",
+      "version": "0.9.0",
+      "source_run": 41662508196,
+      "bytes": 1176122439
+    },
+    {
+      "id": 13244388153,
+      "name": "SeisDesk-manual-CUDA",
+      "version": "0.9.0",
+      "source_run": 41662508196,
+      "bytes": 11951517
+    },
+    {
+      "id": 13243926427,
+      "name": "SeisDesk-manual-CPU",
+      "version": "0.9.0",
+      "source_run": 41662508196,
+      "bytes": 11951654
+    },
+    {
+      "id": 13243126879,
+      "name": "SeisDesk-installer-CPU",
+      "version": "0.9.0",
+      "source_run": 41662508196,
+      "bytes": 88625655
+    },
+    {
+      "id": 13221755396,
+      "name": "SeisDesk-installer-CUDA",
+      "version": "0.8.0",
+      "source_run": 41613398476,
+      "bytes": 1175638800
+    },
+    {
+      "id": 13221601138,
+      "name": "SeisDesk-manual-CUDA",
+      "version": "0.8.0",
+      "source_run": 41613398476,
+      "bytes": 11748900
+    },
+    {
+      "id": 13220385366,
+      "name": "SeisDesk-manual-CPU",
+      "version": "0.8.0",
+      "source_run": 41611853794,
+      "bytes": 11705861
+    },
+    {
+      "id": 13219923807,
+      "name": "SeisDesk-manual-CPU",
+      "version": "0.8.0",
+      "source_run": 41613398476,
+      "bytes": 11749206
+    },
+    {
+      "id": 13219841986,
+      "name": "SeisDesk-installer-CPU",
+      "version": "0.8.0",
+      "source_run": 41611853794,
+      "bytes": 88121140
+    },
+    {
+      "id": 13219759158,
+      "name": "SeisDesk-installer-CPU",
+      "version": "0.8.0",
+      "source_run": 41613398476,
+      "bytes": 88188167
+    },
+    {
+      "id": 13217279243,
+      "name": "SeisDesk-installer-CPU",
+      "version": "0.8.0",
+      "source_run": 41607876367,
+      "bytes": 88117902
+    },
+    {
+      "id": 13217214481,
+      "name": "SeisDesk-manual-CPU",
+      "version": "0.8.0",
+      "source_run": 41607876367,
+      "bytes": 11705872
+    }
+  ],
+  "removed_count": 22,
+  "removed_bytes": 5628447685,
+  "remaining_installer_manual_artifacts": [
+    {
+      "id": 13300515081,
+      "name": "SeisDesk-installer-CUDA",
+      "run_id": 41780615893
+    },
+    {
+      "id": 13300385382,
+      "name": "SeisDesk-manual-CUDA",
+      "run_id": 41780615893
+    },
+    {
+      "id": 13299426889,
+      "name": "SeisDesk-manual-CPU",
+      "run_id": 41780615893
+    },
+    {
+      "id": 13298998588,
+      "name": "SeisDesk-installer-CPU",
+      "run_id": 41780615893
+    }
+  ],
+  "cleanup_scope": "Superseded installer and manual Actions downloads removed after publication verification; current v0.12 build artifacts and scientific validation records retained."
+}

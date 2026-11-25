@@ -1,0 +1,11 @@
+{
+  "artifact_id": 13300515081,
+  "run": 41780615893,
+  "artifact_sha256": "351850447ecb3743604bdc855bb55dfa29ff7771749c35ace57ace2eb385dbd5",
+  "artifact_bytes": 1210681035,
+  "installer": "SeisDesk-0.12.0-CUDA-setup.exe",
+  "installer_bytes": 1211253010,
+  "installer_sha256": "4cacfc1116ad9588f9f6fe61ecb7069ed2765448bb4b9c8f5319806ae235aa58",
+  "artifact_digest_verified": true,
+  "zip_crc_verified": true
+}

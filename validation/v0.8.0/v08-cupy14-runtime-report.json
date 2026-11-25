@@ -1,0 +1,40 @@
+{
+  "cupy_version": "14.2.0",
+  "libraries": {
+    "cudart": "$HOME/seisdesk-validation-20261102/venv-cupy14/lib/python3.11/site-packages/nvidia/cuda_runtime/lib/libcudart.so.12",
+    "nvrtc": "$HOME/seisdesk-validation-20261102/venv-cupy14/lib/python3.11/site-packages/nvidia/cuda_nvrtc/lib/libnvrtc.so.12",
+    "cublas": "$HOME/seisdesk-validation-20261102/venv-cupy14/lib/python3.11/site-packages/nvidia/cublas/lib/libcublas.so.12",
+    "cufft": "$HOME/seisdesk-validation-20261102/venv-cupy14/lib/python3.11/site-packages/nvidia/cufft/lib/libcufft.so.11",
+    "curand": "$HOME/seisdesk-validation-20261102/venv-cupy14/lib/python3.11/site-packages/nvidia/curand/lib/libcurand.so.10",
+    "cusolver": "$HOME/seisdesk-validation-20261102/venv-cupy14/lib/python3.11/site-packages/nvidia/cusolver/lib/libcusolver.so.11",
+    "cusparse": "$HOME/seisdesk-validation-20261102/venv-cupy14/lib/python3.11/site-packages/nvidia/cusparse/lib/libcusparse.so.12"
+  },
+  "nvrtc_version": [
+    12,
+    8
+  ],
+  "headers": "$HOME/seisdesk-validation-20261102/venv-cupy14/lib/python3.11/site-packages/nvidia/cuda_runtime/include",
+  "ptx_bytes": 709,
+  "device_detection": {
+    "cpu": true,
+    "platform": "Linux",
+    "package_available": true,
+    "available": true,
+    "devices": [
+      {
+        "index": 0,
+        "name": "NVIDIA A100-SXM4-40GB",
+        "free_bytes": 42157146112,
+        "total_bytes": 42600300544,
+        "capability": "8.0",
+        "tested": false
+      }
+    ],
+    "state": "ready",
+    "message": "CUDA devices detected.",
+    "cupy_version": "14.2.0",
+    "driver_version": "13.2",
+    "runtime_version": "12.9"
+  },
+  "state": "passed"
+}

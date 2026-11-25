@@ -1,0 +1,20 @@
+[
+  {
+    "path": "dist/v0.11.0-5ba6dd4/installer-CPU/SeisDesk-0.11.0-setup.exe",
+    "bytes": 124849615,
+    "sha256": "1e9da7f579ac83617cfb71ae38ecf3bf01ae92328522b2bd4266d4d134da9953",
+    "source_run": 41742119084
+  },
+  {
+    "path": "dist/v0.11.0-5ba6dd4/installer-CUDA/SeisDesk-0.11.0-CUDA-setup.exe",
+    "bytes": 1210350646,
+    "sha256": "b6dece577cbd42f2b9ff3f3a6c2d508f1ed75bb86ebd48a94b0db7b1bd9c3c39",
+    "source_run": 41742119084
+  },
+  {
+    "path": "dist/v0.11.0-5ba6dd4/manual-CPU/SeisDesk_User_Manual.pdf",
+    "bytes": 15799454,
+    "sha256": "74f0b90bbd8f4979f3ed1f255a8f26a123505f69c2766d3147013aedbf5be55c",
+    "source_run": 41742119084
+  }
+]

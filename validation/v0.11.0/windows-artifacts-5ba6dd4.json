@@ -1,0 +1,121 @@
+{
+  "run": 41742119084,
+  "application_source": "5ba6dd4",
+  "artifacts": [
+    {
+      "id": 13283425207,
+      "name": "SeisDesk-v06-window-previews-CUDA",
+      "size_in_bytes": 141283
+    },
+    {
+      "id": 13283275826,
+      "name": "SeisDesk-v04-window-previews-CUDA",
+      "size_in_bytes": 687018
+    },
+    {
+      "id": 13283181084,
+      "name": "SeisDesk-CUDA-runtime-check",
+      "size_in_bytes": 587
+    },
+    {
+      "id": 13283161194,
+      "name": "test-results-CUDA",
+      "size_in_bytes": 8571
+    },
+    {
+      "id": 13283042498,
+      "name": "SeisDesk-installer-CUDA",
+      "size_in_bytes": 1209779367
+    },
+    {
+      "id": 13283002701,
+      "name": "SeisDesk-v10-field-surface-CUDA",
+      "size_in_bytes": 147739
+    },
+    {
+      "id": 13282992817,
+      "name": "SeisDesk-v05-window-previews-CUDA",
+      "size_in_bytes": 195142
+    },
+    {
+      "id": 13282977851,
+      "name": "SeisDesk-v07-window-previews-CUDA",
+      "size_in_bytes": 102325
+    },
+    {
+      "id": 13282932718,
+      "name": "SeisDesk-manual-CUDA",
+      "size_in_bytes": 12230750
+    },
+    {
+      "id": 13282902885,
+      "name": "SeisDesk-v08-devices-CUDA",
+      "size_in_bytes": 51496
+    },
+    {
+      "id": 13282803262,
+      "name": "SeisDesk-v11-interfaces-CUDA",
+      "size_in_bytes": 210608
+    },
+    {
+      "id": 13282633498,
+      "name": "SeisDesk-v09-tomography-reconstruction-CUDA",
+      "size_in_bytes": 214680
+    },
+    {
+      "id": 13282406718,
+      "name": "SeisDesk-v04-window-previews-CPU",
+      "size_in_bytes": 686939
+    },
+    {
+      "id": 13282316866,
+      "name": "SeisDesk-v07-window-previews-CPU",
+      "size_in_bytes": 102490
+    },
+    {
+      "id": 13282266963,
+      "name": "test-results-CPU",
+      "size_in_bytes": 8527
+    },
+    {
+      "id": 13282222029,
+      "name": "SeisDesk-v06-window-previews-CPU",
+      "size_in_bytes": 141283
+    },
+    {
+      "id": 13282068012,
+      "name": "SeisDesk-v05-window-previews-CPU",
+      "size_in_bytes": 195142
+    },
+    {
+      "id": 13282003136,
+      "name": "SeisDesk-manual-CPU",
+      "size_in_bytes": 12230938
+    },
+    {
+      "id": 13281927310,
+      "name": "SeisDesk-v10-field-surface-CPU",
+      "size_in_bytes": 147739
+    },
+    {
+      "id": 13281808284,
+      "name": "SeisDesk-installer-CPU",
+      "size_in_bytes": 124374907
+    },
+    {
+      "id": 13281803342,
+      "name": "SeisDesk-v09-tomography-reconstruction-CPU",
+      "size_in_bytes": 214680
+    },
+    {
+      "id": 13281563565,
+      "name": "SeisDesk-v08-devices-CPU",
+      "size_in_bytes": 51496
+    },
+    {
+      "id": 13281289411,
+      "name": "SeisDesk-v11-interfaces-CPU",
+      "size_in_bytes": 210608
+    }
+  ]
+}

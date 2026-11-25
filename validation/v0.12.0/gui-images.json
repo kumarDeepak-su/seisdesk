@@ -1,0 +1,47 @@
+[
+  {
+    "file": "v12_command_search.png",
+    "sha256": "cb4f737eae0e3a2a65c7f4322d21c9b71d8b715c08794f23d0d10977bf068af5",
+    "workspace_review_matches_full_cpu_build": false
+  },
+  {
+    "file": "v12_flow_compact.png",
+    "sha256": "ba0e48d24b31ae18d4f68f82a3a50bd676845f69b6ad748d0bfc4b4bd024f695",
+    "workspace_review_matches_full_cpu_build": true
+  },
+  {
+    "file": "v12_flow_dark.png",
+    "sha256": "74874bdade319d88459f7395db3c25d74fc867cdcffdee3d89482787cfb8b84a",
+    "workspace_review_matches_full_cpu_build": true
+  },
+  {
+    "file": "v12_flow_light.png",
+    "sha256": "f50de7944df44c8d89f300feb055fe081ea04a04bdccbc7a208a01b10cf086b0",
+    "workspace_review_matches_full_cpu_build": true
+  },
+  {
+    "file": "v12_home_compact.png",
+    "sha256": "c92aa376e4ffaecf942619f17473c7fa15d62b3a25dfd142c640b453f0e84209",
+    "workspace_review_matches_full_cpu_build": true
+  },
+  {
+    "file": "v12_home_dark.png",
+    "sha256": "86d5bbb469a5c7b4e4c251eadd86a5aa74fa2a6e567243828ec57ceb031aeb81",
+    "workspace_review_matches_full_cpu_build": true
+  },
+  {
+    "file": "v12_home_light.png",
+    "sha256": "dcb524f5371def9bc7e059d0c87fc0671d2d3f3a9f0dcc3c9be191d6117b6ec9",
+    "workspace_review_matches_full_cpu_build": true
+  },
+  {
+    "file": "v12_viewer_dark.png",
+    "sha256": "8e92ce89461d560992ed6073c9189c019778952ff33806994e6972b89f81f697",
+    "workspace_review_matches_full_cpu_build": true
+  },
+  {
+    "file": "v12_viewer_light.png",
+    "sha256": "3d0dc24fcd659f773e41fdea2187a98c3406e3f7307c6e215150440b874b8549",
+    "workspace_review_matches_full_cpu_build": true
+  }
+]

@@ -1,0 +1,217 @@
+name: windows-installer
+
+on:
+  push:
+    branches: ["**"]
+    tags: ["v*"]
+    paths-ignore: ["tools/make_figures.py", "tools/manual_screenshots.py", "tools/diag_render.py",
+                   ".github/workflows/figures.yml", ".github/workflows/diag.yml", "README.md", "DEVELOPMENT_STATUS.md", "validation/**"]
+  pull_request:
+    paths-ignore: ["README.md", "DEVELOPMENT_STATUS.md", "validation/**"]
+  workflow_dispatch:
+
+concurrency:
+  group: windows-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Windows (${{ matrix.flavour }})
+    runs-on: windows-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        flavour: [CPU, CUDA]
+    env:
+      SEISDESK_BUILD_CUDA: ${{ matrix.flavour == 'CUDA' && '1' || '0' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Check local build entry point
+        shell: cmd
+        run: build_windows.bat --help
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r packaging/requirements-windows.txt
+          python -m pip install --no-deps -e .
+
+      - name: Install CUDA runtime dependencies
+        if: matrix.flavour == 'CUDA'
+        run: python -m pip install -r packaging/requirements-windows-cuda.txt
+
+      - name: Tests
+        id: tests
+        env:
+          QT_QPA_PLATFORM: offscreen
+        run: python -m pytest -q -rf --junitxml=test-results.xml
+
+      - name: Icon
+        run: python packaging/make_icon.py
+
+      - name: Render v0.4 diagnostic windows
+        env:
+          QT_QPA_PLATFORM: offscreen
+        run: python tools/v04_screenshots.py seisdesk/docs/images
+
+      - name: Render v0.5 controls and model slices
+        env:
+          QT_QPA_PLATFORM: offscreen
+        run: python tools/v05_screenshots.py seisdesk/docs/images
+
+      - name: Render v0.6 arrival and import controls
+        env:
+          QT_QPA_PLATFORM: offscreen
+        run: python tools/v06_screenshots.py seisdesk/docs/images
+
+      - name: Render remote job controls
+        env:
+          QT_QPA_PLATFORM: offscreen
+        run: python tools/v07_screenshots.py seisdesk/docs/images
+
+      - name: Render workstation device controls
+        env:
+          QT_QPA_PLATFORM: offscreen
+        run: python tools/v08_screenshots.py seisdesk/docs/images
+
+      - name: Render 3D arrival and survey reconstruction results
+        env:
+          QT_QPA_PLATFORM: offscreen
+        run: python tools/v09_screenshots.py seisdesk/docs/images
+
+      - name: Render field import and layered dispersion controls
+        env:
+          QT_QPA_PLATFORM: offscreen
+        run: python tools/v10_screenshots.py seisdesk/docs/images
+
+      - name: Render 3D shared interface controls and uncertainty
+        env:
+          QT_QPA_PLATFORM: offscreen
+        run: python tools/v11_screenshots.py seisdesk/docs/images
+
+      - name: Render modern workspace
+        env:
+          QT_QPA_PLATFORM: offscreen
+        run: python tools/v12_screenshots.py seisdesk/docs/images
+
+      - name: Program folder (PyInstaller)
+        run: python -m PyInstaller --noconfirm --clean packaging/seisdesk.spec
+
+      - name: Self-test of the built program
+        shell: pwsh
+        run: |
+          $env:QT_QPA_PLATFORM = "offscreen"
+          Remove-Item "$env:TEMP\seisdesk_selftest.txt" -ErrorAction SilentlyContinue
+          $p = Start-Process -FilePath "dist\SeisDesk\SeisDesk.exe" -ArgumentList "--self-test" -PassThru
+          $null = $p.Handle
+          if (-not $p.WaitForExit(600000)) { $p.Kill(); throw "self-test timed out" }
+          Get-Content "$env:TEMP\seisdesk_selftest.txt"
+          if ($p.ExitCode -ne 0) { exit 1 }
+
+      - name: Check packaged CUDA runtime and kernel compiler
+        if: matrix.flavour == 'CUDA'
+        shell: pwsh
+        run: |
+          Remove-Item "$env:TEMP\seisdesk_gpu_runtime_check.json" -ErrorAction SilentlyContinue
+          $p = Start-Process -FilePath "dist\SeisDesk\SeisDesk.exe" -ArgumentList "--check-gpu-runtime" -PassThru
+          $null = $p.Handle
+          if (-not $p.WaitForExit(300000)) { $p.Kill(); throw "CUDA runtime check timed out" }
+          Get-Content "$env:TEMP\seisdesk_gpu_runtime_check.json"
+          Copy-Item "$env:TEMP\seisdesk_gpu_runtime_check.json" "gpu-runtime-check.json"
+          if ($p.ExitCode -ne 0) { exit 1 }
+
+      - name: User manual (PDF)
+        shell: pwsh
+        run: |
+          choco install pandoc -y --no-progress
+          python tools/build_manual.py dist
+
+      - name: Installer (Inno Setup)
+        shell: pwsh
+        run: |
+          choco install innosetup -y --no-progress
+          $suffix = if ("${{ matrix.flavour }}" -eq "CUDA") { "-CUDA" } else { "" }
+          & "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe" /DAppVersion=0.12.0 "/DBuildSuffix=$suffix" packaging\seisdesk.iss
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: SeisDesk-installer-${{ matrix.flavour }}
+          path: dist/SeisDesk-*-setup.exe
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: SeisDesk-manual-${{ matrix.flavour }}
+          path: dist/SeisDesk_User_Manual.pdf
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: SeisDesk-v04-window-previews-${{ matrix.flavour }}
+          path: seisdesk/docs/images/v04_*.png
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: SeisDesk-v05-window-previews-${{ matrix.flavour }}
+          path: seisdesk/docs/images/v05_*.png
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: SeisDesk-v06-window-previews-${{ matrix.flavour }}
+          path: seisdesk/docs/images/v06_*.png
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: SeisDesk-v07-window-previews-${{ matrix.flavour }}
+          path: seisdesk/docs/images/v07_*.png
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results-${{ matrix.flavour }}
+          path: test-results.xml
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: SeisDesk-v08-devices-${{ matrix.flavour }}
+          path: seisdesk/docs/images/v08_*.png
+
+      - uses: actions/upload-artifact@v4
+        if: always() && matrix.flavour == 'CUDA'
+        with:
+          name: SeisDesk-CUDA-runtime-check
+          path: gpu-runtime-check.json
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: SeisDesk-v09-tomography-reconstruction-${{ matrix.flavour }}
+          path: seisdesk/docs/images/v09_*.png
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: SeisDesk-v10-field-surface-${{ matrix.flavour }}
+          path: seisdesk/docs/images/v10_*.png
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: SeisDesk-v11-interfaces-${{ matrix.flavour }}
+          path: seisdesk/docs/images/v11_*.png
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: SeisDesk-v12-workspace-${{ matrix.flavour }}
+          path: seisdesk/docs/images/v12_*

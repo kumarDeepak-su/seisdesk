@@ -1,0 +1,70 @@
+{
+  "input": "$HOME/seisdesk-validation-20261102/field-data/viking-first-2400.sgy",
+  "sha256": "10763374d4860589fa70d8a85504d41269e22d82b4e7c09db7a8c78cb8c3dc9c",
+  "ntr": 2400,
+  "nt": 1500,
+  "dt": 0.004,
+  "scope": "field-sample software/operator comparison",
+  "full_survey_validated": false,
+  "geological_model_validated": false,
+  "headers": {
+    "fldr": {
+      "min": 3.0,
+      "max": 22.0,
+      "unique": 20
+    },
+    "tracf": {
+      "min": 1.0,
+      "max": 120.0,
+      "unique": 120
+    },
+    "cdp": {
+      "min": 1.0,
+      "max": 158.0,
+      "unique": 158
+    },
+    "offset": {
+      "min": -3237.0,
+      "max": -262.0,
+      "unique": 120
+    },
+    "sx": {
+      "min": 3237.0,
+      "max": 3712.0,
+      "unique": 20
+    },
+    "sy": {
+      "min": 0.0,
+      "max": 0.0,
+      "unique": 1
+    },
+    "gx": {
+      "min": 0.0,
+      "max": 3450.0,
+      "unique": 139
+    },
+    "gy": {
+      "min": 0.0,
+      "max": 0.0,
+      "unique": 1
+    }
+  },
+  "streamed_read_exact": true,
+  "real_su_scaling_exact": true,
+  "nmo_stack": {
+    "velocity_m_s": 2000,
+    "stretch_muting": "disabled",
+    "nmo": {
+      "correlation": 0.9988129274335741,
+      "relative_l2": 0.07458401582040575
+    },
+    "stack": {
+      "correlation": 0.9985942928216416,
+      "relative_l2": 0.07053392265988473
+    },
+    "note": "SU sinc and native linear interpolation need not be sample-identical",
+    "correlation_acceptance": 0.95
+  },
+  "elapsed_seconds": 2.0371297450001293,
+  "status": "passed"
+}

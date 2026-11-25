@@ -1,0 +1,12 @@
+[
+  {
+    "path": "dist/v0.9.0-d61930a/SeisDesk-manual-CPU/SeisDesk_User_Manual.pdf",
+    "bytes": 15437558,
+    "sha256": "918def5541e04f9f7007777f0a0f3faec8423a45667333345dabcb06ff5f820c"
+  },
+  {
+    "path": "dist/v0.9.0-d61930a/SeisDesk-installer-CPU/SeisDesk-0.9.0-setup.exe",
+    "bytes": 89108970,
+    "sha256": "665d5d1e467b99e8090c4dd9877a5242f716f45e592c7d8b0011402f2b1abda9"
+  }
+]

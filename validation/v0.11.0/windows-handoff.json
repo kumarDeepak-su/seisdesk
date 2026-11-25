@@ -1,0 +1,32 @@
+{
+  "folder": "~/Desktop/SeisDesk-0.11.0-Windows",
+  "archive": "~/Desktop/SeisDesk-0.11.0-Windows.zip",
+  "archive_bytes": 1383081934,
+  "archive_sha256": "9f9b863791427e2ac9034065bcbd80ab0c3db6e2d0e7c6618fb3d46ca701ccbf",
+  "archive_crc_verified": true,
+  "files": 278,
+  "folder_bytes": 1385342334,
+  "manifest_sha256": "d39485505a1474eab3532c649a005a3a9ad6f00e1b9e95dd706a48211d9c7ed0",
+  "checksum_list_sha256": "295db4cbfe7393f0f73067937c036ed65d7629df9ca042d95f565fc982e91bd0",
+  "application_commit": "5ba6dd4",
+  "source_snapshot_commit": "bac2df1c863c800bd52c57b51c592ff7faf9820c",
+  "installers": [
+    {
+      "edition": "CPU",
+      "file": "01_Installers/SeisDesk-0.11.0-setup.exe",
+      "bytes": 124849615,
+      "sha256": "1e9da7f579ac83617cfb71ae38ecf3bf01ae92328522b2bd4266d4d134da9953",
+      "run": 41742119084,
+      "artifact_id": 13281808284
+    },
+    {
+      "edition": "CUDA",
+      "file": "01_Installers/SeisDesk-0.11.0-CUDA-setup.exe",
+      "bytes": 1210350646,
+      "sha256": "b6dece577cbd42f2b9ff3f3a6c2d508f1ed75bb86ebd48a94b0db7b1bd9c3c39",
+      "run": 41742119084,
+      "artifact_id": 13283042498
+    }
+  ],
+  "gallery": "Standalone browser preview with local selection storage"
+}

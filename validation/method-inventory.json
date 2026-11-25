@@ -1,0 +1,1373 @@
+{
+  "scope": "Static inventory; presence is not evidence of numerical validation",
+  "registered_methods": [
+    {
+      "name": "phase_shift_vti",
+      "label": "Phase-shift migration for VTI media (eta)",
+      "category": "Time migration",
+      "description": "Gazdag phase-shift migration of a stacked section for vertically transversely isotropic layers (shales): RMS velocities at one CMP are Dix-converted to interval NMO velocity, and eta - picked in the eta scan of the velocity analysis (effective values, converted to interval eta) or a constant interval eta - enters Alkhalifah's acoustic VTI dispersion relation. Steep dips and diffraction flanks then migrate to the right place where isotropic migration over-migrates them. eta = 0 gives the isotropic phase-shift migration.",
+      "source": "seisdesk/processing/anisotropy.py",
+      "class": "PhaseShiftVTI"
+    },
+    {
+      "name": "mzo_dmo",
+      "label": "Anisotropic DMO (migration to zero offset, eta)",
+      "category": "Moveout",
+      "description": "NMO and DMO in one step, also for VTI media. Input: prestack traces WITHOUT NMO, with source and receiver x. The traces are sorted into offset classes; each class is Kirchhoff time-migrated with v_rms and eta and then demigrated (modelled back) to zero offset with the same v_rms and eta (migration to zero offset). Output: one NMO+DMO-corrected trace per CMP and offset class, ready to stack, or the stack itself. Dipping events and diffractions then stack at their zero-offset times whatever their dip, and eta also flattens the non-hyperbolic far offsets of anisotropic layers. The cost is one prestack time migration plus one zero-offset modelling per class, which suits 2D lines of a few thousand traces. Do not apply NMO afterwards: the output is corrected.",
+      "source": "seisdesk/processing/anisotropy.py",
+      "class": "MZODMO"
+    },
+    {
+      "name": "rmo_scan",
+      "label": "Residual moveout semblance scan (anisotropic)",
+      "category": "Velocity",
+      "description": "Checks flattened gathers - NMO-corrected CMP gathers or image gathers from prestack migration - for remaining moveout. At each selected CMP the semblance across the offsets is computed for a range of residual moveouts: a curvature r (time shift at the far offset, parabolic or fourth order; in metres for depth gathers), or eta (the VTI non-hyperbolic term left after hyperbolic NMO with the given velocity). The panels come out as a dataset, one panel per CMP with one trace per trial value (header rmo_r) and two blank traces between panels: a bright band at r = 0 means the gather is flat; elsewhere it shows the correction to apply (Residual moveout correction) or the eta to pick. The best value at each time is kept in the results.",
+      "source": "seisdesk/processing/anisotropy.py",
+      "class": "RMOScan"
+    },
+    {
+      "name": "hilbert",
+      "label": "Hilbert transform (quadrature trace)",
+      "category": "Attributes",
+      "description": "The quadrature trace: every frequency component shifted by -90 degrees, so a cosine becomes a sine. With the input trace it forms the analytic (complex) trace x + iH{x}, whose modulus is the envelope and whose angle is the instantaneous phase. '-H{x}' gives the opposite shift (+90 degrees).",
+      "source": "seisdesk/processing/attributes.py",
+      "class": "HilbertTransform"
+    },
+    {
+      "name": "attributes",
+      "label": "Instantaneous attributes",
+      "category": "Attributes",
+      "description": "Complex-trace attributes from the analytic trace x + iH{x}: envelope (reflection strength), instantaneous phase (degrees; shows the continuity of weak events), cosine of phase, instantaneous frequency (Hz, envelope-weighted average over the smoothing window), instantaneous bandwidth, first and second derivative of the envelope (sharpness of reflections), sweetness (envelope / sqrt(frequency), high for bright low-frequency sands) and apparent polarity (sign of the trace at each envelope peak times the peak).",
+      "source": "seisdesk/processing/attributes.py",
+      "class": "InstantaneousAttributes"
+    },
+    {
+      "name": "spectral_decomp",
+      "label": "Spectral decomposition (single frequency)",
+      "category": "Attributes",
+      "description": "The amplitude (or phase) of every trace at one frequency, as a function of time: a single-frequency section for thin-bed tuning, channels and low-frequency shadows. S-transform: time window one period long (sharp in time at high frequencies). STFT (Gabor): one fixed Gaussian window for all frequencies. CWT (Morlet): like the S-transform, with w0 setting the trade-off (larger w0 = sharper in frequency, smoother in time). A unit sinusoid at the chosen frequency has amplitude 1.",
+      "source": "seisdesk/processing/attributes.py",
+      "class": "SpectralDecomposition"
+    },
+    {
+      "name": "offset_to_angle",
+      "label": "Angle gathers (offset to incidence angle)",
+      "category": "AVO",
+      "description": "For NMO-corrected CMP gathers: the incidence angle of every sample from the RMS velocities and the Dix interval velocity (straight rays, Walden 1991). 'angle mute' keeps the samples between the two angles (cosine taper outside); 'angle gathers' averages the samples into angle bins, one trace per bin with the bin centre in header 'angle'.",
+      "source": "seisdesk/processing/avo.py",
+      "class": "OffsetToAngle"
+    },
+    {
+      "name": "angle_stack",
+      "label": "Angle (range-limited) stack",
+      "category": "AVO",
+      "description": "Stacks NMO-corrected CMP gathers within incidence-angle ranges (near, mid, far, ...): one section per range, one trace per CMP, the sections one after the other with the range centre in header 'angle' (display them with gather key 'angle'). Only live (non-zero) samples are averaged.",
+      "source": "seisdesk/processing/avo.py",
+      "class": "AngleStack"
+    },
+    {
+      "name": "avo_attributes",
+      "label": "AVO attributes (intercept and gradient)",
+      "category": "AVO",
+      "description": "Least-squares fit of every sample of NMO-corrected CMP gathers against the incidence angle: R = A + B sin^2 (Shuey 1985 two-term) or with the third term C sin^2 tan^2. Output one attribute section (one trace per CMP): intercept A, gradient B, curvature C, A x B, pseudo-Poisson reflectivity A + B, the Smith & Gidlow (1987) fluid factor, the chi-angle projection A cos(chi) + B sin(chi) (extended elastic impedance reflectivity, Whitcombe et al. 2002) or the relative fit error. Intercept and gradient of the whole line are kept for the AVO crossplot.",
+      "source": "seisdesk/processing/avo.py",
+      "class": "AVOAttributes"
+    },
+    {
+      "name": "avo_modelling",
+      "label": "AVO modelling (two-layer interface)",
+      "category": "AVO",
+      "description": "A synthetic CMP gather of one interface between two layers: reflection coefficients from the exact Zoeppritz solution or the Aki-Richards approximation, incidence angles by straight rays in the upper layer (tan theta = x / (Vp1 t0)), a Ricker wavelet. The events are flat (NMO-corrected) or on their hyperbola. Offsets come from the input traces, or from 0 to the maximum offset when it is set. Intercept, gradient and the AVO class of the interface go to the results.",
+      "source": "seisdesk/processing/avo.py",
+      "class": "AVOModelling"
+    },
+    {
+      "name": "build_depth_model",
+      "label": "Build depth model",
+      "category": "Velocity",
+      "description": "Interval-velocity depth model for depth migration and depth conversion: Dix conversion of the velocity picks (smoothed), a constant, or a linear gradient v0 + k z. Stored as the project model.",
+      "source": "seisdesk/processing/conversion.py",
+      "class": "BuildDepthModel"
+    },
+    {
+      "name": "time_to_depth",
+      "label": "Time to depth conversion",
+      "category": "Conversion",
+      "description": "Convert a time section to depth, trace by trace: with interval velocity from the picks (Dix at each trace's CMP) or with the project depth model.",
+      "source": "seisdesk/processing/conversion.py",
+      "class": "TimeToDepth"
+    },
+    {
+      "name": "depth_to_time",
+      "label": "Depth to time conversion",
+      "category": "Conversion",
+      "description": "Convert a depth section to two-way time with the project depth model.",
+      "source": "seisdesk/processing/conversion.py",
+      "class": "DepthToTime"
+    },
+    {
+      "name": "ps_binning",
+      "label": "Converted-wave CCP binning (asymptotic or depth-variant)",
+      "category": "Converted waves",
+      "description": "Common-conversion-point binning of PS data. 'asymptotic' moves every trace to its asymptotic conversion point x_s + offset gamma / (1 + gamma) and writes the bin number (cdp), the bin centre (cdpx) and the exact point (ccpx); sort by cdp, apply PS NMO and stack as usual. 'depth-variant' (Tessmer & Behle 1988) needs PS-NMO-corrected input: every sample goes to the bin of its true conversion point, found by Snell's law at the depth z = Vp t / (1 + gamma), and the samples are stacked into a CCP section (one trace per bin, header nhs = fold).",
+      "source": "seisdesk/processing/converted.py",
+      "class": "PSBinning"
+    },
+    {
+      "name": "ps_nmo",
+      "label": "PS NMO (converted-wave moveout)",
+      "category": "Converted waves",
+      "description": "Moveout correction of converted (PS) reflections with the non-hyperbolic equation of Tsvankin & Thomsen (1994): t^2 = t0^2 + x^2 / Vc^2 + A4 x^4 / (1 + A5 x^2), where Vc is the C-wave stacking velocity (sqrt(Vp Vs) for one layer; pick it with the ordinary velocity analysis on CCP gathers) and gamma = Vp/Vs sets the non-hyperbolic terms. With gamma = 1 it is ordinary hyperbolic NMO. Run it on CCP gathers (after 'Converted-wave CCP binning'); samples stretched beyond the limit are muted. 'inverse' undoes it.",
+      "source": "seisdesk/processing/converted.py",
+      "class": "PSNMO"
+    },
+    {
+      "name": "ps_dmo",
+      "label": "PS DMO (converted-wave migration to zero offset)",
+      "category": "Converted waves",
+      "description": "Converted-wave dip moveout as a migration to zero offset (the kinematic equivalent of PS NMO + DMO + true CCP binning; Alfaro & Corrigan 1996 give an f-k form of the same operator): every offset class of NMO-uncorrected PS data is migrated with constant Vp and gamma (Kirchhoff, conversion-point traveltimes) and modelled back to zero offset. The output has one trace per position of a regular grid and offset class (headers cdp, cdpx, offset), with flat reflections at their zero-offset PS times: stack it by cdp. Slow on long lines; for small 2D lines.",
+      "source": "seisdesk/processing/converted.py",
+      "class": "PSDMO"
+    },
+    {
+      "name": "vpvs_analysis",
+      "label": "Vp/Vs from PP and PS horizon times",
+      "category": "Converted waves",
+      "description": "Vp/Vs (gamma) from the same horizons picked on a PP section and on a PS section: average gamma = 2 t_PS / t_PP - 1 and interval gamma = 2 dt_PS / dt_PP - 1 between horizons (Gaiser 1996). Pick the horizons with the picking tool on the two stacks (one phase per horizon, same order or same names in both pick sets). The output is either the interval-gamma section (on the PP time axis) or the input PS section stretched to PP time with those gammas, for direct comparison with the PP stack; the table goes to the results.",
+      "source": "seisdesk/processing/converted.py",
+      "class": "VpVsAnalysis"
+    },
+    {
+      "name": "ps_synthetics",
+      "label": "Converted-wave ray synthetics (layered)",
+      "category": "Modelling",
+      "description": "P-SV reflections of a flat layered model with the geometry of the dataset: exact two-point ray tracing (P down, S up, Snell's law), linearised Aki-Richards PS coefficients, the radial or vertical part of the S motion at the receiver, spherical divergence and a Ricker wavelet. The radial component is positive away from the source, so a PS reflection keeps its polarity on both sides of the source (it vanishes at zero offset). S velocities come from the model (vp / 1.73 when not given). The event times are kept in the results.",
+      "source": "seisdesk/processing/converted.py",
+      "class": "PSSynthetics"
+    },
+    {
+      "name": "datum_kirchhoff",
+      "label": "Wave-equation datuming (Kirchhoff, prestack)",
+      "category": "Datuming",
+      "description": "Moves receivers and sources from the topography to a flat datum by Kirchhoff extrapolation (Berryhill 1979, 1984): receivers in every common-shot gather (from gelev), then sources in every common-receiver gather (from selev minus sdepth), with one constant near-surface velocity. Unlike elevation statics it follows the actual ray directions, so it stays correct for steep rays, rough topography and large elevation changes. A datum below the surface is a downward continuation (use the velocity of the layer removed); above the surface an upward continuation through a replacement medium. Receivers and sources should be sampled densely (a few metres to a few tens of metres); where the spacing is too coarse for the operator the step falls back to the vertical-ray shift at those frequencies. Headers gelev/selev are set to the datum and sdepth to 0.",
+      "source": "seisdesk/processing/datuming.py",
+      "class": "DatumKirchhoff"
+    },
+    {
+      "name": "datum_zero_offset",
+      "label": "Wave-equation datuming (zero offset, stacked)",
+      "category": "Datuming",
+      "description": "Kirchhoff datuming of a stacked (zero-offset) section from a floating datum, the elevation in a header at every CMP, to a flat datum: the exploding-reflector form of the prestack step, with half the near-surface velocity because stacked times are two-way. The elevation header is set to the datum.",
+      "source": "seisdesk/processing/datuming.py",
+      "class": "DatumZeroOffset"
+    },
+    {
+      "name": "decon",
+      "label": "Deconvolution (spiking / predictive)",
+      "category": "Deconvolution",
+      "description": "Wiener-Levinson prediction-error filter per trace. Gap = one sample gives spiking deconvolution; a longer gap (e.g. the water-bottom period) gives predictive deconvolution of short-period multiples.",
+      "source": "seisdesk/processing/decon.py",
+      "class": "PredictiveDecon"
+    },
+    {
+      "name": "deghost",
+      "label": "Deghosting (source/receiver ghost)",
+      "category": "Filtering",
+      "description": "Removes the sea-surface ghost of marine data: the delayed, opposite-polarity copy that makes notches in the spectrum at multiples of v / (2 z cos(theta)) and weakens the low frequencies. Vertical incidence works trace by trace; the angle-dependent mode works on shot gathers in the linear tau-p domain, where every slowness p has its own ghost delay. Depths come from the headers (sdepth for the source, minus gelev for the receivers) unless given. The water level limits the gain in the ghost notches.",
+      "source": "seisdesk/processing/deghost.py",
+      "class": "Deghost"
+    },
+    {
+      "name": "dmo",
+      "label": "DMO (Hale f-k)",
+      "category": "Moveout",
+      "description": "Dip moveout on NMO-corrected data, offset bin by offset bin (common-offset sections on the regular CMP grid). Follow with inverse NMO / velocity analysis / NMO, then stack.",
+      "source": "seisdesk/processing/dmo.py",
+      "class": "DMO"
+    },
+    {
+      "name": "kill_traces",
+      "label": "Kill traces",
+      "category": "Editing",
+      "description": "Zero (or remove) traces whose header value is in a list or range, e.g. bad channels 12,45-47.",
+      "source": "seisdesk/processing/edit.py",
+      "class": "KillTraces"
+    },
+    {
+      "name": "reverse_polarity",
+      "label": "Reverse polarity",
+      "category": "Editing",
+      "description": "Multiply selected traces (or all traces when no values are given) by -1.",
+      "source": "seisdesk/processing/edit.py",
+      "class": "ReversePolarity"
+    },
+    {
+      "name": "select_traces",
+      "label": "Select traces (header range)",
+      "category": "Editing",
+      "description": "Keep the traces with min <= header <= max (and optionally every n-th of them).",
+      "source": "seisdesk/processing/edit.py",
+      "class": "SelectTraces"
+    },
+    {
+      "name": "time_window",
+      "label": "Time window",
+      "category": "Editing",
+      "description": "Keep the samples between tmin and tmax.",
+      "source": "seisdesk/processing/edit.py",
+      "class": "TimeWindow"
+    },
+    {
+      "name": "sort",
+      "label": "Sort",
+      "category": "Editing",
+      "description": "Sort traces by header keys, e.g. 'cdp,offset' for CMP gathers or 'fldr,tracf' for shots.",
+      "source": "seisdesk/processing/edit.py",
+      "class": "Sort"
+    },
+    {
+      "name": "resample",
+      "label": "Resample",
+      "category": "Editing",
+      "description": "Change the sample interval with an anti-alias polyphase filter.",
+      "source": "seisdesk/processing/edit.py",
+      "class": "Resample"
+    },
+    {
+      "name": "header_formula",
+      "label": "Set header (formula)",
+      "category": "Geometry",
+      "description": "key = (a + b*key2 + c*key3) / d, like Seismic Unix suchw.",
+      "source": "seisdesk/processing/edit.py",
+      "class": "HeaderFormula"
+    },
+    {
+      "name": "geometry_2d",
+      "label": "2D geometry (offset, CMP)",
+      "category": "Geometry",
+      "description": "Signed offset and CMP numbers from source/receiver coordinates; crooked lines projected on the best-fit line.",
+      "source": "seisdesk/processing/edit.py",
+      "class": "Geometry2D"
+    },
+    {
+      "name": "geometry_3d",
+      "label": "3D binning (inline/crossline)",
+      "category": "Geometry",
+      "description": "Inline and crossline numbers from midpoints in a rotated grid (defaults estimated from the data).",
+      "source": "seisdesk/processing/edit.py",
+      "class": "Geometry3D"
+    },
+    {
+      "name": "streamer_geometry",
+      "label": "Streamer geometry (no coordinates)",
+      "category": "Geometry",
+      "description": "Source and receiver x from shot and channel numbers for towed-streamer data without coordinates.",
+      "source": "seisdesk/processing/edit.py",
+      "class": "StreamerGeometry"
+    },
+    {
+      "name": "shot_table_geometry",
+      "label": "Land geometry from shot table (CSV)",
+      "category": "Geometry",
+      "description": "Source/receiver x and elevations of a land 2D line from a shot table (columns ffid, shot_x, shot_z, first_rec_x, rec_dx; one row per shot) and a topography file (x z), then offsets and CMPs. Same table as the SEG-2 conversion script.",
+      "source": "seisdesk/processing/edit.py",
+      "class": "ShotTableGeometry"
+    },
+    {
+      "name": "bandpass",
+      "label": "Bandpass (Ormsby)",
+      "category": "Filtering",
+      "description": "Zero-phase trapezoidal band-pass filter with corners f1 < f2 < f3 < f4.",
+      "source": "seisdesk/processing/filters.py",
+      "class": "Bandpass"
+    },
+    {
+      "name": "butterworth",
+      "label": "Butterworth filter",
+      "category": "Filtering",
+      "description": "Zero-phase (forward-backward) Butterworth low-cut / high-cut / band-pass.",
+      "source": "seisdesk/processing/filters.py",
+      "class": "Butterworth"
+    },
+    {
+      "name": "notch",
+      "label": "Notch filter",
+      "category": "Filtering",
+      "description": "Remove a narrow band around one frequency (e.g. 50 Hz power-line noise).",
+      "source": "seisdesk/processing/filters.py",
+      "class": "Notch"
+    },
+    {
+      "name": "fk_filter",
+      "label": "f-k fan filter",
+      "category": "Filtering",
+      "description": "Pass or reject a fan of apparent velocities (e.g. ground roll, direct waves, linear noise) gather by gather; traces are taken in order of the position key with their median spacing.",
+      "source": "seisdesk/processing/filters.py",
+      "class": "FKFilter"
+    },
+    {
+      "name": "tv_bandpass",
+      "label": "Time-variant band-pass",
+      "category": "Filtering",
+      "description": "Band-pass whose pass band changes with time: wide in the shallow part, narrower at depth where the high frequencies have been absorbed. Each 'time: f1,f2,f3,f4' entry (separated by ';') is the band at that time; the filtered versions are blended linearly between the times.",
+      "source": "seisdesk/processing/filters.py",
+      "class": "TimeVariantBandpass"
+    },
+    {
+      "name": "spectral_whitening",
+      "label": "Spectral whitening",
+      "category": "Filtering",
+      "description": "Flattens the amplitude spectrum of each trace inside a band by dividing by its smoothed amplitude spectrum (phase kept), widening the band like spiking deconvolution without a minimum-phase assumption. Each trace keeps its RMS amplitude.",
+      "source": "seisdesk/processing/filters.py",
+      "class": "SpectralWhitening"
+    },
+    {
+      "name": "auto_first_breaks",
+      "label": "Automatic first-break picking",
+      "category": "Picking",
+      "description": "Modified-energy-ratio picker inside a velocity guide window (|x|/v_fast .. |x|/v_slow + margin); picks go to a pick set (one phase) that the picking tool can edit and split into refraction phases.",
+      "source": "seisdesk/processing/firstbreak.py",
+      "class": "AutoFirstBreaks"
+    },
+    {
+      "name": "refraction_analysis",
+      "label": "Refraction analysis (intercept time)",
+      "category": "Picking",
+      "description": "Straight-line fits to the picked phases in order (direct wave first, then each refracted branch as it takes over away from zero offset): apparent velocities, intercept times, crossover distances and horizontal-layer thicknesses. Results go to the log and the project results.",
+      "source": "seisdesk/processing/firstbreak.py",
+      "class": "RefractionAnalysis"
+    },
+    {
+      "name": "fowler",
+      "label": "Fowler analysis (constant-velocity NMO + DMO stacks)",
+      "category": "Velocity",
+      "description": "Make a bank of constant-velocity NMO/DMO stacks; select coherent velocities at each CMP/time. Output the velocity panels or selected stack. Optional eta affects NMO only; DMO remains isotropic.",
+      "source": "seisdesk/processing/fowler.py",
+      "class": "Fowler"
+    },
+    {
+      "name": "fwi",
+      "label": "Full-waveform inversion (2D acoustic, frequency domain)",
+      "category": "Inversion",
+      "description": "Bounded multiscale acoustic inversion of shot gathers, with exact discrete adjoint gradients, optional source estimation and Laplace damping. Requires a close starting model, flat recording levels, calibrated amplitudes and at least 10 grid points per shortest wavelength. Small 2D CPU grids.",
+      "source": "seisdesk/processing/fwi.py",
+      "class": "FullWaveformInversion"
+    },
+    {
+      "name": "agc",
+      "label": "AGC",
+      "category": "Gain",
+      "description": "Automatic gain control with a sliding RMS window.",
+      "source": "seisdesk/processing/gain.py",
+      "class": "AGC"
+    },
+    {
+      "name": "tpow",
+      "label": "t-power gain",
+      "category": "Gain",
+      "description": "Multiply each sample by t^power (t in seconds).",
+      "source": "seisdesk/processing/gain.py",
+      "class": "TPow"
+    },
+    {
+      "name": "spherical_divergence",
+      "label": "Spherical divergence",
+      "category": "Gain",
+      "description": "Geometric-spreading correction g(t) = t v_rms(t)^2 / (t_ref v_ref^2).",
+      "source": "seisdesk/processing/gain.py",
+      "class": "SphericalDivergence"
+    },
+    {
+      "name": "trace_balance",
+      "label": "Trace balance",
+      "category": "Gain",
+      "description": "Scale every trace to unit RMS (or unit maximum) inside a time window.",
+      "source": "seisdesk/processing/gain.py",
+      "class": "TraceBalance"
+    },
+    {
+      "name": "scale",
+      "label": "Scale / clip",
+      "category": "Gain",
+      "description": "Multiply by a constant and optionally clip at a percentile of |amplitude|.",
+      "source": "seisdesk/processing/gain.py",
+      "class": "Scale"
+    },
+    {
+      "name": "exp_gain",
+      "label": "Exponential gain",
+      "category": "Gain",
+      "description": "Multiplies each sample by exp(a t), with a given in dB per second, to compensate for absorption.",
+      "source": "seisdesk/processing/gain.py",
+      "class": "ExpGain"
+    },
+    {
+      "name": "utm",
+      "label": "WGS84 longitude / latitude to UTM",
+      "category": "Geometry",
+      "description": "Convert source and receiver decimal-degree headers into one WGS84 UTM zone; keep original geographic coordinates.",
+      "source": "seisdesk/processing/geometry_tools.py",
+      "class": "UTM"
+    },
+    {
+      "name": "azimuth",
+      "label": "Azimuth, radial offset and midpoint headers",
+      "category": "Geometry",
+      "description": "Azimuth clockwise from north, unsigned radial offset, and geometric midpoint; source/receiver coordinates in metres.",
+      "source": "seisdesk/processing/geometry_tools.py",
+      "class": "Azimuth"
+    },
+    {
+      "name": "flex_binning",
+      "label": "Flex binning (borrow neighbouring CMP traces)",
+      "category": "Geometry",
+      "description": "Fill low-fold CMPs with nearest traces from nearby bins. Duplicated traces receive new IDs; original geometry and origin CMP are retained.",
+      "source": "seisdesk/processing/geometry_tools.py",
+      "class": "FlexBinning"
+    },
+    {
+      "name": "bin_enlarge",
+      "label": "Enlarge CMP bins",
+      "category": "Geometry",
+      "description": "Group consecutive CMP bin numbers, retaining original CMP labels and actual source/receiver coordinates.",
+      "source": "seisdesk/processing/geometry_tools.py",
+      "class": "BinEnlarge"
+    },
+    {
+      "name": "floating_datum",
+      "label": "Floating datum and residual flat-datum statics",
+      "category": "Statics",
+      "description": "Smooth the 2D surface by distance, then shift to that floating datum or from saved floating levels to a flat datum. Positive statics delay samples.",
+      "source": "seisdesk/processing/geometry_tools.py",
+      "class": "FloatingDatum"
+    },
+    {
+      "name": "nszone_shift",
+      "label": "Extract and shift a near-surface time zone",
+      "category": "Statics",
+      "description": "Select a time gate, optionally flatten it using a millisecond trace header, and preserve absolute output timing.",
+      "source": "seisdesk/processing/geometry_tools.py",
+      "class": "NearSurfaceZone"
+    },
+    {
+      "name": "streamer_motion",
+      "label": "Moving-streamer compensation (constant velocity)",
+      "category": "Statics",
+      "description": "Resample the exact constant-velocity hyperbola for a receiver moving along x during recording; speed is signed in the x direction. Flat 2D approximation.",
+      "source": "seisdesk/processing/geometry_tools.py",
+      "class": "StreamerMotion"
+    },
+    {
+      "name": "gpr_first_break_removal",
+      "label": "GPR background removal / time-zero alignment",
+      "category": "Editing",
+      "description": "Subtract a moving mean/median trace in a nanosecond gate, or align the gate's peak magnitude to a target time.",
+      "source": "seisdesk/processing/geometry_tools.py",
+      "class": "GPRFirstBreakRemoval"
+    },
+    {
+      "name": "grm",
+      "label": "Generalised reciprocal method (refractor branches)",
+      "category": "Statics",
+      "description": "Forward/reverse refractor picks give velocity and time-depth functions for candidate XY separations. Reports all candidates; depth assumes locally flat layers and one overburden velocity. Restrict picks to the same critically refracted branch in both directions.",
+      "source": "seisdesk/processing/grm.py",
+      "class": "GRM"
+    },
+    {
+      "name": "fx_interpolation",
+      "label": "Trace interpolation (f-x, Spitz)",
+      "category": "Interpolation",
+      "description": "Inserts a new trace midway between every pair of neighbouring traces of each gather (factor 2; factor 4 repeats it), by f-x prediction filters (Spitz 1991). Unlike simple averaging this keeps steep, spatially aliased events (ground roll, steep dips, refractions) continuous. The traces must be regularly spaced along the order key. New traces get interpolated positions (offset, source/receiver and CMP x), header interp = 1 and renumbered tracf; run the geometry step again afterwards to recompute CMP numbers on the finer grid.",
+      "source": "seisdesk/processing/interpolation.py",
+      "class": "FXInterpolation"
+    },
+    {
+      "name": "pocs_fill",
+      "label": "Fill missing or dead traces (POCS)",
+      "category": "Interpolation",
+      "description": "Puts each gather on a regular grid of the position key (spacing: the median trace spacing, or given), inserts empty traces where positions are missing \u2014 and, if asked, treats dead (all-zero) traces as missing \u2014 and rebuilds them by POCS: iterative thresholding of the f-k spectrum with re-insertion of the recorded traces (Abma & Kabir 2006). Recorded traces are not changed; filled traces get header interp = 1. Works best for scattered gaps of a few traces.",
+      "source": "seisdesk/processing/interpolation.py",
+      "class": "POCSFill"
+    },
+    {
+      "name": "joint_tomography",
+      "label": "Joint refraction / reflection tomography (2D)",
+      "category": "Tomography",
+      "description": "Invert all selected named branches together. Define each phase as first, reflection or head in JSON, with a fixed interface depth or x,z points and uncertainty_ms. Reflected legs bend through the velocity model; head waves follow the faster side of the assigned refractor. Interfaces are fixed, not inverted. Invalid or subcritical branches raise an error.",
+      "source": "seisdesk/processing/joint_tomography.py",
+      "class": "JointTomography"
+    },
+    {
+      "name": "phase_shift_3d",
+      "label": "3D phase-shift migration (post-stack, v(t))",
+      "category": "Time migration",
+      "description": "Gazdag phase-shift migration of a stacked 3D volume on its inline/crossline grid (3D binning): RMS velocities at one CMP bin are Dix-converted to interval velocity v(tau); empty bins count as zero traces. The cube and its padded 3D spectrum are held in memory: small volumes only (tens of inlines and crosslines).",
+      "source": "seisdesk/processing/migration_3d.py",
+      "class": "PhaseShift3D"
+    },
+    {
+      "name": "stolt_3d",
+      "label": "3D Stolt migration (post-stack, constant v)",
+      "category": "Time migration",
+      "description": "f-k migration of a stacked 3D volume with one constant velocity, on its inline/crossline grid: fast, for checks and simple geology. Small volumes only (the padded 3D spectrum is held in memory).",
+      "source": "seisdesk/processing/migration_3d.py",
+      "class": "Stolt3D"
+    },
+    {
+      "name": "kirchhoff_pstm_3d",
+      "label": "3D Kirchhoff time migration (pre- or post-stack)",
+      "category": "Time migration",
+      "description": "Kirchhoff summation in 3D with straight-ray double-square-root traveltimes in v_rms(t, CMP bin). Input: prestack traces with source and receiver x and y, or a stack (treated as zero offset at the bin centres cdpx, cdpy). Output: one migrated trace per occupied bin (for prestack input, the migrated stack). Every input trace visits every bin within the aperture: small volumes only.",
+      "source": "seisdesk/processing/migration_3d.py",
+      "class": "KirchhoffPSTM3D"
+    },
+    {
+      "name": "kirchhoff_psdm_3d",
+      "label": "3D Kirchhoff depth migration (layered v(z))",
+      "category": "Depth migration",
+      "description": "Pre/post-stack small-volume migration with layered Snell-ray traveltime tables, anti-causal time derivative and approximate spreading/obliquity. Flat recording datum; one velocity column; relative amplitudes.",
+      "source": "seisdesk/processing/migration_3d_depth.py",
+      "class": "KirchhoffPSDM3D"
+    },
+    {
+      "name": "dmo_3d",
+      "label": "3D DMO (common-offset / azimuth log-stretch f-k)",
+      "category": "Moveout",
+      "description": "DMO on NMO-corrected, regularly binned 3D common-offset/common-azimuth data. High-frequency log-stretch approximation, dip taper, relative amplitudes and periodic spatial edges; small volumes only.",
+      "source": "seisdesk/processing/migration_3d_depth.py",
+      "class": "DMO3D"
+    },
+    {
+      "name": "split_step",
+      "label": "Split-step depth migration (post-stack)",
+      "category": "Depth migration",
+      "description": "Depth migration of a stacked section in an interval-velocity model v(x, z) \u2014 the project depth model, or one built by Dix conversion of the velocity picks. Output is a depth section.",
+      "source": "seisdesk/processing/migration_depth.py",
+      "class": "SplitStepMigration"
+    },
+    {
+      "name": "kirchhoff_psdm",
+      "label": "Kirchhoff depth migration (prestack)",
+      "category": "Depth migration",
+      "description": "Prestack Kirchhoff depth migration with first-arrival traveltimes computed on the velocity grid (shortest paths); output a depth image, or image gathers by offset class. Recording surface 'topography' migrates from the real source and receiver elevations (selev - sdepth, gelev) instead of a flat datum: depth is then measured below the highest ground elevation, the model starts there, cells above the ground take the velocity just below it, and the image above the ground is blank.",
+      "source": "seisdesk/processing/migration_depth.py",
+      "class": "KirchhoffPSDM"
+    },
+    {
+      "name": "stolt",
+      "label": "Stolt migration (post-stack, constant v)",
+      "category": "Time migration",
+      "description": "f-k migration of a stacked section with one constant velocity; fast, for checks and simple geology.",
+      "source": "seisdesk/processing/migration_time.py",
+      "class": "StoltMigration"
+    },
+    {
+      "name": "phase_shift",
+      "label": "Phase-shift migration (post-stack, v(t))",
+      "category": "Time migration",
+      "description": "Gazdag phase-shift migration of a stacked section; RMS velocities at one CMP (the middle picked CMP by default) are Dix-converted to interval velocity v(tau).",
+      "source": "seisdesk/processing/migration_time.py",
+      "class": "PhaseShiftMigration"
+    },
+    {
+      "name": "kirchhoff_pstm",
+      "label": "Kirchhoff time migration (pre- or post-stack)",
+      "category": "Time migration",
+      "description": "Kirchhoff summation with double-square-root traveltimes in v_rms(t, CMP). Prestack input gives a migrated stack and optionally common-image gathers (offset classes) for residual moveout checks. With eta (VTI media: picked in the eta scan of the velocity analysis, or a constant) each leg uses the non-hyperbolic traveltime of Alkhalifah & Tsvankin (1995).",
+      "source": "seisdesk/processing/migration_time.py",
+      "class": "KirchhoffPSTM"
+    },
+    {
+      "name": "fd_migration",
+      "label": "Finite-difference depth migration (post-stack, 45/65 degrees)",
+      "category": "",
+      "description": "Depth migration of a stacked section by finite differences in frequency and space: Claerbout's 45-degree equation, or the 65-degree equation of Lee and Suh, solved implicitly at every depth step. Follows strong lateral velocity changes; dips steeper than the chosen angle are under-migrated. Velocity: the project depth model, or a Dix model from the picks. Output is a depth section.",
+      "source": "seisdesk/processing/migration_wave.py",
+      "class": "FDMigration"
+    },
+    {
+      "name": "ffd_migration",
+      "label": "Fourier finite-difference depth migration (post-stack)",
+      "category": "",
+      "description": "Depth migration of a stacked section by the Fourier finite-difference method of Ristow and Ruhl: at every depth step a phase shift with the lowest velocity of the step, a time-shift correction for the true velocity and a finite-difference correction for the rest. Accurate for steep dips and strong lateral velocity changes. Output is a depth section.",
+      "source": "seisdesk/processing/migration_wave.py",
+      "class": "FFDMigration"
+    },
+    {
+      "name": "pspi_migration",
+      "label": "Phase-shift-plus-interpolation depth migration (post-stack)",
+      "category": "",
+      "description": "Depth migration of a stacked section by phase shift plus interpolation (Gazdag and Sguazzero): at every depth step the wavefield is continued with a few reference velocities, about 10 % apart, and interpolated with the true velocity at each trace. Exact for any dip where the velocity is laterally constant; cost grows with the number of reference velocities.",
+      "source": "seisdesk/processing/migration_wave.py",
+      "class": "PSPIMigration"
+    },
+    {
+      "name": "gaussian_beam",
+      "label": "Gaussian-beam migration (post-stack)",
+      "category": "",
+      "description": "Depth migration of a stacked section by Gaussian beams (Hill 1990): the section is split into local plane waves (slant stacks under overlapping Gaussian windows); each is sent down along a ray traced in the smoothed velocity model and spread as a Gaussian beam. Handles caustics and several arrivals, which single-arrival Kirchhoff migration does not. Simplified: one beam width for all frequencies and real traveltimes. Optional acoustic VTI uses delta=0 and constant eta, with Hamiltonian rays and horizontal paraxial curvature; amplitudes remain approximate. Beam width 0 = automatic (about one wavelength).",
+      "source": "seisdesk/processing/migration_wave.py",
+      "class": "GaussianBeamMigration"
+    },
+    {
+      "name": "wave_psdm",
+      "label": "Prestack wave-equation depth migration (shot profile)",
+      "category": "Depth migration",
+      "description": "Prestack depth migration shot by shot: the source wavefield (from the source position) and the recorded wavefield are continued down through v(x, z) with a split-step, PSPI or Fourier finite-difference extrapolator and correlated at zero lag; the images of all shots are summed. Needs shot gathers with source and receiver x. The recording surface is taken as flat: on land apply statics or datuming first. Output is a depth image on a regular x grid.",
+      "source": "seisdesk/processing/migration_wave.py",
+      "class": "WavePSDM"
+    },
+    {
+      "name": "fd_acoustic",
+      "label": "Acoustic finite-difference modelling (2D)",
+      "category": "Modelling",
+      "description": "Full-waveform acoustic modelling of every shot of the dataset, at its source and receiver positions: pressure and particle velocity on a staggered grid, second order in time and fourth order in space, absorbing PML or sponge borders and an optional free surface. Direct, refracted, reflected and diffracted waves and multiples are all included. Unless given, the grid spacing gives six points per shortest wavelength; the time step is set for stability. The 2D correction turns the line-source waveform of a 2D model into the point-source (Ricker) waveform.",
+      "source": "seisdesk/processing/modelling.py",
+      "class": "AcousticFD"
+    },
+    {
+      "name": "fd_elastic",
+      "label": "Elastic finite-difference modelling (2D)",
+      "category": "Modelling",
+      "description": "Elastic (P-SV) finite-difference modelling of every shot: velocity-stress staggered grid (Virieux 1986), fourth order in space, explosive source, sponge borders and a free surface (vacuum above the model surface), so ground roll and converted waves appear. Records the vertical or horizontal particle velocity, or pressure. S velocities come from the model (vp / 1.73 when not given; 0 makes a fluid layer). The slowest S velocity sets the grid spacing, so elastic runs take longer than acoustic ones.",
+      "source": "seisdesk/processing/modelling.py",
+      "class": "ElasticFD"
+    },
+    {
+      "name": "kirchhoff_modelling",
+      "label": "Kirchhoff modelling from a depth model",
+      "category": "Modelling",
+      "description": "Primary reflections by Kirchhoff summation over the reflectors of the model: every reflector point of a depth grid adds its normal-incidence reflection coefficient at the traveltime source - point - receiver (shortest paths through the model), weighted for geometric spreading and obliquity; the sum is convolved with a Ricker wavelet. Dipping and curved reflectors get their diffraction tails; there are no direct waves and no multiples.",
+      "source": "seisdesk/processing/modelling.py",
+      "class": "KirchhoffModelling"
+    },
+    {
+      "name": "ray_synthetics",
+      "label": "Ray-traced reflection synthetics (layered model)",
+      "category": "Modelling",
+      "description": "Primary reflections by ray tracing in a layered model: in flat layers by exact two-point ray tracing (Snell's law), otherwise by the minimum over each interface of the traveltimes from source and receiver through the layers above it. Amplitude: reflection coefficient (normal incidence or Aki-Richards with angle) over spherical divergence; Ricker wavelet. Optionally adds the first arrivals (direct and head waves). Fast; the event times are kept for comparison with picks.",
+      "source": "seisdesk/processing/modelling.py",
+      "class": "RaySynthetics"
+    },
+    {
+      "name": "rem_acoustic",
+      "label": "Acoustic rapid expansion (Fourier / Chebyshev)",
+      "category": "Modelling",
+      "description": "Constant-density pressure modelling with Fourier spatial derivatives and a Chebyshev time propagator. Large stable time steps, but output sampling must resolve the source. Sponge edges; no free surface; small 2D CPU grids.",
+      "source": "seisdesk/processing/modelling_aniso.py",
+      "class": "RapidExpansion"
+    },
+    {
+      "name": "fd_elastic_vti",
+      "label": "Elastic VTI finite-difference modelling (P-SV)",
+      "category": "",
+      "description": "2D staggered-grid P-SV modelling using Thomsen epsilon/delta stiffnesses, sponge borders and an optional flat free surface. Gamma affects SH waves and is outside this P-SV solver. Relative amplitudes.",
+      "source": "seisdesk/processing/modelling_aniso.py",
+      "class": "ElasticVTI"
+    },
+    {
+      "name": "ti_ray_synthetics",
+      "label": "Layered weak-VTI P-wave ray synthetics",
+      "category": "Modelling",
+      "description": "Primary P reflections by Snell shooting on weak-VTI phase-slowness curves and group velocities. Epsilon/delta may be constants or one value per layer. Flat layers, isotropic reflection amplitudes, no multiples or converted waves.",
+      "source": "seisdesk/processing/modelling_aniso.py",
+      "class": "TIRaySynthetics"
+    },
+    {
+      "name": "goupillaud",
+      "label": "1D Goupillaud impulse response with internal multiples",
+      "category": "Modelling",
+      "description": "Equal two-way-time layers, normal-incidence pressure response, transmission loss and internal multiples. Transparent upper boundary; no free-surface multiples. Primaries-only returns the convolutional reflection series.",
+      "source": "seisdesk/processing/modelling_tools.py",
+      "class": "Goupillaud"
+    },
+    {
+      "name": "impedance_reflectivity",
+      "label": "Impedance to reflectivity and back",
+      "category": "Conversion",
+      "description": "Normal-incidence r[i]=(Z[i]-Z[i-1])/(Z[i]+Z[i-1]); r[0]=0. Inversion starts from the supplied impedance and integrates the reflection coefficients.",
+      "source": "seisdesk/processing/modelling_tools.py",
+      "class": "ImpedanceReflectivity"
+    },
+    {
+      "name": "scatterer_synthetics",
+      "label": "Point / infinite-line scatterer shot records",
+      "category": "Modelling",
+      "description": "Homogeneous-medium diffraction times and geometrical spreading: 3D point 1/(rs rg), or 2D infinite-line 1/sqrt(rs rg). Relative coefficients, zero-phase Ricker; no radiation pattern or multiples.",
+      "source": "seisdesk/processing/modelling_tools.py",
+      "class": "ScattererSynthetics"
+    },
+    {
+      "name": "hrot",
+      "label": "Horizontal rotation (3C)",
+      "category": "Multicomponent",
+      "description": "Rotates the two horizontal components of three-component recordings to radial (along the source-to-receiver direction, positive away from the source) and transverse (90 degrees anticlockwise from radial, seen from above), with the azimuth from the source and receiver coordinates (sx, sy, gx, gy) or by one fixed angle. The inline component points along the sensor azimuth (degrees anticlockwise from the survey x axis) and the crossline component 90 degrees anticlockwise from it. Rotated traces get the codes 17 (radial) and 16 (transverse) and the angle used in header hrot_az; vertical traces pass unchanged.",
+      "source": "seisdesk/processing/multicomponent.py",
+      "class": "HorizontalRotation"
+    },
+    {
+      "name": "ltt_rotation",
+      "label": "Shear-wave rotation (sliding linear transform)",
+      "category": "Multicomponent",
+      "description": "Sample-dependent 4C rotation from windowed XX/XY/YX/YY covariance. Chooses the continuous local diagonalisation angle modulo 90 degrees; fast/slow identification still needs geological interpretation.",
+      "source": "seisdesk/processing/multicomponent.py",
+      "class": "LinearTransformRotation"
+    },
+    {
+      "name": "alford",
+      "label": "Alford rotation (4C shear)",
+      "category": "Multicomponent",
+      "description": "Rotates four-component shear data (sources X and Y recorded by receivers x and y: XX, XY, YX, YY, first letter the source, second the receiver) to the angle that minimises the energy of the off-diagonal components XY and YX in a time window (Alford 1986). In an azimuthally anisotropic (fractured) layer the rotated XX and YY are the fast and slow shear waves; with 'fast first' the earlier of the two is put on XX. The angle (degrees anticlockwise from the acquisition x axis to the new x axis) is written to header alford_az and listed in the log; one angle per station, or one per gather of the chosen key.",
+      "source": "seisdesk/processing/multicomponent.py",
+      "class": "AlfordRotation"
+    },
+    {
+      "name": "polarisation",
+      "label": "Polarisation analysis (3C)",
+      "category": "Multicomponent",
+      "description": "Polarisation attributes from the covariance matrix of the vertical, inline and crossline components in a sliding time window (Jurkevics 1988): rectilinearity 1 - (l2 + l3) / (2 l1), near 1 for linear motion such as body waves and about 0.5 for circular motion such as ground roll; planarity 1 - 2 l3 / (l1 + l2); azimuth of the main motion (degrees from the inline axis towards the crossline axis); incidence from the vertical (degrees); or the largest eigenvalue (energy). Output: one attribute trace per station, with the headers of its vertical trace.",
+      "source": "seisdesk/processing/multicomponent.py",
+      "class": "PolarisationAnalysis"
+    },
+    {
+      "name": "polar_filter",
+      "label": "Polarisation filter (3C)",
+      "category": "Multicomponent",
+      "description": "Weights every sample of the three components by the rectilinearity raised to a power, so that linearly polarised body waves pass and elliptically polarised ground roll is attenuated. Optionally the weight also passes only near-vertical incidence (P reflections) or only near-horizontal motion, with a 15-degree taper beyond the incidence limit. The weights come from the covariance matrix in a sliding window (Jurkevics 1988) and are smoothed over the same window; traces without all three components pass unchanged.",
+      "source": "seisdesk/processing/multicomponent.py",
+      "class": "PolarisationFilter"
+    },
+    {
+      "name": "hyperbolic_radon",
+      "label": "Hyperbolic Radon demultiple (velocity stack)",
+      "category": "Multiples",
+      "description": "On CMP gathers WITHOUT NMO: every gather is decomposed into hyperbolas t = sqrt(tau^2 + x^2/v^2) by a least-squares (conjugate-gradient) time-domain Radon transform; 'high resolution' adds sparse reweighting passes that focus the velocity panel. Multiples travel slower than the primaries at the same time, so the part of the panel below a cut velocity (a constant, a fraction of the picked stacking velocity, or a velocity band) is modelled and subtracted. Output the primaries, the multiples or the velocity panels.",
+      "source": "seisdesk/processing/multiples.py",
+      "class": "HyperbolicRadon"
+    },
+    {
+      "name": "taup_decon",
+      "label": "Tau-p deconvolution",
+      "category": "Multiples",
+      "description": "Water-layer reverberations and short-period multiples are periodic in time only at vertical incidence; in the tau-p domain they stay periodic at every slowness p, with the period shrinking as cos(theta) = sqrt(1 - p^2 v_water^2). Each shot or CMP gather is slant-stacked (least-squares linear Radon), every p trace is deconvolved with a predictive filter whose gap follows that period, and the removed part is transformed back and subtracted from the data (Taner 1980; Alam & Austin 1981). Give the period at p = 0 (the water-bottom two-way time) or let it be found from the autocorrelation.",
+      "source": "seisdesk/processing/multiples.py",
+      "class": "TauPDecon"
+    },
+    {
+      "name": "adaptive_subtraction",
+      "label": "Adaptive subtraction of a multiple model",
+      "category": "Multiples",
+      "description": "Subtracts a multiple model (for example from SRME or another program, as a SEG-Y or SU file with the same traces) after matching it to the data: in overlapping windows of time and traces a short two-sided filter corrects the model's amplitude, wavelet and small time shifts by least squares (L2) or by the more robust L1 norm, which keeps strong primaries out of the fit.",
+      "source": "seisdesk/processing/multiples.py",
+      "class": "AdaptiveSubtraction"
+    },
+    {
+      "name": "srme",
+      "label": "SRME (surface-related multiple prediction)",
+      "category": "Multiples",
+      "description": "Data-driven prediction of all surface-related multiples (Verschuur, Berkhout & Wapenaar 1992): every multiple is a primary convolved with the data at the free surface, M = -D * D summed over the surface positions, so no velocity or water depth is needed. The shot gathers are placed on a regular grid of co-located sources and receivers; gaps are filled by reciprocity, by neighbouring shots at the same offset and, for the missing near offsets, by moveout from the nearest recorded offset. The predicted model (wavelet squared, amplitudes approximate) is matched to the data by adaptive subtraction, or output for inspection.",
+      "source": "seisdesk/processing/multiples.py",
+      "class": "SRME"
+    },
+    {
+      "name": "picked_mute",
+      "label": "Mute (picked phase)",
+      "category": "Editing",
+      "description": "Top or bottom mute following a picked phase, interpolated in |offset| and between picked gathers. Pick it in the viewer with the picking tool (one phase for the top mute, another for the bottom).",
+      "source": "seisdesk/processing/mute.py",
+      "class": "PickedMute"
+    },
+    {
+      "name": "velocity_mute",
+      "label": "Mute (linear velocity)",
+      "category": "Editing",
+      "description": "Zero everything above t = t0 + |offset| / v (top) or below it (bottom), e.g. to remove direct waves.",
+      "source": "seisdesk/processing/mute.py",
+      "class": "VelocityMute"
+    },
+    {
+      "name": "zone_mute",
+      "label": "Surgical mute (between two phases)",
+      "category": "Editing",
+      "description": "Zeroes the samples between two picked phases (for example the edges of a ground-roll cone, an air wave or a noise train), or keeps only that zone. Picks are interpolated along |offset| and between picked gathers, as for the picked mute.",
+      "source": "seisdesk/processing/mute.py",
+      "class": "ZoneMute"
+    },
+    {
+      "name": "cone_mute",
+      "label": "Ground-roll cone mute",
+      "category": "Editing",
+      "description": "Zeroes the cone between t = t0 + |offset| / v_fast and t = t0 + |offset| / v_slow, where slow surface waves (ground roll) travel on land shots. Read the two velocities from the edges of the ground roll on a shot gather.",
+      "source": "seisdesk/processing/mute.py",
+      "class": "ConeMute"
+    },
+    {
+      "name": "mva_tomography",
+      "label": "Residual-moveout velocity update (vertical / straight-ray tomography)",
+      "category": "Tomography",
+      "description": "Scan residual depth moveout on Kirchhoff common-image gathers. Update a project velocity model vertically or by damped straight-ray differential tomography, then re-migrate the original data to assess the change. Small velocity errors, locally flat reflectors and 2D geometry only.",
+      "source": "seisdesk/processing/mva.py",
+      "class": "MigrationVelocityAnalysis"
+    },
+    {
+      "name": "lmo",
+      "label": "Linear moveout (reduced time)",
+      "category": "Moveout",
+      "description": "Reduced time t' = t - |offset| / v + shift. Events travelling at the reduction velocity become flat: a refracted branch at its refractor velocity (its intercept time is then read directly), or linear noise before f-k or tau-p work. 'dynamic' moves every frequency by its own phase velocity from a dispersion curve 'f:v, ...': a dispersed surface-wave train collapses to a short pulse at the shift time (Seismic Unix sudlmo). 'inverse' undoes the same correction.",
+      "source": "seisdesk/processing/nearsurface.py",
+      "class": "LinearMoveout"
+    },
+    {
+      "name": "refraction_convolution",
+      "label": "Refraction convolution section",
+      "category": "Statics",
+      "description": "Palmer's refraction convolution section (2001). At every receiver the trace of a forward shot and the trace of a reverse shot are convolved, which adds their travel times, and the reciprocal time (forward shot to reverse shot) is subtracted: the refractor appears at twice its time-depth (the GRM time-depth, i.e. the two-way delay time under the receiver), and the product of the amplitudes cancels most of the geometric spreading. 'automatic' pairs every receiver with the nearest shot on each side at least the minimum offset away (beyond the crossover distance, so that the first arrival is the refracted wave); 'two shots' uses one forward and one reverse FFID for the receivers between them. The reciprocal time is measured on the traces (first breaks of each shot at the other shot's position), read from the picks of the refracted phase, or given.",
+      "source": "seisdesk/processing/nearsurface.py",
+      "class": "RefractionConvolution"
+    },
+    {
+      "name": "nmo",
+      "label": "NMO correction",
+      "category": "Moveout",
+      "description": "Normal-moveout correction with RMS velocities (and anisotropy parameter eta, VTI) interpolated from the picks; samples stretched more than the limit are muted.",
+      "source": "seisdesk/processing/nmo.py",
+      "class": "NMO"
+    },
+    {
+      "name": "fx_decon",
+      "label": "f-x deconvolution (random noise)",
+      "category": "Filtering",
+      "description": "Random-noise attenuation: in overlapping time and trace windows, every frequency is predicted across the traces with a complex Wiener filter (forward and backward). Laterally coherent (linear) events are predictable and kept; random noise is not. Gather by gather, or on a whole stacked section (empty gather key). The output is limited to the band fmin-fmax (tapered over 20 % above fmax) unless 'outside the band' is set to keep.",
+      "source": "seisdesk/processing/noise.py",
+      "class": "FXDecon"
+    },
+    {
+      "name": "median_filter",
+      "label": "Median filter",
+      "category": "Filtering",
+      "description": "Running median across the traces (at each time) or along each trace. 'filter' outputs the median: removes spikes and random noise and keeps flat events. 'subtract' outputs the data minus the median: removes what is flat across the traces (for example a flattened multiple or a horizontal noise train) and keeps the rest.",
+      "source": "seisdesk/processing/noise.py",
+      "class": "MedianFilter"
+    },
+    {
+      "name": "taup_filter",
+      "label": "Linear tau-p (slant-stack) filter",
+      "category": "Filtering",
+      "description": "Least-squares linear Radon transform (tau-p) of each gather. Events slower than the cut velocity (ground roll, guided and direct waves, other linear noise) are modelled and subtracted, or kept alone with 'pass slow'. Signed offsets are used, so the two sides of a split spread are handled correctly; irregular offsets are no problem.",
+      "source": "seisdesk/processing/noise.py",
+      "class": "TauPFilter"
+    },
+    {
+      "name": "trace_mix",
+      "label": "Trace mixing (spatial smoothing)",
+      "category": "Filtering",
+      "description": "Weighted running average of neighbouring traces (e.g. weights 1,2,1), gather by gather or along a section: raises lateral coherence and suppresses random noise, but smears steep dips.",
+      "source": "seisdesk/processing/noise.py",
+      "class": "TraceMix"
+    },
+    {
+      "name": "auto_edit",
+      "label": "Automatic trace editing (dead / noisy traces)",
+      "category": "Editing",
+      "description": "Compares the RMS amplitude of every trace in a window with the median of its gather: traces below 'low' x median are dead or weak, above 'high' x median noisy. They are zeroed (trid = 2), removed or only flagged. The RMS goes to header 'qc_rms' and the edited traces are listed in the log.",
+      "source": "seisdesk/processing/qc.py",
+      "class": "AutoEdit"
+    },
+    {
+      "name": "despike",
+      "label": "Despike / noise-burst suppression",
+      "category": "Editing",
+      "description": "Compares each trace's short-window RMS envelope with the running median of the envelopes of its neighbours (same gather, same time); where it exceeds threshold x median, the samples are scaled down to the median level. Removes spikes, amplitude bursts and swell noise, keeps coherent events.",
+      "source": "seisdesk/processing/qc.py",
+      "class": "Despike"
+    },
+    {
+      "name": "radon_demultiple",
+      "label": "Radon demultiple (parabolic)",
+      "category": "Multiples",
+      "description": "On NMO-corrected CMP gathers (primary velocities): model events with residual moveout above q_cut (multiples, under-corrected) by a least-squares parabolic Radon transform and subtract them. 'High resolution' refines the transform by sparse (Cauchy-norm) reweighting, which separates multiples whose curvature is close to that of the primaries.",
+      "source": "seisdesk/processing/radon.py",
+      "class": "RadonDemultiple"
+    },
+    {
+      "name": "refraction_statics",
+      "label": "Refraction statics (delay-time inversion)",
+      "category": "Statics",
+      "description": "From the first-break picks of one refracted branch, solves t = delay(source) + delay(receiver) + |offset| / V2 by least squares over all shots (delay times at surface stations, smoothed along the line). Delays become weathering thickness with V1 (from the direct-wave phase or given), and source and receiver statics to a flat datum follow with the replacement velocity. Writes sstat/gstat (ms), applies them if asked, and keeps the station table (elevation, base of weathering, statics) for display and export.",
+      "source": "seisdesk/processing/refstatics.py",
+      "class": "RefractionStatics"
+    },
+    {
+      "name": "residual_moveout",
+      "label": "Residual moveout correction",
+      "category": "Moveout",
+      "description": "For each CMP (or image) gather: scan the residual curvature r(t0) of flattened events, keep the maximum-semblance r smoothed in time, and remove it. Works after NMO or on migrated gathers.",
+      "source": "seisdesk/processing/rmo.py",
+      "class": "ResidualMoveout"
+    },
+    {
+      "name": "rtm",
+      "label": "Reverse-time migration (2D acoustic, frequency domain)",
+      "category": "Depth migration",
+      "description": "Two-way acoustic source and adjoint receiver wavefields with PML boundaries; zero-lag correlation, optional illumination normalisation and Laplacian filtering. Constant density, flat recording levels, small 2D CPU grids. This is relative-amplitude imaging.",
+      "source": "seisdesk/processing/rtm.py",
+      "class": "ReverseTimeMigration"
+    },
+    {
+      "name": "eigen_filter",
+      "label": "Eigenimage (SVD) filter",
+      "category": "Filtering",
+      "description": "Splits windows of traces into eigenimages by singular value decomposition. Events that are flat across a window (after the optional flattening by a linear moveout velocity or a dip) go into the first eigenimages. 'pass' keeps the first k: random noise and dipping events are removed. 'reject' removes them: flat events are removed and everything else is kept. Use small trace windows on sections with dipping or curved events.",
+      "source": "seisdesk/processing/separation.py",
+      "class": "EigenFilter"
+    },
+    {
+      "name": "harlan",
+      "label": "Signal/noise separation (Harlan, local slant stacks)",
+      "category": "Filtering",
+      "description": "Separates laterally coherent signal from random noise. In overlapping windows of traces, the data are slant-stacked (least-squares local tau-p, dips up to the largest dip in ms per trace): linear events focus into a few strong values, random noise spreads evenly. The noise level is the median absolute deviation of the tau-p panel; values below threshold x noise level are shrunk to zero (soft) or cut (hard) and the rest transformed back. Output the signal, or the noise (data minus signal) for QC. The signal is limited to frequencies up to fmax.",
+      "source": "seisdesk/processing/separation.py",
+      "class": "HarlanSeparation"
+    },
+    {
+      "name": "taper",
+      "label": "Taper (trace ends and panel edges)",
+      "category": "Editing",
+      "description": "Cosine, linear or Gaussian edge tapers; fractions refer to each end of the selected axis.",
+      "source": "seisdesk/processing/signal_tools.py",
+      "class": "Taper"
+    },
+    {
+      "name": "frac_derivative",
+      "label": "Fractional derivative / integral",
+      "category": "Filtering",
+      "description": "Zero-padded Fourier multiplier (i omega)^order. Negative orders integrate with the DC term removed.",
+      "source": "seisdesk/processing/signal_tools.py",
+      "class": "FractionalDerivative"
+    },
+    {
+      "name": "kfilter",
+      "label": "2D Fourier panel filter",
+      "category": "Filtering",
+      "description": "Rectangular pass band in spatial wavenumber and sample-axis frequency, or radial wavenumber band on depth sections, with cosine edges. Time data use Hz on the second axis; depth data use cycles/metre on both axes. Radial mode uses kmin/kmax. Regular 2D panels only.",
+      "source": "seisdesk/processing/signal_tools.py",
+      "class": "WavenumberFilter"
+    },
+    {
+      "name": "kfrac",
+      "label": "Fractional spatial-wavenumber power",
+      "category": "Filtering",
+      "description": "Multiply every panel's spatial spectrum by |2 pi k|^order; zero wavenumber is removed for nonzero order.",
+      "source": "seisdesk/processing/signal_tools.py",
+      "class": "FractionalWavenumber"
+    },
+    {
+      "name": "fx_cc_filter",
+      "label": "f-x correlation-weighted filter",
+      "category": "",
+      "description": "Average neighbouring complex spectra only where their local frequency correlation exceeds the threshold.",
+      "source": "seisdesk/processing/signal_tools.py",
+      "class": "FXCorrelation"
+    },
+    {
+      "name": "fx_alpha_trim",
+      "label": "f-x alpha-trimmed mean",
+      "category": "",
+      "description": "Trim low and high spectral amplitudes in the trace window, then average the remaining complex spectra.",
+      "source": "seisdesk/processing/signal_tools.py",
+      "class": "FXAlphaTrim"
+    },
+    {
+      "name": "fx_weighted_mix",
+      "label": "f-x weighted trace mix",
+      "category": "",
+      "description": "Gaussian spatial weights on neighbouring complex spectra. Coherent steep dips may be attenuated.",
+      "source": "seisdesk/processing/signal_tools.py",
+      "class": "FXWeightedMix"
+    },
+    {
+      "name": "lf_array_forming",
+      "label": "Low-frequency array forming",
+      "category": "",
+      "description": "Spatial trace mixing confined to the low-frequency band with a cosine transition at the cutoff.",
+      "source": "seisdesk/processing/signal_tools.py",
+      "class": "LowFrequencyArray"
+    },
+    {
+      "name": "structure_smooth",
+      "label": "Structure-oriented smoothing (local semblance)",
+      "category": "Filtering",
+      "description": "Scan local slopes in samples/trace and average along the most coherent slope; regular ordered 2D panels.",
+      "source": "seisdesk/processing/signal_tools.py",
+      "class": "StructureSmooth"
+    },
+    {
+      "name": "trace_weight",
+      "label": "Weight traces by a header",
+      "category": "Gain",
+      "description": "Multiply every trace by scale times its selected numeric header.",
+      "source": "seisdesk/processing/signal_tools.py",
+      "class": "TraceWeight"
+    },
+    {
+      "name": "header_math",
+      "label": "Trace arithmetic with header values",
+      "category": "Utility",
+      "description": "Add, subtract, multiply or divide samples by a trace-header value; zero divisors are rejected.",
+      "source": "seisdesk/processing/signal_tools.py",
+      "class": "HeaderMath"
+    },
+    {
+      "name": "dataset_math",
+      "label": "Combine with another dataset",
+      "category": "Utility",
+      "description": "Trace-aligned arithmetic with a SEG-Y/SU dataset; sample axes and source/receiver geometry must agree.",
+      "source": "seisdesk/processing/signal_tools.py",
+      "class": "DatasetMath"
+    },
+    {
+      "name": "reciprocal_sum",
+      "label": "Sum reciprocal source-receiver pairs",
+      "category": "Stack",
+      "description": "Sum traces whose source/receiver coordinates are interchanged; retain components separately and write fold.",
+      "source": "seisdesk/processing/signal_tools.py",
+      "class": "ReciprocalSum"
+    },
+    {
+      "name": "frac_autocorr",
+      "label": "Fractional autocorrelation",
+      "category": "Utility",
+      "description": "Inverse Fourier transform of power spectrum raised to an exponent; output axis is positive lag from zero.",
+      "source": "seisdesk/processing/signal_tools.py",
+      "class": "FractionalAutocorrelation"
+    },
+    {
+      "name": "dip_divcor",
+      "label": "Approximate local-dip divergence weighting",
+      "category": "Gain",
+      "description": "Time-squared gain divided by local dip cosine, estimated from image slopes; not true-amplitude migration.",
+      "source": "seisdesk/processing/signal_tools.py",
+      "class": "DipDivergence"
+    },
+    {
+      "name": "stack",
+      "label": "CMP stack",
+      "category": "Stack",
+      "description": "Stack every CMP gather into one trace; fold goes to header nhs. 'live' divides the sum by the number of non-zero samples, 'median' takes the median (robust to noise bursts), 'diversity' weights each sample by the inverse power of its trace in a sliding window (noisy traces count less), 'phase-weighted' multiplies the live stack by the coherence of the instantaneous phases to a power (incoherent noise is suppressed strongly, aligned events are kept).",
+      "source": "seisdesk/processing/stack.py",
+      "class": "Stack"
+    },
+    {
+      "name": "elevation_statics",
+      "label": "Elevation statics (to datum)",
+      "category": "Statics",
+      "description": "Source and receiver statics that move the data to a flat datum with a replacement velocity; written to sstat/gstat (ms) and applied unless 'apply' is off.",
+      "source": "seisdesk/processing/statics.py",
+      "class": "ElevationStatics"
+    },
+    {
+      "name": "apply_statics",
+      "label": "Apply statics from headers",
+      "category": "Statics",
+      "description": "Shift each trace by the sum of the chosen header values (ms), e.g. 'sstat,gstat'.",
+      "source": "seisdesk/processing/statics.py",
+      "class": "ApplyStatics"
+    },
+    {
+      "name": "table_statics",
+      "label": "Apply statics from an x-static table",
+      "category": "Statics",
+      "description": "Interpolate a two-column table 'x static_ms' (e.g. refraction statics from tomography) at every source and receiver position and shift each trace by the sum. 'remove' shifts the trace EARLIER by the table values (the usual case for delay times); 'add' shifts it later.",
+      "source": "seisdesk/processing/statics.py",
+      "class": "TableStatics"
+    },
+    {
+      "name": "residual_statics",
+      "label": "Residual statics (surface consistent)",
+      "category": "Statics",
+      "description": "On NMO-corrected data: cross-correlate every trace with its CMP pilot stack in a window, split the time shifts into source and receiver terms by least squares, apply, iterate. Totals go to sstat/gstat (ms).",
+      "source": "seisdesk/processing/statics.py",
+      "class": "ResidualStatics"
+    },
+    {
+      "name": "su_pipeline",
+      "label": "Seismic Unix pipeline (installed SU)",
+      "category": "Input/Output",
+      "description": "Run installed SU programs on a local host or through Windows WSL. Literal arguments and pipes are supported, e.g. 'sugain tpow=2 | sufilter f=5,10,60,80'. For an existing script use 'bash /path/flow.sh'; it must read SU from stdin and write SU to stdout. Output gets new trace identities because external programs may stack, duplicate or change traces. For files larger than memory use the SU file-job window or seisdesk-cli su-run.",
+      "source": "seisdesk/processing/su.py",
+      "class": "SUPipeline"
+    },
+    {
+      "name": "sc_amplitude",
+      "label": "Surface-consistent amplitude correction",
+      "category": "Gain",
+      "description": "Decomposes the log RMS amplitude of every trace (in a window) into source, receiver, offset and CMP terms by least squares, and removes the source and receiver terms (charge size, coupling, geophone plants), so amplitudes vary only with offset and geology.",
+      "source": "seisdesk/processing/surface.py",
+      "class": "SCAmplitude"
+    },
+    {
+      "name": "sc_decon",
+      "label": "Surface-consistent deconvolution",
+      "category": "Deconvolution",
+      "description": "Decomposes the log amplitude spectra of all traces (design window) into source, receiver and offset terms by least squares; each trace is deconvolved with the minimum-phase inverse of its average x source x receiver spectrum. Wavelets become consistent along the line and noisy traces do not spoil their own operators.",
+      "source": "seisdesk/processing/surface.py",
+      "class": "SCDecon"
+    },
+    {
+      "name": "refraction_tomography",
+      "label": "First-arrival traveltime tomography (2D)",
+      "category": "Tomography",
+      "description": "Shortest-path rays and damped LSQR slowness updates, with topography, smoothing and velocity bounds. Select first-arrival phases only. Reports misfit and ray coverage; unilluminated model cells remain unconstrained. Save a project model before using it for migration or statics.",
+      "source": "seisdesk/processing/tomography.py",
+      "class": "RefractionTomography"
+    },
+    {
+      "name": "tv_decon",
+      "label": "Time-variant deconvolution (multi-window)",
+      "category": "Deconvolution",
+      "description": "Spiking or predictive deconvolution whose operator changes with time: one Wiener prediction-error filter per trace is designed in every design window, the whole trace is filtered with each, and the outputs are blended linearly between the window centres (before the first centre only the first operator is used, after the last only the last). Use it when the wavelet changes down the trace, e.g. through absorption: shallow and deep windows each get their own operator. Windows are written start-end in seconds, separated by commas.",
+      "source": "seisdesk/processing/tvdecon.py",
+      "class": "TimeVariantDecon"
+    },
+    {
+      "name": "gabor_decon",
+      "label": "Gabor deconvolution (non-stationary)",
+      "category": "Deconvolution",
+      "description": "Deconvolution of a wavelet that changes with time through attenuation (Margrave, Lamoureux & Henley 2011). Overlapping Gaussian windows (a partition of unity) give the Gabor spectrum of each trace; its amplitude, smoothed, estimates the propagating wavelet at every time and frequency: 'hyperbolic' smoothing fits a source spectrum times an attenuation function of time x frequency (constant Q), 'boxcar' smooths over a time and a frequency width. Every window is divided by the minimum-phase (or zero-phase) wavelet of its time, band-limited by the corners, and the windows are summed. The method also restores the amplitude decay with time, so each output trace is scaled back to the RMS amplitude of its input.",
+      "source": "seisdesk/processing/tvdecon.py",
+      "class": "GaborDecon"
+    },
+    {
+      "name": "export_segy",
+      "label": "Write SEG-Y",
+      "category": "Input/Output",
+      "description": "Write the current data to an IEEE-float SEG-Y file (the data pass on unchanged).",
+      "source": "seisdesk/processing/utility.py",
+      "class": "ExportSEGY"
+    },
+    {
+      "name": "export_su",
+      "label": "Write Seismic Unix file",
+      "category": "Input/Output",
+      "description": "Write the current data in Seismic Unix format (little-endian).",
+      "source": "seisdesk/processing/utility.py",
+      "class": "ExportSU"
+    },
+    {
+      "name": "add_noise",
+      "label": "Add random noise",
+      "category": "Utility",
+      "description": "Add Gaussian noise at a signal-to-noise ratio (dB, RMS) \u2014 for tests and training.",
+      "source": "seisdesk/processing/utility.py",
+      "class": "AddNoise"
+    },
+    {
+      "name": "auto_velocity",
+      "label": "Automatic velocity picking",
+      "category": "Velocity",
+      "description": "Semblance at every n-th CMP (supergathers) and a smooth maximum-semblance path picked into the project velocity picks (replacing picks at those CMPs). Refine them in the velocity analysis tool.",
+      "source": "seisdesk/processing/velan.py",
+      "class": "AutoVelocity"
+    },
+    {
+      "name": "cvs_panels",
+      "label": "Constant-velocity stack panels",
+      "category": "Velocity",
+      "description": "NMO + stack of a CMP range at a series of constant velocities, panels side by side (for picking checks).",
+      "source": "seisdesk/processing/velan.py",
+      "class": "ConstantVelocityStacks"
+    },
+    {
+      "name": "cvg_panels",
+      "label": "Constant-velocity gather panels",
+      "category": "Velocity",
+      "description": "One CMP (or supergather) NMO-corrected with a series of constant velocities, panels side by side (two blank traces between them; the panel velocity is in header 'cvg_v'). Each event is flat in the panel of its velocity: a check of the semblance picks.",
+      "source": "seisdesk/processing/velan.py",
+      "class": "ConstantVelocityGathers"
+    },
+    {
+      "name": "smooth_velocity",
+      "label": "Smooth velocity field",
+      "category": "Velocity",
+      "description": "Samples the velocity picks on the CMP-time grid of the dataset, smooths them (Gaussian along the line and in time) and replaces the project picks by the smoothed field taken every n CMPs and every dt seconds. Removes pick-to-pick jitter before migration and depth conversion.",
+      "source": "seisdesk/processing/velan.py",
+      "class": "SmoothVelocity"
+    },
+    {
+      "name": "interval_to_stacking",
+      "label": "Interval depth model to RMS velocity picks",
+      "category": "Velocity",
+      "description": "Integrate the project interval model as constant-velocity depth cells to obtain vertical two-way time and RMS velocity. Writes picks at the nearest survey CMPs.",
+      "source": "seisdesk/processing/velocity_tools.py",
+      "class": "IntervalToStacking"
+    },
+    {
+      "name": "ti_velocity_table",
+      "label": "TI dip-NMO velocity table (weak anisotropy)",
+      "category": "Velocity",
+      "description": "Tabulate homogeneous VTI NMO velocity versus reflector dip using weak-anisotropy phase-velocity curvature; inspect the table in the log and results.",
+      "source": "seisdesk/processing/velocity_tools.py",
+      "class": "TIVelocityTable"
+    },
+    {
+      "name": "velocity_semblance_slice",
+      "label": "Velocity semblance at one time along the line",
+      "category": "Velocity",
+      "description": "Compute a CMP-by-velocity semblance slice at one two-way time. Stores the full slice and logs the maximum at each CMP; optionally writes those velocity picks.",
+      "source": "seisdesk/processing/velocity_tools.py",
+      "class": "VelocitySemblanceSlice"
+    },
+    {
+      "name": "taup_nmo",
+      "label": "NMO in tau-p (layered isotropic medium)",
+      "category": "Moveout",
+      "description": "Correct tau(p,t0)=integral sqrt(1-p\u00b2 v_interval\u00b2) dt0. Input traces must already be in tau-p with p in seconds/metre; critical and post-critical samples are muted.",
+      "source": "seisdesk/processing/velocity_tools.py",
+      "class": "TauPNMO"
+    },
+    {
+      "name": "offset_continuation",
+      "label": "Offset continuation (log-stretch f-k approximation)",
+      "category": "Interpolation",
+      "description": "Continue an NMO-corrected common-offset 2D section to a smaller offset, using Fomel's high-frequency log-stretch operator. Periodic spatial edges; taper/crop first. Output remains NMO corrected.",
+      "source": "seisdesk/processing/velocity_tools.py",
+      "class": "OffsetContinuation"
+    },
+    {
+      "name": "vibro_correlation",
+      "label": "Vibroseis correlation",
+      "category": "Vibroseis",
+      "description": "Cross-correlates every uncorrelated vibroseis record with the sweep, which compresses each sweep-long reflection into a short zero-phase Klauder wavelet at the reflection time. The sweep is built from its parameters (linear or dB-per-octave, with tapers), taken from a pilot trace in the data (e.g. trid 6, one per gather) or read from a file. The output keeps the listen time (record length minus sweep length unless given) and is scaled by the sweep energy, so a reflection keeps its amplitude.",
+      "source": "seisdesk/processing/vibroseis.py",
+      "class": "VibroCorrelation"
+    },
+    {
+      "name": "vibro_convolve",
+      "label": "Convolve with a sweep (uncorrelated records)",
+      "category": "Vibroseis",
+      "description": "Convolves every trace with the sweep, turning reflectivity or correlated data into uncorrelated vibroseis records (the record grows by the sweep length). For tests, teaching and checking the correlation parameters.",
+      "source": "seisdesk/processing/vibroseis.py",
+      "class": "VibroConvolve"
+    },
+    {
+      "name": "klauder_min_phase",
+      "label": "Klauder wavelet to minimum phase",
+      "category": "Vibroseis",
+      "description": "Correlated vibroseis data carry the zero-phase Klauder wavelet, but predictive deconvolution assumes a minimum-phase wavelet. This all-pass filter W_min / K turns the Klauder wavelet K (the autocorrelation of the sweep) into its minimum-phase equivalent W_min (Gibson & Larner 1984); run it after correlation and before deconvolution, with the same sweep.",
+      "source": "seisdesk/processing/vibroseis.py",
+      "class": "KlauderMinPhase"
+    },
+    {
+      "name": "acoustic_model_3d",
+      "label": "3D acoustic finite-difference modelling",
+      "category": "Modelling",
+      "description": "Full v(z,y,x) isotropic constant-density acoustic propagation with trilinear geometry and absorbing boundaries. CPU or optional CUDA, disk checkpoints and parallel shots. Source samples are acceleration forcing. Grid resolution must resolve the shortest wavelength.",
+      "source": "seisdesk/processing/volume.py",
+      "class": "AcousticModelling3D"
+    },
+    {
+      "name": "acoustic_rtm_3d",
+      "label": "3D acoustic reverse-time depth migration",
+      "category": "Depth migration",
+      "description": "Prestack RTM through a fully varying v(z,y,x) model. Exact discrete adjoint, zero-lag correlation and illumination volumes; relative amplitudes. Flat or buried recording coordinates inside the model; no free surface or elastic physics.",
+      "source": "seisdesk/processing/volume.py",
+      "class": "AcousticRTM3D"
+    },
+    {
+      "name": "acoustic_fwi_3d",
+      "label": "3D acoustic full-waveform inversion",
+      "category": "Inversion",
+      "description": "Velocity inversion in a full 3D model using checkpointed discrete-adjoint gradients and a bounded line search. Known source waveform and a suitable starting model are required. Isotropic constant-density acoustic physics; cycle skipping and acquisition coverage still apply.",
+      "source": "seisdesk/processing/volume.py",
+      "class": "AcousticFWI3D"
+    },
+    {
+      "name": "volume_file_job",
+      "label": "3D acoustic file job (streamed shot input)",
+      "category": "Input/Output",
+      "description": "Read a SEG-Y or SU survey one shot at a time and run 3D modelling, RTM or FWI. No full survey waveform matrix is loaded into memory. Optional Dask workers require the same SeisDesk version and a shared job directory. All output shots remain in the job folder.",
+      "source": "seisdesk/processing/volume.py",
+      "class": "VolumeFileJob"
+    },
+    {
+      "name": "phase_rotation",
+      "label": "Phase rotation (constant phase)",
+      "category": "Wavelet",
+      "description": "Rotates the phase of every trace by a constant angle at all frequencies: out = in cos(a) - H(in) sin(a), with H the Hilbert transform. 180 degrees reverses the polarity; +90 or -90 degrees turns a zero-phase wavelet into an antisymmetric one. Use it to match the phase of two surveys, or of the data and a well synthetic.",
+      "source": "seisdesk/processing/wavelet.py",
+      "class": "PhaseRotation"
+    },
+    {
+      "name": "zero_phase",
+      "label": "Zero-phase conversion",
+      "category": "Wavelet",
+      "description": "Replaces the phase of the wavelet by zero phase and keeps its amplitude spectrum, so reflections become symmetric peaks centred on the reflection time (best for interpretation). 'data wavelet' takes the wavelet as minimum phase (dynamite, deconvolved data) with the amplitude spectrum of the design window; 'wavelet file' uses a known wavelet (a text file); 'per trace' converts every trace on its own (for wavelet or signature traces, not for reflection data).",
+      "source": "seisdesk/processing/wavelet.py",
+      "class": "ZeroPhase"
+    },
+    {
+      "name": "min_phase",
+      "label": "Minimum-phase conversion",
+      "category": "Wavelet",
+      "description": "Converts the wavelet to its minimum-phase equivalent (same amplitude spectrum, energy at the front), which predictive deconvolution assumes. 'data wavelet' takes the data wavelet as zero phase (correlated vibroseis, zero-phase processed data) with the amplitude spectrum of the design window; 'wavelet file' uses a known wavelet; 'per trace' converts every trace on its own (for wavelet traces).",
+      "source": "seisdesk/processing/wavelet.py",
+      "class": "MinPhase"
+    },
+    {
+      "name": "shaping_filter",
+      "label": "Wiener shaping filter",
+      "category": "Wavelet",
+      "description": "Designs the least-squares (Wiener) filter that turns the input wavelet into a desired output wavelet and applies it to every trace. Input wavelet: estimated from the data (minimum phase, from the average autocorrelation in the design window) or read from a file. Desired output: a zero-phase Ricker, a zero-phase Ormsby band-pass wavelet or a file. The output delay lets the filter reach before the input onset; it is removed again, so a zero-phase output is centred on the onset time of the input wavelet.",
+      "source": "seisdesk/processing/wavelet.py",
+      "class": "ShapingFilter"
+    },
+    {
+      "name": "signature_decon",
+      "label": "Signature (deterministic) deconvolution",
+      "category": "Deconvolution",
+      "description": "Removes a known source wavelet (a measured or modelled air-gun signature, a vibroseis or explosive wavelet): every trace is divided in the frequency domain by the wavelet spectrum, stabilised by a water level, and the result is shaped to a spike or a zero-phase band-pass wavelet. The wavelet comes from a text file (its time origin is honoured) or from a trace in the data selected by a header value (e.g. trid 9 for a near-field signature); with a gather key each gather uses its own signature trace.",
+      "source": "seisdesk/processing/wavelet.py",
+      "class": "SignatureDecon"
+    },
+    {
+      "name": "homomorphic_decon",
+      "label": "Homomorphic (cepstral) deconvolution",
+      "category": "Deconvolution",
+      "description": "Estimates a mixed-phase wavelet \u2014 no minimum-phase assumption \u2014 from the low-quefrency part of the complex cepstrum averaged over all traces (Ulrych 1971), then deconvolves every trace with it (water-level stabilised) to a spike or a zero-phase band-pass wavelet. The estimate is stored in the results (its amplitude spectrum is reliable, its phase approximate); the method needs many traces and a wavelet shorter than the cepstral cut-off.",
+      "source": "seisdesk/processing/wavelet.py",
+      "class": "HomomorphicDecon"
+    },
+    {
+      "name": "survey_pocs",
+      "label": "Survey interpolation (3D / 5D POCS)",
+      "category": "Interpolation",
+      "description": "Reconstruct missing midpoint bins across a whole 3D stack or 5D prestack survey (midpoint x,y; full signed offset x,y; time). Presence or an explicit live header defines observations; zero-valued live traces stay unchanged. Input coordinates must lie within the configured bin tolerance. Recorded samples are preserved; duplicate bins require an explicit mean policy. New traces have interp=1. Geometry is binned and original geometry retained in diagnostics. New station IDs and varying elevations/statics are unknown (zero); assign these before shot-domain processing. CPU Fourier POCS assumes coherent, sparsely represented events and periodic spatial support; inspect held-out traces and acquisition gaps before interpretation.",
+      "source": "seisdesk/processing/survey_interpolation.py",
+      "class": "SurveyPOCS"
+    },
+    {
+      "name": "joint_tomography_3d",
+      "label": "Joint arrival tomography (3D)",
+      "category": "Tomography",
+      "description": "Invert multiple named first arrivals, reflections and head waves in a 3D velocity volume. Planes or ny,nx depth arrays can stay fixed or undergo bounded shared-interface updates. Coordinates, depths and velocities use metres and m/s. Station depths use the model reference elevation. Ray directions and interfaces are discretised on the model grid; refine the grid/stencil to assess accuracy. CPU execution. Optional timing-noise ensembles estimate conditional velocity/interface uncertainty, not geological uniqueness.",
+      "source": "seisdesk/processing/tomography3d.py",
+      "class": "JointTomography3D"
+    },
+    {
+      "name": "sps_geometry",
+      "label": "SPS source / receiver / relation geometry",
+      "category": "Geometry",
+      "description": "SPS 2.0/2.1 S/R/X geometry with strict FFID/channel matching, component groups, point indices and unit checks.",
+      "source": "seisdesk/processing/edit.py",
+      "class": "SPSGeometry"
+    },
+    {
+      "name": "surface_wave_inversion",
+      "label": "Layered surface-wave inversion (disba/CPS)",
+      "category": "Inversion",
+      "description": "Fit identified Rayleigh/Love phase/group modes in a 1D layered isotropic model. Vp/Vs, density and layer count fixed; bounded Vs/optional thickness updates and conditional pick-error refits.",
+      "source": "seisdesk/processing/surface_inversion.py",
+      "class": "SurfaceWaveInversion"
+    }
+  ]
+}

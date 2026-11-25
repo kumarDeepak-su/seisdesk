@@ -1,0 +1,14 @@
+Windows (CUDA)	Tests	2026-11-04T05:45:29.8194221Z 399 passed, 8 skipped in 195.19s (0:03:15)
+Windows (CUDA)	Self-test of the built program	2026-11-04T05:48:54.0471371Z Frozen CPU 3D modelling passed with two process workers (small numerical fixture).
+Windows (CUDA)	Self-test of the built program	2026-11-04T05:48:54.0472701Z Frozen portable job bundle and compute source verification passed.
+Windows (CUDA)	Self-test of the built program	2026-11-04T05:48:54.0474543Z Frozen 3D arrival inversion and disk-backed survey FFT reconstruction passed.
+Windows (CUDA)	Self-test of the built program	2026-11-04T05:48:54.0476811Z Frozen disba/CPS dispersion compilation and common-axis sample import passed.
+Windows (CUDA)	Self-test of the built program	2026-11-04T05:48:54.0478312Z Frozen 3D shared-interface inversion and portable boundary export passed.
+Windows (CUDA)	Self-test of the built program	2026-11-04T05:48:54.0480469Z SeisDesk self-test passed: 144 traces processed, SEG-Y written to C:\Users\RUNNER~1\AppData\Local\Temp\seisdesk_selftest.sgy
+Windows (CPU)	Tests	2026-11-04T05:44:18.9437944Z 399 passed, 8 skipped in 184.92s (0:03:04)
+Windows (CPU)	Self-test of the built program	2026-11-04T05:47:50.1650445Z Frozen CPU 3D modelling passed with two process workers (small numerical fixture).
+Windows (CPU)	Self-test of the built program	2026-11-04T05:47:50.1651911Z Frozen portable job bundle and compute source verification passed.
+Windows (CPU)	Self-test of the built program	2026-11-04T05:47:50.1653666Z Frozen 3D arrival inversion and disk-backed survey FFT reconstruction passed.
+Windows (CPU)	Self-test of the built program	2026-11-04T05:47:50.1655773Z Frozen disba/CPS dispersion compilation and common-axis sample import passed.
+Windows (CPU)	Self-test of the built program	2026-11-04T05:47:50.1657615Z Frozen 3D shared-interface inversion and portable boundary export passed.
+Windows (CPU)	Self-test of the built program	2026-11-04T05:47:50.1659968Z SeisDesk self-test passed: 144 traces processed, SEG-Y written to C:\Users\RUNNER~1\AppData\Local\Temp\seisdesk_selftest.sgy

@@ -1,0 +1,50 @@
+<div id="seisdesk-selected-test-images">
+  <div class="viz-row" id="seisdesk-image-choices" aria-label="Selected test images"></div>
+  <figure>
+    <h3 id="seisdesk-image-title"></h3>
+    <p class="text-small text-muted" id="seisdesk-image-kind"></p>
+    <img id="seisdesk-selected-image" alt="">
+    <figcaption class="text-small" id="seisdesk-image-caption" aria-live="polite"></figcaption>
+  </figure>
+  <script id="seisdesk-selected-data" type="application/json">__SELECTED_DATA__</script>
+</div>
+<style>
+#seisdesk-selected-test-images figure { margin: 16px 0 0; }
+#seisdesk-selected-test-images img { display: block; width: 100%; height: auto; }
+#seisdesk-selected-test-images figcaption { margin-top: 12px; }
+</style>
+<script>
+(() => {
+  const root = document.getElementById('seisdesk-selected-test-images');
+  const items = JSON.parse(root.querySelector('#seisdesk-selected-data').textContent);
+  const choices = root.querySelector('#seisdesk-image-choices');
+  const storageKey = 'seisdesk-selected-test-image';
+  let selected = 0;
+  const buttons = items.map((item, index) => {
+    const button = document.createElement('button');
+    button.type = 'button'; button.className = 'btn'; button.textContent = item.label;
+    button.setAttribute('aria-pressed', 'false');
+    button.addEventListener('click', () => show(index, true));
+    choices.append(button); return button;
+  });
+  function show(index, persist) {
+    selected = Number.isInteger(index) && index >= 0 && index < items.length ? index : 0;
+    const item = items[selected];
+    root.querySelector('#seisdesk-image-title').textContent = item.title;
+    root.querySelector('#seisdesk-image-kind').textContent = item.kind;
+    root.querySelector('#seisdesk-image-caption').textContent = item.caption;
+    const image = root.querySelector('#seisdesk-selected-image'); image.src = item.src; image.alt = item.title;
+    buttons.forEach((button, i) => button.setAttribute('aria-pressed', String(i === selected)));
+    if (persist) {
+      try { window.localStorage.setItem(storageKey, String(selected)); } catch (_) {}
+    }
+  }
+  function restored() {
+    try { return Number(window.localStorage.getItem(storageKey)); } catch (_) { return 0; }
+  }
+  window.addEventListener('storage', event => {
+    if (event.key === storageKey) show(restored(), false);
+  });
+  show(restored(), false);
+})();
+</script>

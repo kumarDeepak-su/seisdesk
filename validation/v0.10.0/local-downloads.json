@@ -1,0 +1,14 @@
+[
+  {
+    "path": "dist/v0.10.0-a09b283/SeisDesk-installer-CPU/SeisDesk-0.10.0-setup.exe",
+    "bytes": 124490672,
+    "sha256": "5b88d6701e29dd12c3c00523304ff4de3c012ae4efe57dd6ae298bb0d6b64ad4",
+    "source_run": 41689367571
+  },
+  {
+    "path": "dist/v0.10.0-a09b283/SeisDesk-manual-CPU/SeisDesk_User_Manual.pdf",
+    "bytes": 15614773,
+    "sha256": "6c51c72756e1bc70f1a5912204d5ddfe8c21fc157ff56697dc94bdd81f6f8905",
+    "source_run": 41689367571
+  }
+]

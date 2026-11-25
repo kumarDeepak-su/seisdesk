@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "seisdesk"
+version = "0.12.0"
+description = "Interactive 2D/3D seismic data processing workstation: SEG-Y loading, gather display, editing, filtering, deconvolution, demultiple, statics, velocity analysis, NMO/DMO, stacking, time and depth migration."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "GPL-3.0-or-later"
+authors = [{ name = "Deepak Kumar" }]
+dependencies = [
+    "numpy>=1.24",
+    "scipy>=1.10",
+    "segyio>=1.9",
+    "PySide6>=6.5,!=6.9.*",
+    "pyqtgraph>=0.13.3",
+    "disba==0.7.0",
+    "numba==0.61.2",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=7", "pytest-qt>=4"]
+build = ["pyinstaller>=6"]
+distributed = ["dask[distributed]>=2024.1"]
+cuda = ["cupy-cuda12x[ctk]==14.2.0; python_version >= '3.11'", "cuda-toolkit==12.8.2; python_version >= '3.11'",
+        "cupy-cuda12x==13.6.0; python_version < '3.11'"]
+
+[project.scripts]
+seisdesk-cli = "seisdesk.cli:main"
+
+[project.gui-scripts]
+seisdesk = "seisdesk.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["seisdesk*"]
+
+[tool.setuptools.package-data]
+seisdesk = ["docs/*.md", "docs/images/*.png"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

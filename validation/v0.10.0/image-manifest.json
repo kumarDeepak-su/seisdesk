@@ -1,0 +1,65 @@
+{
+  "pixels_changed": false,
+  "images": [
+    {
+      "file": "dist/result-images/v0.10.0/v10_field_import.png",
+      "sha256": "70eb238f58bb53acf3c2bd3875a39bf211b82feb053d2df826bb26149fdba0c2",
+      "bytes": 122825,
+      "width": 1500,
+      "height": 900,
+      "source": "Athena Slurm job 3491347",
+      "kind": "Public SmartSolo SEG-D and analytic resampling check",
+      "visual_inspection": "Labels, units and controls inspected from original PNG"
+    },
+    {
+      "file": "dist/result-images/v0.10.0/v10_layered_surface_waves.png",
+      "sha256": "c155de474cfa1cc208de25cad0848fd1b04da23797cf356fe02680570043c553",
+      "bytes": 81611,
+      "width": 1650,
+      "height": 750,
+      "source": "Athena Slurm job 3491347",
+      "kind": "Noisy synthetic inversion with 30 conditional refits",
+      "visual_inspection": "Labels, units and controls inspected from original PNG"
+    },
+    {
+      "file": "dist/result-images/v0.10.0/v10_resample_import.png",
+      "sha256": "b5a0fed7eb593deec13fff8c5d051901a74eb4946dcef54ea2f4cd170efb6f9d",
+      "bytes": 16606,
+      "width": 355,
+      "height": 231,
+      "source": "Windows CPU run 41689367571, source a09b283",
+      "kind": "Windows GUI preview; illustrative inputs",
+      "visual_inspection": "Labels, units and controls inspected from original PNG"
+    },
+    {
+      "file": "dist/result-images/v0.10.0/v10_segd_import.png",
+      "sha256": "a5a772613ca12ab8c0ddc42abdfd352bffa260f26c26da54ef6e3a12894e7b45",
+      "bytes": 30673,
+      "width": 620,
+      "height": 440,
+      "source": "Windows CPU run 41689367571, source a09b283",
+      "kind": "Windows GUI preview; illustrative inputs",
+      "visual_inspection": "Labels, units and controls inspected from original PNG"
+    },
+    {
+      "file": "dist/result-images/v0.10.0/v10_sps_geometry.png",
+      "sha256": "81026c8965e74f3c6ffff3777f625af5edc9f6a67360f1ddb494e430aaa21a06",
+      "bytes": 27108,
+      "width": 900,
+      "height": 480,
+      "source": "Windows CPU run 41689367571, source a09b283",
+      "kind": "Windows GUI preview; illustrative inputs",
+      "visual_inspection": "Labels, units and controls inspected from original PNG"
+    },
+    {
+      "file": "dist/result-images/v0.10.0/v10_surface_inversion.png",
+      "sha256": "d251f6269365a3a7e5c57082cb7f28403db4dc8312abab8ec45b7ea51b8921bc",
+      "bytes": 83916,
+      "width": 1180,
+      "height": 800,
+      "source": "Windows CPU run 41689367571, source a09b283",
+      "kind": "Windows GUI preview; illustrative inputs",
+      "visual_inspection": "Labels, units and controls inspected from original PNG"
+    }
+  ]
+}

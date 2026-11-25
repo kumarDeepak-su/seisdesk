@@ -1,0 +1,67 @@
+{
+  "scope": "homogeneous 3D free-space Green-function comparison",
+  "device": "cuda",
+  "grid_shape": [
+    161,
+    161,
+    161
+  ],
+  "spacing_m": 5.0,
+  "dt_s": 0.001,
+  "velocity_m_s": 2000.0,
+  "source_frequency_hz": 12.0,
+  "points_per_wavelength_at_2_5_f": 13.333333333333334,
+  "receivers": [
+    {
+      "distance_m": 100.0,
+      "expected_peak_s": 0.15000000000000002,
+      "measured_peak_s": 0.15,
+      "peak_error_s": 1.3877787807814457e-17,
+      "correlation": 0.9999655386297267,
+      "relative_l2": 0.008326219124622546,
+      "measured_peak": 2.4880003929138184,
+      "analytic_peak": 2.486795985810865
+    },
+    {
+      "distance_m": 200.0,
+      "expected_peak_s": 0.2,
+      "measured_peak_s": 0.2,
+      "peak_error_s": 0.0,
+      "correlation": 0.9998022217314835,
+      "relative_l2": 0.01989065317404241,
+      "measured_peak": 1.2428886890411377,
+      "analytic_peak": 1.2433979929054324
+    },
+    {
+      "distance_m": 200.0,
+      "expected_peak_s": 0.2,
+      "measured_peak_s": 0.2,
+      "peak_error_s": 0.0,
+      "correlation": 0.9999478355672763,
+      "relative_l2": 0.011459560726052033,
+      "measured_peak": 1.2509465217590332,
+      "analytic_peak": 1.2433979929054324
+    },
+    {
+      "distance_m": 200.0,
+      "expected_peak_s": 0.2,
+      "measured_peak_s": 0.2,
+      "peak_error_s": 0.0,
+      "correlation": 0.9999478355672763,
+      "relative_l2": 0.011459560726052033,
+      "measured_peak": 1.2509465217590332,
+      "analytic_peak": 1.2433979929054324
+    }
+  ],
+  "spreading_ratio_100m_to_200m": 2.00178861618042,
+  "expected_spreading_ratio": 2.0,
+  "thresholds": {
+    "min_correlation": 0.99,
+    "max_relative_l2": 0.1,
+    "max_peak_error_s": 0.0021,
+    "max_spreading_relative_error": 0.05
+  },
+  "elapsed_seconds": 1.2559406059999674,
+  "status": "passed",
+  "heterogeneous_field_accuracy_validated": false
+}

@@ -1,0 +1,14 @@
+Windows (CPU)	UNKNOWN STEP	2026-11-03T23:54:05.3231401Z 388 passed, 8 skipped in 113.06s (0:01:53)
+Windows (CPU)	UNKNOWN STEP	2026-11-03T23:56:38.1523892Z Frozen CPU 3D modelling passed with two process workers (small numerical fixture).
+Windows (CPU)	UNKNOWN STEP	2026-11-03T23:56:38.1526709Z Frozen portable job bundle and compute source verification passed.
+Windows (CPU)	UNKNOWN STEP	2026-11-03T23:56:38.1528754Z Frozen 3D arrival inversion and disk-backed survey FFT reconstruction passed.
+Windows (CPU)	UNKNOWN STEP	2026-11-03T23:56:38.1531279Z Frozen disba/CPS dispersion compilation and common-axis sample import passed.
+Windows (CPU)	UNKNOWN STEP	2026-11-03T23:56:38.1533034Z Frozen 3D shared-interface inversion and portable boundary export passed.
+Windows (CPU)	UNKNOWN STEP	2026-11-03T23:56:38.1535756Z SeisDesk self-test passed: 144 traces processed, SEG-Y written to C:\Users\RUNNER~1\AppData\Local\Temp\seisdesk_selftest.sgy
+Windows (CUDA)	UNKNOWN STEP	2026-11-03T23:55:40.1276195Z 388 passed, 8 skipped in 111.53s (0:01:51)
+Windows (CUDA)	UNKNOWN STEP	2026-11-03T23:58:32.1066094Z Frozen CPU 3D modelling passed with two process workers (small numerical fixture).
+Windows (CUDA)	UNKNOWN STEP	2026-11-03T23:58:32.1145635Z Frozen portable job bundle and compute source verification passed.
+Windows (CUDA)	UNKNOWN STEP	2026-11-03T23:58:32.1155161Z Frozen 3D arrival inversion and disk-backed survey FFT reconstruction passed.
+Windows (CUDA)	UNKNOWN STEP	2026-11-03T23:58:32.1156129Z Frozen disba/CPS dispersion compilation and common-axis sample import passed.
+Windows (CUDA)	UNKNOWN STEP	2026-11-03T23:58:32.1156824Z Frozen 3D shared-interface inversion and portable boundary export passed.
+Windows (CUDA)	UNKNOWN STEP	2026-11-03T23:58:32.1157706Z SeisDesk self-test passed: 144 traces processed, SEG-Y written to C:\Users\RUNNER~1\AppData\Local\Temp\seisdesk_selftest.sgy

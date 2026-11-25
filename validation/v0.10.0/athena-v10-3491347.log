@@ -1,0 +1,97 @@
+........................................................................ [ 90%]
+........                                                                 [100%]
+=============================== warnings summary ===============================
+tests/test_v06_seg2.py::test_packed20_agrees_with_independent_obspy[<]
+tests/test_v06_seg2.py::test_packed20_agrees_with_independent_obspy[>]
+  $HOME/seisdesk-validation-20261102/venv-cupy14/lib/python3.11/site-packages/obspy/io/seg2/seg2.py:365: UserWarning: Many companies use custom defined SEG2 header variables. This might cause basic header information reflected in the single traces' stats to be wrong (e.g. recording delays, first sample number, station code names, ..). Please check the complete list of additional unmapped header fields that gets stored in Trace.stats.seg2 and/or the manual of the source of the SEG2 files for fields that might influence e.g. trace start times.
+    warnings.warn(WARNING_HEADER)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+- generated xml file: $HOME/seisdesk-validation-20261102/v10-scientific-results.xml -
+80 passed, 2 warnings in 2.85s
+{
+  "reference": "SEGDreader/SEGD_reader",
+  "reference_commit": "0dc57b6a1eecb266a05bc265031490bc5d9cbe68",
+  "source": "https://github.com/SEGDreader/SEGD_reader/blob/0dc57b6a1eecb266a05bc265031490bc5d9cbe68/examples/data/453005563.0001.2024.06.30.19.35.34.000.Z.segd",
+  "sha256": "df50c6951bbb1da5a7fa186aa37d195294b47ca8d468e74967d42dded61ee807",
+  "traces": 9,
+  "samples": 450001,
+  "dt_s": 0.004,
+  "max_absolute_sample_difference": 0.0,
+  "sample_units": "mV",
+  "timing_note": "Header sample intervals and first-sample timing checked; geographic coordinates and proprietary continuous timestamps are not inferred."
+}
+{
+  "rms_ms": 2.3102269539406945,
+  "initial_rms_ms": 28.480945931202307,
+  "objective": 42.6985078929015,
+  "success": true,
+  "message": "`xtol` termination condition is satisfied.",
+  "evaluations": 821,
+  "starts": 3,
+  "valid_starts": 3,
+  "bootstrap_requested": 30,
+  "bootstrap_failed": 0,
+  "bootstrap_success": 30,
+  "seed": 42,
+  "algorithm": "dunkin",
+  "engine": "disba 0.7.0",
+  "assumptions": "1D horizontal isotropic solid layers; fixed layer count, mode labels, Vp/Vs and density; traction-free surface",
+  "uncertainty": "Gaussian pick-error refits conditional on the stated assumptions; not structural or mode uncertainty",
+  "model": [
+    [
+      9.701234064875024,
+      398.2175835629464,
+      199.1087917814732,
+      1800.0
+    ],
+    [
+      0.0,
+      784.3317437496488,
+      392.1658718748244,
+      2000.0
+    ]
+  ],
+  "synthetic_truth": [
+    [
+      10.0,
+      400.0,
+      200.0,
+      1800.0
+    ],
+    [
+      0.0,
+      800.0,
+      400.0,
+      2000.0
+    ]
+  ],
+  "model_p05": [
+    [
+      9.500430969762576,
+      397.1064076951133,
+      198.55320384755666,
+      1800.0
+    ],
+    [
+      0.0,
+      766.6055685178791,
+      383.30278425893954,
+      2000.0
+    ]
+  ],
+  "model_p95": [
+    [
+      10.044872515714353,
+      399.3146868048207,
+      199.65734340241036,
+      1800.0
+    ],
+    [
+      0.0,
+      817.4343785760564,
+      408.7171892880282,
+      2000.0
+    ]
+  ]
+}

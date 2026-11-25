@@ -1,0 +1,23 @@
+{
+  "cpu_job": "3489878",
+  "cuda_job": "3489905",
+  "shots": [
+    {
+      "relative_l2": 0.0,
+      "max_absolute": 0.0,
+      "shape": [
+        85,
+        3
+      ]
+    },
+    {
+      "relative_l2": 0.0,
+      "max_absolute": 0.0,
+      "shape": [
+        85,
+        3
+      ]
+    }
+  ],
+  "fixture": "coarse-grid job-control fixture; not field data or an independent physics benchmark"
+}

@@ -1,0 +1,119 @@
+[
+  {
+    "image": "v12_home_light.png",
+    "width": 1500,
+    "height": 920,
+    "minimum_width": 981,
+    "requested_width": 1500,
+    "workspace_minimums": {
+      "viewer": 595,
+      "flow": 703,
+      "velocity": 797,
+      "project": 174
+    }
+  },
+  {
+    "image": "v12_home_dark.png",
+    "width": 1500,
+    "height": 920,
+    "minimum_width": 981,
+    "requested_width": 1500,
+    "workspace_minimums": {
+      "viewer": 595,
+      "flow": 703,
+      "velocity": 797,
+      "project": 174
+    }
+  },
+  {
+    "image": "v12_viewer_dark.png",
+    "width": 1500,
+    "height": 920,
+    "minimum_width": 981,
+    "requested_width": 1500,
+    "workspace_minimums": {
+      "viewer": 622,
+      "flow": 703,
+      "velocity": 797,
+      "project": 174
+    }
+  },
+  {
+    "image": "v12_flow_dark.png",
+    "width": 1500,
+    "height": 920,
+    "minimum_width": 981,
+    "requested_width": 1500,
+    "workspace_minimums": {
+      "viewer": 622,
+      "flow": 703,
+      "velocity": 797,
+      "project": 174
+    }
+  },
+  {
+    "image": "v12_command_search.png",
+    "width": 740,
+    "height": 520,
+    "minimum_width": 168,
+    "requested_width": 740,
+    "workspace_minimums": {
+      "viewer": 622,
+      "flow": 703,
+      "velocity": 797,
+      "project": 174
+    }
+  },
+  {
+    "image": "v12_flow_light.png",
+    "width": 1500,
+    "height": 920,
+    "minimum_width": 981,
+    "requested_width": 1500,
+    "workspace_minimums": {
+      "viewer": 622,
+      "flow": 703,
+      "velocity": 797,
+      "project": 174
+    }
+  },
+  {
+    "image": "v12_viewer_light.png",
+    "width": 1500,
+    "height": 920,
+    "minimum_width": 981,
+    "requested_width": 1500,
+    "workspace_minimums": {
+      "viewer": 622,
+      "flow": 703,
+      "velocity": 797,
+      "project": 174
+    }
+  },
+  {
+    "image": "v12_home_compact.png",
+    "width": 1280,
+    "height": 800,
+    "minimum_width": 981,
+    "requested_width": 1280,
+    "workspace_minimums": {
+      "viewer": 622,
+      "flow": 703,
+      "velocity": 797,
+      "project": 174
+    }
+  },
+  {
+    "image": "v12_flow_compact.png",
+    "width": 1280,
+    "height": 800,
+    "minimum_width": 981,
+    "requested_width": 1280,
+    "workspace_minimums": {
+      "viewer": 622,
+      "flow": 703,
+      "velocity": 797,
+      "project": 174
+    }
+  }
+]

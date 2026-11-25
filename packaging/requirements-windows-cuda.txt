@@ -1,0 +1,6 @@
+-r requirements-windows.txt
+# NVIDIA runtime wheels include matched DLLs and headers; the display driver
+# remains the workstation's driver. See the official CuPy installation guide.
+cupy-cuda12x[ctk]==14.2.0
+cuda-toolkit==12.8.2
+cuda-pathfinder==1.8.2
